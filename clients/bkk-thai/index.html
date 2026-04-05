@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BKK Thai Street Food — Bangkok. Frankfurt.</title>
+  <meta name="description" content="BKK Thai Street Food: Authentische Sharing Plates aus Bangkok im Herzen Frankfurts. Oeder Weg 14 · Mo–Fr ab 12 Uhr · Sa ab 18 Uhr.">
+  <meta property="og:title" content="BKK Thai Street Food Frankfurt">
+  <meta property="og:description" content="Das pulsierende Bangkok auf deinem Teller. Sharing Plates, Thai Street Food und erlesene Weine im Herzen Frankfurts.">
+  <meta property="og:image" content="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/ea3d9fac-6dab-42cd-91a9-c495b5300888/DSC_7405.jpg?format=2500w">
+  <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/bkk-thai/">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/3e8636a3-fb15-401e-bb29-65e4d0989128/favicon.ico?format=100w">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --surface-2: #1a1a1a;
+      --red: #E0302A;
+      --red-dark: #B52420;
+      --gold: #C99A1A;
+      --gold-light: #E8B84B;
+      --text: #F0EBE1;
+      --muted: #777;
+      --border: rgba(255,255,255,0.07);
+      --font-display: 'Playfair Display SC', Georgia, serif;
+      --font-body: 'Karla', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { border: none; background: none; font-family: inherit; cursor: pointer; }
+
+    /* ─── INTRO ─── */
+    #intro {
+      position: fixed;
+      inset: 0;
+      background: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      pointer-events: none;
+      transition: opacity 0.7s ease;
+    }
+    #intro.fade-out { opacity: 0; }
+    #intro img {
+      width: 100px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    #intro.show img { opacity: 1; transform: scale(1); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s ease, padding 0.3s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(8,8,8,0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 14px 20px;
+      border-color: var(--border);
+    }
+    @media (min-width: 768px) { nav { padding: 22px 48px; } nav.scrolled { padding: 14px 48px; } }
+    .nav-logo { width: 40px; height: 40px; object-fit: contain; }
+    .nav-links {
+      display: none;
+      gap: 36px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(240,235,225,0.55);
+    }
+    .nav-links a { transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    @media (min-width: 768px) { .nav-links { display: flex; } }
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red-dark); }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      height: 100svh;
+      min-height: 620px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 20px 60px;
+    }
+    @media (min-width: 768px) { #hero { padding: 0 48px 80px; } }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/ea3d9fac-6dab-42cd-91a9-c495b5300888/DSC_7405.jpg?format=2500w') center/cover no-repeat;
+      transform: scale(1.12);
+      will-change: transform;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        170deg,
+        rgba(8,8,8,0.15) 0%,
+        rgba(8,8,8,0.45) 40%,
+        rgba(8,8,8,0.88) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .hero-content.visible { opacity: 1; transform: translateY(0); }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 11vw, 108px);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 300;
+      color: rgba(240,235,225,0.6);
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 2px;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+    .btn-text {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(240,235,225,0.6);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+    }
+    .btn-text:hover { color: var(--text); }
+    .btn-text .arrow { transition: transform 0.2s; }
+    .btn-text:hover .arrow { transform: translateX(4px); }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 28px;
+      right: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-indicator span {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(240,235,225,0.25);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity: 0.25; } 50% { opacity: 0.9; } }
+
+    /* ─── SECTION BASE ─── */
+    .section { padding: 88px 20px; }
+    @media (min-width: 768px) { .section { padding: 120px 48px; } }
+    @media (min-width: 1100px) { .section { padding: 140px 80px; } }
+
+    .container { max-width: 1240px; margin: 0 auto; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 5.5vw, 60px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+    .body-lg {
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 300;
+      line-height: 1.75;
+      color: rgba(240,235,225,0.6);
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+    .d4 { transition-delay: 0.4s; }
+
+    /* ─── STORY ─── */
+    #story { background: var(--surface); }
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .story-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+    }
+    .story-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 3px;
+    }
+    @media (min-width: 900px) { .story-img { order: -1; } }
+    .milestones { display: flex; flex-direction: column; margin-top: 44px; }
+    .milestone {
+      display: flex;
+      gap: 20px;
+      padding-bottom: 36px;
+    }
+    .milestone:last-child { padding-bottom: 0; }
+    .m-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+    .m-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+    .m-line {
+      width: 1px;
+      flex: 1;
+      background: var(--border);
+      margin-top: 6px;
+    }
+    .milestone:last-child .m-line { display: none; }
+    .m-year {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .m-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    .m-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(240,235,225,0.55);
+      line-height: 1.65;
+    }
+
+    /* ─── DISHES ─── */
+    #dishes { background: var(--bg); }
+    .dishes-header { margin-bottom: 48px; }
+    .dishes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+    @media (min-width: 900px) { .dishes-grid { grid-template-columns: repeat(3, 1fr); } }
+    .dish {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface-2);
+      aspect-ratio: 4/3;
+    }
+    .dish img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease, filter 0.4s ease;
+      filter: brightness(0.7);
+    }
+    .dish:hover img { transform: scale(1.07); filter: brightness(0.5); }
+    .dish-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.1) 60%);
+    }
+    .dish-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 18px;
+    }
+    .dish-thai {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+      opacity: 0.8;
+    }
+    .dish-name {
+      font-family: var(--font-display);
+      font-size: clamp(15px, 2vw, 19px);
+      line-height: 1.2;
+    }
+    .dish-desc {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(240,235,225,0.55);
+      margin-top: 5px;
+      line-height: 1.5;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .dish:hover .dish-desc { max-height: 60px; opacity: 1; }
+    .dish-price {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gold-light);
+      background: rgba(8,8,8,0.6);
+      padding: 4px 10px;
+      border-radius: 2px;
+      backdrop-filter: blur(4px);
+    }
+    .dishes-cta {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    /* ─── SHARING ─── */
+    #sharing {
+      background: var(--surface);
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .sharing-text {
+      text-align: center;
+      padding: 0 20px;
+      margin: 0 auto 48px;
+      max-width: 600px;
+    }
+    @media (min-width: 768px) { .sharing-text { padding: 0 48px; } }
+    .sharing-mosaic {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    @media (min-width: 640px) {
+      .sharing-mosaic {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+      }
+      .sharing-mosaic .span2 {
+        grid-column: span 2;
+        aspect-ratio: 2/1;
+      }
+    }
+    .sharing-mosaic img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      filter: brightness(0.82);
+      transition: filter 0.35s ease;
+    }
+    .sharing-mosaic img:hover { filter: brightness(1); }
+
+    /* ─── WEINE ─── */
+    #weine {
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+    }
+    #weine::after {
+      content: 'WINE';
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: clamp(80px, 18vw, 260px);
+      color: rgba(255,255,255,0.018);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .weine-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 56px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    @media (min-width: 900px) { .weine-grid { grid-template-columns: 1fr 1fr; gap: 80px; } }
+    .weine-quote {
+      font-family: var(--font-display);
+      font-size: clamp(17px, 2.5vw, 24px);
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--text);
+      margin: 28px 0;
+      padding-left: 22px;
+      border-left: 2px solid var(--gold);
+    }
+    .weine-card {
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 40px 32px;
+      background: var(--surface);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .weine-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,154,26,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .weine-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .weine-name {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 3vw, 30px);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .weine-divider {
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 16px;
+    }
+    .weine-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(240,235,225,0.55);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .weine-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: rgba(240,235,225,0.5);
+    }
+    .weine-list {
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .weine-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .weine-row:hover { border-color: rgba(201,154,26,0.25); }
+    .weine-icon {
+      width: 32px;
+      height: 32px;
+      background: rgba(201,154,26,0.08);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .weine-row-title { font-size: 14px; font-weight: 500; }
+    .weine-row-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ─── BEWERTUNGEN ─── */
+    #bewertungen { background: var(--surface); }
+    .bewertungen-top {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .stars {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .star-icon { width: 22px; height: 22px; color: var(--gold); }
+    .rating-num {
+      font-family: var(--font-display);
+      font-size: 72px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .rating-label { font-size: 13px; color: var(--muted); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 960px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
+    .review {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 24px;
+    }
+    .review-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+    .review-star { width: 13px; height: 13px; color: var(--gold); }
+    .review-text {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(240,235,225,0.72);
+      margin-bottom: 16px;
+    }
+    .review-by {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── RESERVIEREN ─── */
+    #reservieren {
+      background: var(--red);
+      padding: 88px 20px;
+      text-align: center;
+    }
+    @media (min-width: 768px) { #reservieren { padding: 110px 48px; } }
+    #reservieren .eyebrow { color: rgba(255,255,255,0.5); justify-content: center; }
+    #reservieren .eyebrow::before { background: rgba(255,255,255,0.4); }
+    #reservieren h2 { color: #fff; }
+    #reservieren .body-lg { color: rgba(255,255,255,0.65); max-width: 480px; margin: 0 auto 40px; }
+    .btn-white {
+      display: inline-block;
+      background: #fff;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 18px 44px;
+      border-radius: 2px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.2); }
+    .res-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 28px 48px;
+      margin-top: 56px;
+    }
+    .res-item {}
+    .res-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 6px;
+    }
+    .res-value { font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.88); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 60px 20px 36px;
+    }
+    @media (min-width: 768px) { footer { padding: 72px 48px 40px; } }
+    .footer-grid {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 600px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 900px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; gap: 0; } }
+    .footer-logo { width: 44px; margin-bottom: 16px; }
+    .footer-about {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 210px;
+      margin-bottom: 20px;
+    }
+    .socials { display: flex; gap: 10px; }
+    .social {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social:hover { border-color: var(--red); color: var(--text); background: rgba(224,48,42,0.08); }
+    .footer-col-head {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+    .hours-list { display: flex; flex-direction: column; gap: 10px; }
+    .hour-row { display: flex; justify-content: space-between; gap: 16px; font-size: 13px; font-weight: 300; }
+    .hour-day { color: var(--muted); }
+    .hour-time { color: var(--text); text-align: right; }
+    .contact-list { display: flex; flex-direction: column; gap: 12px; }
+    .contact-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(240,235,225,0.65);
+      line-height: 1.55;
+    }
+    .contact-row svg { flex-shrink: 0; margin-top: 2px; color: var(--gold); }
+    .footer-bottom {
+      max-width: 1240px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    @media (min-width: 640px) {
+      .footer-bottom { flex-direction: row; justify-content: space-between; align-items: center; }
+    }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-copy a { transition: color 0.2s; }
+    .footer-copy a:hover { color: var(--text); }
+    .footer-thai { font-size: 18px; color: rgba(201,154,26,0.3); letter-spacing: 0.04em; }
+
+    /* ─── REDUCED MOTION ─── */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-content { opacity: 1; transform: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro" aria-hidden="true">
+  <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/bc6f42b8-7d17-4012-b658-040b4eb934b6/BKK-Logo-rund-rot.png" alt="BKK">
+</div>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Hauptnavigation">
+  <img class="nav-logo" src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/bc6f42b8-7d17-4012-b658-040b4eb934b6/BKK-Logo-rund-rot.png" alt="BKK Thai Street Food">
+  <div class="nav-links" role="list">
+    <a href="#story" role="listitem">Story</a>
+    <a href="#dishes" role="listitem">Karte</a>
+    <a href="#weine" role="listitem">Weine</a>
+    <a href="#reservieren" role="listitem">Reservieren</a>
+  </div>
+  <a href="https://bkkthaistreetfood.com/comebysayhi" target="_blank" rel="noopener" class="nav-cta">Tisch reservieren</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="BKK Thai Street Food Frankfurt"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="hero-eyebrow">Bangkok · Frankfurt · Seit 2020</div>
+    <h1>Bangkok<br>auf deinem<br>Teller.</h1>
+    <p class="hero-sub">Sharing Plates. Street Food Seele. Die Energie einer Metropole, die niemals schläft — serviert im Herzen Frankfurts.</p>
+    <div class="hero-actions">
+      <a href="https://bkkthaistreetfood.com/comebysayhi" target="_blank" rel="noopener" class="btn-primary">Tisch reservieren</a>
+      <a href="https://bkkthaistreetfood.com/s/BKK_Menuekarte_Marz_2026.pdf" target="_blank" rel="noopener" class="btn-text">
+        Speisekarte
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story" class="section" aria-label="Unsere Geschichte">
+  <div class="container story-grid">
+    <div>
+      <div class="eyebrow reveal">Unsere Geschichte</div>
+      <h2 class="reveal d1">Zwei Restaurants.<br>Eine Familie.<br>Unendliche Passion.</h2>
+      <p class="body-lg reveal d2" style="max-width:480px;">Was 1974 als erstes Thai-Restaurant Frankfurts begann, hat 2020 ein neues Kapitel aufgeschlagen. BKK steht für das pulsierende Bangkok — laut, farbenfroh, unverwechselbar.</p>
+      <div class="milestones">
+        <div class="milestone reveal d2">
+          <div class="m-track"><div class="m-dot"></div><div class="m-line"></div></div>
+          <div>
+            <div class="m-year">1974</div>
+            <div class="m-title">Bangkok Restaurant · Sandweg</div>
+            <div class="m-text">Das erste thai­ländische Restaurant in Frankfurt öffnet seine Türen. Seitdem in zweiter Generation — mit unveränderter Leidenschaft für echte Thai-Küche.</div>
+          </div>
+        </div>
+        <div class="milestone reveal d3">
+          <div class="m-track"><div class="m-dot"></div><div class="m-line"></div></div>
+          <div>
+            <div class="m-year">2020</div>
+            <div class="m-title">BKK Thai Street Food · Oeder Weg</div>
+            <div class="m-text">Familienzuwachs. Ein neues Konzept: weniger Tradition, mehr Metropole. Das chaotische Treiben der Bangkoker Märkte — auf deinem Teller.</div>
+          </div>
+        </div>
+        <div class="milestone reveal d4">
+          <div class="m-track"><div class="m-dot"></div></div>
+          <div>
+            <div class="m-year">Heute</div>
+            <div class="m-title">Sharing is Caring</div>
+            <div class="m-text">Stammgäste, Neugierige, Foodienerds. Alle vereint durch den Wunsch nach echten Gaumenfreuden — und dem Tisch, der verbindet.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="story-img reveal d1"
+      src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1644676556567-6UEZYIWEN7T6HKA1NKT6/MG_2677-HDR-Bearbeitet-scaled.jpeg?format=2500w"
+      alt="BKK Thai Street Food Restaurant Frankfurt Atmosphäre"
+      loading="lazy">
+  </div>
+</section>
+
+<!-- DISHES -->
+<section id="dishes" class="section" aria-label="Signature Dishes">
+  <div class="container">
+    <div class="dishes-header">
+      <div class="eyebrow reveal">Signature Dishes</div>
+      <h2 class="reveal d1">Was du kosten musst.</h2>
+      <p class="body-lg reveal d2" style="max-width:520px;">Kein Fusion, keine Kompromisse. Nur Bangkok — so wie es schmeckt, wenn man weiß was man tut.</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="dishes-grid">
+      <div class="dish reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/e50d9aae-f268-4e33-8026-2ec3aeaa4c62/BKK_HighRes-107.jpg" alt="Crying Tiger — gegrilltes Ribeye Steak" loading="lazy">
+        <div class="dish-overlay"></div>
+        <div class="dish-info">
+          <div class="dish-thai">เสือร้องไห้</div>
+          <div class="dish-name">Crying Tiger</div>
+          <div class="dish-desc">Gegrilltes argentinisches Ribeye mit Chili-Koriander-Chutney</div>
+        </div>
+        <div class="dish-price">29,00 €</div>
+      </div>
+      <div class="dish reveal d1">
+        <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1178e86a-a30b-4368-b2b8-a44552b25db3/BKK_HighRes-144.jpg" alt="Pad Thai" loading="lazy">
+        <div class="dish-overlay"></div>
+        <div class="dish-info">
+          <div class="dish-thai">ผัดไทย</div>
+          <div class="dish-name">Pad Thai</div>
+          <div class="dish-desc">Gebratene Reisnudeln, Hähnchen, Garnelen, Erdnüsse, Ei</div>
+        </div>
+        <div class="dish-price">17,00 €</div>
+      </div>
+      <div class="dish reveal d2">
+        <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/84c5bf19-c724-4c79-aad7-9b6ae265e901/BKK_HighRes-146.jpg" alt="Som Tum Papaya Salat" loading="lazy">
+        <div class="dish-overlay"></div>
+        <div class="dish-info">
+          <div class="dish-thai">ส้มตำ</div>
+          <div class="dish-name">Som Tum</div>
+          <div class="dish-desc">Grüner Papaya-Salat mit Chili, Limette, Erdnüssen</div>
+        </div>
+        <div class="dish-price">14,50 €</div>
+      </div>
+      <div class="dish reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/91481399-0bd7-4034-be38-c0754348cd74/MG_2948-scaled.jpg" alt="Pad Krapao Rinderhack" loading="lazy">
+        <div class="dish-overlay"></div>
+        <div class="dish-info">
+          <div class="dish-thai">ผัดกระเพา</div>
+          <div class="dish-name">Pad Krapao</div>
+          <div class="dish-desc">Rinderhack, Thai-Basilikum, Chilis, Knoblauch — mit Spiegelei</div>
+        </div>
+        <div class="dish-price">19,50 €</div>
+      </div>
+      <div class="dish reveal d1">
+        <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1e3fc066-ef6f-4588-90ed-d0ddb8565b8e/MG_2806-HDR-scaled.jpg" alt="Miang Kum Fingerfood" loading="lazy">
+        <div class="dish-overlay"></div>
+        <div class="dish-info">
+          <div class="dish-thai">เมี่ยงคำ</div>
+          <div class="dish-name">Miang Kum</div>
+          <div class="dish-desc">Wildes Pfefferblatt, Shrimps, Ingwer, Limette, Chili-Chutney</div>
+        </div>
+        <div class="dish-price">14,00 €</div>
+      </div>
+      <div class="dish reveal d2">
+        <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/d33b20af-20c1-42ed-a7e8-0f110bd6181a/MG_2760-HDR-scaled.jpg" alt="Tom Yum Gung Hot Pot" loading="lazy">
+        <div class="dish-overlay"></div>
+        <div class="dish-info">
+          <div class="dish-thai">ต้มยำ หม้อไฟ</div>
+          <div class="dish-name">Tom Yum Hot Pot</div>
+          <div class="dish-desc">Säuerlich-pikante Suppe mit Black Tiger Garnelen</div>
+        </div>
+        <div class="dish-price">Auf Anfrage</div>
+      </div>
+    </div>
+    <div class="dishes-cta reveal">
+      <a href="https://bkkthaistreetfood.com/s/BKK_Menuekarte_Marz_2026.pdf" target="_blank" rel="noopener" class="btn-text" style="justify-content:center; font-size:14px;">
+        Vollständige Speisekarte ansehen
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SHARING IS CARING -->
+<section id="sharing" class="section" aria-label="Sharing is Caring">
+  <div class="sharing-text">
+    <div class="eyebrow reveal" style="justify-content:center;">Philosophie</div>
+    <h2 class="reveal d1">Sharing is Caring.</h2>
+    <p class="body-lg reveal d2">In Bangkok isst man gemeinsam. Viele Teller, viele Geschmäcker, ein Tisch. BKK ist kein Ort für Einzelkämpfer — sondern für Menschen, die beim Teilen mehr finden als nur ein Abendessen.</p>
+  </div>
+  <div class="sharing-mosaic">
+    <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/e50d9aae-f268-4e33-8026-2ec3aeaa4c62/BKK_HighRes-107.jpg" alt="BKK Gericht" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1178e86a-a30b-4368-b2b8a44552b25db3/BKK_HighRes-144.jpg" alt="BKK Gericht" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/84c5bf19-c724-4c79-aad7-9b6ae265e901/BKK_HighRes-146.jpg" alt="BKK Atmosphäre" loading="lazy">
+    <img class="span2" src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1644676556567-6UEZYIWEN7T6HKA1NKT6/MG_2677-HDR-Bearbeitet-scaled.jpeg?format=2500w" alt="BKK Restaurant Frankfurt" loading="lazy">
+    <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/91481399-0bd7-4034-be38-c0754348cd74/MG_2948-scaled.jpg" alt="BKK Gericht" loading="lazy">
+  </div>
+</section>
+
+<!-- WEINE -->
+<section id="weine" class="section" aria-label="Weinauswahl">
+  <div class="container">
+    <div class="weine-grid">
+      <div>
+        <div class="eyebrow reveal">Weinauswahl</div>
+        <h2 class="reveal d1">Wir lieben<br>guten Wein.</h2>
+        <blockquote class="weine-quote reveal d2">
+          "Von kleinen Winzern bis zu den großen Ikonen der Weinwelt."
+        </blockquote>
+        <p class="body-lg reveal d3" style="max-width:440px;">Eine sorgfältig kuratierte Auswahl aus Deutschland, Frankreich und Italien — für jeden Gaumen, jeden Anlass. Mit dabei: das renommierteste Weingut der Welt.</p>
+        <div class="weine-list">
+          <div class="weine-row reveal d2">
+            <div class="weine-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <path d="M8 3h8l1 9c0 4-2.5 7-5 8-2.5-1-5-4-5-8L8 3z"/><path d="M12 20v2M9 22h6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="weine-row-title">Deutschland · Frankreich · Italien</div>
+              <div class="weine-row-sub">Sorgfältig kuratierte Herkunftsländer</div>
+            </div>
+          </div>
+          <div class="weine-row reveal d3">
+            <div class="weine-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div>
+              <div class="weine-row-title">Kleine Winzer bis Weltikonen</div>
+              <div class="weine-row-sub">Handwerk trifft Prestige</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;" class="reveal d4">
+          <a href="https://bkkthaistreetfood.com/s/Weinkarte-BKK-JANUAR-2026.pdf" target="_blank" rel="noopener" class="btn-text" style="font-size:14px;">
+            Weinkarte ansehen
+            <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="weine-card reveal d2">
+        <div class="weine-badge">Prestige · Burgund · Frankreich</div>
+        <h3 class="weine-name">Domaine de la<br>Romanée-Conti</h3>
+        <div class="weine-divider" aria-hidden="true"></div>
+        <p class="weine-desc">Das renommierteste Weingut der Welt — auf unserer Weinkarte. Weil außergewöhnliches Essen den außergewöhnlichsten Wein verdient.</p>
+        <div class="weine-tags">
+          <span class="tag">Naturweine</span>
+          <span class="tag">Biodynamisch</span>
+          <span class="tag">Offenausschank</span>
+          <span class="tag">Glas & Flasche</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEWERTUNGEN -->
+<section id="bewertungen" class="section" aria-label="Bewertungen">
+  <div class="container">
+    <div class="bewertungen-top">
+      <div class="eyebrow reveal" style="justify-content:center;">Google Bewertungen</div>
+      <div class="stars reveal d1" aria-label="4.3 von 5 Sternen">
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        <svg class="star-icon" viewBox="0 0 20 20" fill="currentColor" style="opacity:0.35" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+      </div>
+      <div class="rating-num reveal d2">4.3</div>
+      <div class="rating-label reveal d3">auf Google Maps · Frankfurt am Main</div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review reveal">
+        <div class="review-stars" aria-label="5 Sterne">
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        </div>
+        <p class="review-text">"Absolut authentisch und unglaublich lecker. Das Crying Tiger ist ein Muss — saftig, aromatisch, perfekt abgeschmeckt. Wir kommen immer wieder."</p>
+        <div class="review-by">— Sarah K., Frankfurt</div>
+      </div>
+      <div class="review reveal d1">
+        <div class="review-stars" aria-label="5 Sterne">
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        </div>
+        <p class="review-text">"Funky, down-to-earth und so verdammt gut. Die Weinauswahl hat mich komplett überrascht — da steckt echte Expertise dahinter."</p>
+        <div class="review-by">— Marcus L., Frankfurt</div>
+      </div>
+      <div class="review reveal d2">
+        <div class="review-stars" aria-label="4 Sterne">
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+          <svg class="review-star" viewBox="0 0 20 20" fill="currentColor" style="opacity:0.25" aria-hidden="true"><path d="M10 1l2.39 4.84L18 6.73l-4 3.9.94 5.5L10 13.27l-4.94 2.86L6 10.63 2 6.73l5.61-.89L10 1z"/></svg>
+        </div>
+        <p class="review-text">"Sharing Plates auf höchstem Niveau. Perfekt für Gruppen — jeder Teller besser als der letzte. Das Pad Krapao ist einfach legendär."</p>
+        <div class="review-by">— Julia M., Frankfurt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVIEREN -->
+<section id="reservieren" aria-label="Jetzt reservieren">
+  <div class="eyebrow reveal">Tisch reservieren</div>
+  <h2 class="reveal d1">Come in,<br>say hi.</h2>
+  <p class="body-lg reveal d2">Kein langer Weg. Einfach einen Tisch buchen und loslegen.<br>Wir freuen uns auf dich.</p>
+  <a href="https://bkkthaistreetfood.com/comebysayhi" target="_blank" rel="noopener" class="btn-white reveal d3">Jetzt reservieren</a>
+  <div class="res-details reveal d3">
+    <div class="res-item">
+      <div class="res-label">Adresse</div>
+      <div class="res-value">Oeder Weg 14, Frankfurt</div>
+    </div>
+    <div class="res-item">
+      <div class="res-label">Mo – Fr</div>
+      <div class="res-value">12:00–14:30 · 18:00–22:00</div>
+    </div>
+    <div class="res-item">
+      <div class="res-label">Samstag</div>
+      <div class="res-value">18:00–22:00</div>
+    </div>
+    <div class="res-item">
+      <div class="res-label">Telefon</div>
+      <div class="res-value">069 210 87 992</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <img class="footer-logo" src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/bc6f42b8-7d17-4012-b658-040b4eb934b6/BKK-Logo-rund-rot.png" alt="BKK Thai Street Food" loading="lazy">
+      <p class="footer-about">Das pulsierende Bangkok auf deinem Teller. Frankfurt am Main, seit 2020.</p>
+      <div class="socials">
+        <a href="https://www.instagram.com/bkkthaistreetfood/" target="_blank" rel="noopener" class="social" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="https://www.facebook.com/bkkthaistreetfood/" target="_blank" rel="noopener" class="social" aria-label="Facebook">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-head">Öffnungszeiten</div>
+      <div class="hours-list">
+        <div class="hour-row"><span class="hour-day">Mo – Fr</span><span class="hour-time">12:00–14:30<br>18:00–22:00</span></div>
+        <div class="hour-row"><span class="hour-day">Samstag</span><span class="hour-time">18:00–22:00</span></div>
+        <div class="hour-row"><span class="hour-day">Sonntag</span><span class="hour-time">Ruhetag</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-head">Kontakt</div>
+      <div class="contact-list">
+        <div class="contact-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Oeder Weg 14<br>60318 Frankfurt am Main</span>
+        </div>
+        <div class="contact-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.63 1.28h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.79-.79a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>069 210 87 992</span>
+        </div>
+        <div class="contact-row">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>info@bangkok1974.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 BKK Thai Street Food · <a href="https://bkkthaistreetfood.com/impressum-1" target="_blank" rel="noopener">Impressum</a></span>
+    <span class="footer-thai" aria-label="Bangkok auf Thai">กรุงเทพมหานคร</span>
+  </div>
+</footer>
+
+<script>
+  // ─── INTRO ───
+  const intro = document.getElementById('intro');
+  const heroContent = document.getElementById('heroContent');
+
+  setTimeout(() => intro.classList.add('show'), 200);
+  setTimeout(() => {
+    intro.classList.add('fade-out');
+    setTimeout(() => {
+      intro.style.display = 'none';
+      heroContent.classList.add('visible');
+    }, 700);
+  }, 1600);
+
+  // ─── LENIS ───
+  const lenis = new Lenis({ autoRaf: true });
+
+  // ─── NAV ───
+  const nav = document.getElementById('nav');
+  lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('scrolled', scroll > 50);
+  });
+
+  // ─── HERO PARALLAX ───
+  const heroBg = document.getElementById('heroBg');
+  lenis.on('scroll', ({ scroll }) => {
+    if (scroll < window.innerHeight * 1.5) {
+      heroBg.style.transform = `scale(1.12) translateY(${scroll * 0.25}px)`;
+    }
+  });
+
+  // ─── REVEAL ON SCROLL ───
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  // ─── SMOOTH ANCHOR SCROLL ───
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) lenis.scrollTo(target, { offset: -80 });
+    });
+  });
+</script>
+</body>
+</html>
