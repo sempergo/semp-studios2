@@ -52,7 +52,7 @@ Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review
   ```bash
   gh api repos/{owner}/{repo}/pages --method POST --field source='{"branch":"main","path":"/"}' 2>/dev/null || true
   ```
-- Live-URL ausgeben: `https://{owner}.github.io/{repo}/clients/{kundenname}/`
+- Live-URL ausgeben: `https://sempergo.github.io/semp-studios2/clients/{kundenname}/`
 
 ---
 
@@ -92,5 +92,5 @@ clients/<kundenname>/index.html
 
 Live-URL bei GitHub Pages:
 ```
-https://sempergo.github.io/semp-studios/clients/<kundenname>/
+https://sempergo.github.io/semp-studios2/clients/<kundenname>/
 ```
