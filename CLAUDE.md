@@ -6,6 +6,8 @@ Der Kunde soll die Website sehen und geflasht sein. Er soll das Gefühl haben: *
 
 Qualitätsmaßstab: Nicht "gut genug". Nicht "solide". Sondern: würde dieser Kunde das stolz seinen Freunden zeigen?
 
+**Fokus: Gastronomie.** Alle Websites in diesem Projekt sind für Restaurants, Cafés, Bars und ähnliche Gastronomiebetriebe.
+
 ## Arbeitsweise
 
 Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review → Deployen. Am Ende Live-URL ausgeben.
@@ -25,15 +27,14 @@ Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review
 
 **Schritt 2 — Design System (komplett neu)**
 - UI/UX Pro Max Skill für Stil-Empfehlung passend zu Branche + Zielgruppe
-- Eigene Farbpalette — professionell, modern, emotional passend zur Branche
+- Eigene Farbpalette — professionell, modern, emotional passend zur Gastronomie
 - Google Fonts — frisch auswählen, passend zum Stil
 - Echte Fotos vom Unternehmen verwenden (aus Schritt 1)
 - Unsplash nur wenn keine ausreichend guten echten Fotos vorhanden
 
 **Schritt 3 — Bauen**
 - Single-File HTML mit eingebettetem CSS + JS
-- Motion CDN für Animationen — Scroll-Animationen, Hover-Effekte, Übergänge
-- Mobile-first, kein horizontales Scrollen
+- Mobile-first — Mobile ist die Hauptplattform, Desktop muss genauso gut sein
 - Hohe visuelle Qualität: klare Hierarchie, Whitespace, professionelle Typografie
 - Echte Inhalte — keine Platzhalter wie "Lorem ipsum"
 - **21st.dev MCP** für fertige UI-Komponenten nutzen:
@@ -42,9 +43,17 @@ Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review
   - `mcp__magic__21st_magic_component_inspiration` → Design-Inspiration holen
   - `mcp__magic__logo_search` → Kunden-Logo oder Branchen-Logos suchen
 
-**Schritt 4 — Review**
-- Playwright Screenshot (Desktop + 375px Mobile) machen und selbst prüfen
-- Prüfen: Sieht es wirklich krass aus? Würde der Kunde nein sagen können?
+**Schritt 4 — Review** (Checkliste — alle Punkte müssen erfüllt sein)
+- [ ] Mobile sieht perfekt aus (375px) — das ist die Priorität
+- [ ] Desktop sieht genauso gut aus (1440px)
+- [ ] Jede Section hat einen klaren CTA
+- [ ] Alle Animationen und Scroll-Effekte laufen flüssig
+- [ ] Keine Platzhalter-Texte, keine leeren Felder
+- [ ] Fotos sind scharf, appetitlich und emotional
+- [ ] Ladezeit fühlt sich schnell an
+- [ ] OG-Tags, Meta-Description, Favicon vorhanden
+- [ ] Lazy Loading auf allen Bildern
+- [ ] Würde der Kunde das stolz seinen Freunden zeigen?
 
 **Schritt 5 — Deployen**
 - Committen und pushen
@@ -56,15 +65,83 @@ Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review
 
 ---
 
-## Motion / Animationen
+## Animationen & Scroll
 
-Jede neue HTML-Datei bekommt Motion via CDN eingebunden (direkt vor `</head>`):
+Jede Website bekommt beide Libraries via CDN (direkt vor `</head>`):
 
 ```html
+<!-- Smooth Scroll -->
+<script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+<!-- Animationen -->
 <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
 ```
 
-Animationen mit `Motion.animate()` oder `Motion.scroll()` umsetzen — kein npm, kein Build-Schritt.
+Lenis initialisieren:
+```js
+const lenis = new Lenis({ autoRaf: true });
+```
+
+Standard-Elemente die jede Gastronomie-Website bekommt:
+- **Intro-Animation** — Logo oder Claim blendet beim Laden ein
+- **Parallax** — Hero-Bild oder Hintergründe scrollen langsamer als Content
+- **Scroll-Animationen** — Sections und Elemente fahren beim Einblenden rein (Motion.animate + IntersectionObserver)
+- **Micro-Interactions** — Buttons und Links reagieren spürbar auf Hover/Click
+
+---
+
+## Copywriting-Framework
+
+Jede Section folgt einer klaren Struktur. Darüber hinaus gibt es Freiheit für brandeigene Abschnitte die zur Persönlichkeit des Restaurants passen.
+
+**Hero**
+- Emotionaler Claim (1 Zeile, trifft das Gefühl des Restaurants)
+- Subline (was, wo, für wen)
+- CTA: "Jetzt Tisch reservieren" oder "Speisekarte entdecken"
+
+**Über uns**
+- Geschichte des Restaurants (wann, wie, warum)
+- Leidenschaft und Werte
+- Einladung an den Gast
+
+**Speisekarte / Highlights**
+- Nicht die komplette Karte — 3–6 Highlight-Gerichte
+- Jedes Gericht mit appetitlicher, emotionaler Beschreibung (nicht nur Zutaten)
+- Foto wenn vorhanden
+
+**Bewertungen**
+- Google-Sterne-Bewertung prominent
+- 2–3 echte Zitate aus Google Maps
+
+**Kontakt & Reservierung**
+- Adresse, Öffnungszeiten, Telefon, E-Mail
+- Google Maps eingebettet
+- CTA wiederholen: "Tisch reservieren"
+
+**Brandeigene Abschnitte** (Beispiele je nach Konzept)
+- Weinauswahl, Cocktailkarte, Eventbereich, Chefkoch-Vorstellung, Lieferservice, etc.
+
+---
+
+## Technische Pflicht-Elemente
+
+Jede Website bekommt ohne Ausnahme:
+
+```html
+<!-- Meta -->
+<meta name="description" content="...">
+
+<!-- OG-Tags -->
+<meta property="og:title" content="...">
+<meta property="og:description" content="...">
+<meta property="og:image" content="...">
+<meta property="og:url" content="...">
+
+<!-- Favicon -->
+<link rel="icon" href="favicon.ico">
+```
+
+- Alle `<img>` Tags bekommen `loading="lazy"`
+- Kein Bild ohne `alt`-Text
 
 ---
 
@@ -78,7 +155,7 @@ Animationen mit `Motion.animate()` oder `Motion.scroll()` umsetzen — kein npm,
 
 - Kein Framework, kein Build-System, kein npm
 - Alles in einer einzigen `.html`-Datei (CSS + JS eingebettet)
-- Motion via CDN ist die Standard-Animationslibrary
+- Lenis + Motion via CDN sind Pflicht
 - Nach jeder Änderung: committen und pushen
 
 ---
