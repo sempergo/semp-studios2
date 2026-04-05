@@ -12,6 +12,10 @@ Qualitätsmaßstab: Nicht "gut genug". Nicht "solide". Sondern: würde dieser Ku
 
 Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review → Deployen. Am Ende Live-URL ausgeben.
 
+Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen: Was hebt diese Website auf das nächste Level? Was würde einen Besucher wirklich überraschen oder begeistern? Das kann eine ungewöhnliche Section sein, ein besonderer Effekt, eine mutige Typografie-Entscheidung — irgendetwas das die Konkurrenz nicht hat.
+
+**Mobile-first** — zuerst für Mobile designen und entwickeln (360–390px), dann auf Desktop erweitern. Beide müssen perfekt funktionieren. Kein horizontales Scrollen.
+
 ---
 
 ## Workflow für neue Kunden-Website
@@ -34,7 +38,7 @@ Autonom arbeiten. Nicht nachfragen, nicht zögern. Research → Bauen → Review
 
 **Schritt 3 — Bauen**
 - Single-File HTML mit eingebettetem CSS + JS
-- Mobile-first — Mobile ist die Hauptplattform, Desktop muss genauso gut sein
+- Mobile-first — zuerst für Mobile entwickeln (360–390px), dann auf Desktop erweitern. Kein horizontales Scrollen.
 - Hohe visuelle Qualität: klare Hierarchie, Whitespace, professionelle Typografie
 - Echte Inhalte — keine Platzhalter wie "Lorem ipsum"
 - **21st.dev MCP** für fertige UI-Komponenten nutzen:
