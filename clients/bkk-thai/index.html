@@ -13,32 +13,38 @@
   <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/3e8636a3-fb15-401e-bb29-65e4d0989128/favicon.ico?format=100w">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #080808;
-      --surface: #111111;
-      --surface-2: #1a1a1a;
-      --red: #E0302A;
-      --red-dark: #B52420;
-      --gold: #C99A1A;
-      --gold-light: #E8B84B;
-      --text: #F0EBE1;
-      --muted: #777;
+      --bg: #0E0B09;
+      --bg-light: #F8F4EE;
+      --surface: #181410;
+      --surface-2: #201C18;
+      --cream: #F8F4EE;
+      --cream-2: #EDE6DA;
+      --red: #D42B25;
+      --red-dark: #A82018;
+      --gold: #B8880C;
+      --gold-light: #DBA830;
+      --text: #F2EDE4;
+      --text-dark: #1A140E;
+      --muted: #7A6F66;
+      --muted-light: #9A8E84;
       --border: rgba(255,255,255,0.07);
-      --font-display: 'Playfair Display SC', Georgia, serif;
-      --font-body: 'Karla', system-ui, sans-serif;
+      --border-light: rgba(26,20,14,0.1);
+      --font-display: 'Syne', system-ui, sans-serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
     }
 
     html { scroll-behavior: auto; overflow-x: hidden; }
 
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg-light);
+      color: var(--text-dark);
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.6;
@@ -173,9 +179,10 @@
     }
     h1 {
       font-family: var(--font-display);
-      font-size: clamp(48px, 11vw, 108px);
+      font-size: clamp(52px, 12vw, 116px);
+      font-weight: 800;
       line-height: 0.95;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
       margin-bottom: 24px;
     }
     .hero-sub {
@@ -270,9 +277,13 @@
     h2 {
       font-family: var(--font-display);
       font-size: clamp(30px, 5.5vw, 60px);
-      line-height: 1.05;
+      font-weight: 800;
+      line-height: 1.0;
       margin-bottom: 20px;
     }
+    h2 .accent-red { color: var(--red); }
+    h2 .accent-gold { color: var(--gold); }
+    h2 .accent-thin { font-weight: 400; opacity: 0.5; font-size: 0.75em; }
     .body-lg {
       font-size: clamp(15px, 2vw, 18px);
       font-weight: 300;
@@ -293,7 +304,39 @@
     .d4 { transition-delay: 0.4s; }
 
     /* ─── STORY ─── */
-    #story { background: var(--surface); }
+    #story {
+      background: var(--bg-light);
+      position: relative;
+      overflow: hidden;
+    }
+    #story .eyebrow { color: var(--red); }
+    #story .eyebrow::before { background: var(--red); }
+    #story h2 { color: var(--text-dark); }
+    #story .body-lg { color: var(--muted); }
+    #story .m-line { background: var(--border-light); }
+    #story .m-text { color: var(--muted); }
+    #story .m-title { color: var(--text-dark); }
+
+    /* Tiger parallax bg */
+    .tiger-parallax {
+      position: absolute;
+      right: -8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50%;
+      max-width: 560px;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform;
+    }
+    .tiger-parallax img {
+      width: 100%;
+      opacity: 0.06;
+      filter: grayscale(100%) contrast(1.4);
+      border-radius: 50%;
+    }
+    @media (max-width: 899px) { .tiger-parallax { display: none; } }
+
     .story-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -363,6 +406,10 @@
 
     /* ─── DISHES ─── */
     #dishes { background: var(--bg); }
+    #dishes h2 { color: var(--text); }
+    #dishes .eyebrow { color: var(--gold); }
+    #dishes .eyebrow::before { background: var(--gold); }
+    #dishes .body-lg { color: rgba(242,237,228,0.55); }
     .dishes-header { margin-bottom: 48px; }
 
     /* Scroll wrapper — full viewport width on mobile */
@@ -491,11 +538,15 @@
 
     /* ─── SHARING ─── */
     #sharing {
-      background: var(--surface);
+      background: var(--bg-light);
       padding-left: 0;
       padding-right: 0;
       overflow: hidden;
     }
+    #sharing .eyebrow { color: var(--red); }
+    #sharing .eyebrow::before { background: var(--red); }
+    #sharing h2 { color: var(--text-dark); }
+    #sharing .body-lg { color: var(--muted); }
     .sharing-text {
       text-align: center;
       padding: 0 20px;
@@ -533,6 +584,10 @@
       position: relative;
       overflow: hidden;
     }
+    #weine h2 { color: var(--text); }
+    #weine .eyebrow { color: var(--gold); }
+    #weine .eyebrow::before { background: var(--gold); }
+    #weine .body-lg { color: rgba(242,237,228,0.55); }
     #weine::after {
       content: 'WINE';
       position: absolute;
@@ -654,7 +709,11 @@
     .weine-row-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
 
     /* ─── BEWERTUNGEN ─── */
-    #bewertungen { background: var(--surface); }
+    #bewertungen { background: var(--cream-2); }
+    #bewertungen .eyebrow { color: var(--red); }
+    #bewertungen .eyebrow::before { background: var(--red); }
+    #bewertungen .rating-label { color: var(--muted); }
+    #bewertungen .rating-num { color: var(--text-dark); }
     .bewertungen-top {
       text-align: center;
       margin-bottom: 56px;
@@ -681,10 +740,11 @@
     @media (min-width: 640px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
     @media (min-width: 960px) { .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
     .review {
-      background: var(--surface-2);
-      border: 1px solid var(--border);
+      background: var(--bg-light);
+      border: 1px solid var(--border-light);
       border-radius: 20px;
       padding: 24px;
+      box-shadow: 0 2px 16px rgba(26,20,14,0.06);
     }
     .review-stars {
       display: flex;
@@ -696,13 +756,13 @@
       font-size: 15px;
       font-weight: 300;
       line-height: 1.7;
-      color: rgba(240,235,225,0.72);
+      color: var(--muted);
       margin-bottom: 16px;
     }
     .review-by {
       font-size: 12px;
       font-weight: 600;
-      color: var(--muted);
+      color: var(--muted-light);
       letter-spacing: 0.04em;
     }
 
@@ -750,7 +810,7 @@
 
     /* ─── FOOTER ─── */
     footer {
-      background: var(--bg);
+      background: var(--surface);
       border-top: 1px solid var(--border);
       padding: 60px 20px 36px;
     }
@@ -860,7 +920,7 @@
   <div class="hero-overlay"></div>
   <div class="hero-content" id="heroContent">
     <div class="hero-eyebrow">Bangkok · Frankfurt · Seit 2020</div>
-    <h1>Bangkok<br>auf deinem<br>Teller.</h1>
+    <h1><span style="color:var(--red)">Bangkok</span><br><span style="font-weight:300;opacity:0.55;font-size:0.68em;letter-spacing:0.02em">auf deinem</span><br><span style="color:var(--gold-light)">Teller.</span></h1>
     <p class="hero-sub">Sharing Plates. Street Food Seele. Die Energie einer Metropole, die niemals schläft — serviert im Herzen Frankfurts.</p>
     <div class="hero-actions">
       <a href="https://bkkthaistreetfood.com/comebysayhi" target="_blank" rel="noopener" class="btn-primary">Tisch reservieren</a>
@@ -880,10 +940,13 @@
 
 <!-- STORY -->
 <section id="story" class="section" aria-label="Unsere Geschichte">
+  <div class="tiger-parallax" id="tigerBg" aria-hidden="true">
+    <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1644677897415-1GVIBJBEJQKGUUYT8FC6/MG_2965-scaled.jpeg?format=2500w" alt="">
+  </div>
   <div class="container story-grid">
     <div>
       <div class="eyebrow reveal">Unsere Geschichte</div>
-      <h2 class="reveal d1">Zwei Restaurants.<br>Eine Familie.<br>Unendliche Passion.</h2>
+      <h2 class="reveal d1">Zwei Restaurants.<br><span class="accent-thin">Eine Familie.</span><br><span class="accent-red">Unendliche Passion.</span></h2>
       <p class="body-lg reveal d2" style="max-width:480px;">Was 1974 als erstes Thai-Restaurant Frankfurts begann, hat 2020 ein neues Kapitel aufgeschlagen. BKK steht für das pulsierende Bangkok — laut, farbenfroh, unverwechselbar.</p>
       <div class="milestones">
         <div class="milestone reveal d2">
@@ -924,7 +987,7 @@
   <div class="container">
     <div class="dishes-header">
       <div class="eyebrow reveal">Signature Dishes</div>
-      <h2 class="reveal d1">Was du kosten musst.</h2>
+      <h2 class="reveal d1">Was du <span class="accent-red">kosten</span> musst.</h2>
       <p class="body-lg reveal d2" style="max-width:520px;">Kein Fusion, keine Kompromisse. Nur Bangkok — so wie es schmeckt, wenn man weiß was man tut.</p>
     </div>
   </div>
@@ -1008,7 +1071,7 @@
 <section id="sharing" class="section" aria-label="Sharing is Caring">
   <div class="sharing-text">
     <div class="eyebrow reveal" style="justify-content:center;">Philosophie</div>
-    <h2 class="reveal d1">Sharing is Caring.</h2>
+    <h2 class="reveal d1"><span class="accent-red">Sharing</span> is Caring.</h2>
     <p class="body-lg reveal d2">In Bangkok isst man gemeinsam. Viele Teller, viele Geschmäcker, ein Tisch. BKK ist kein Ort für Einzelkämpfer — sondern für Menschen, die beim Teilen mehr finden als nur ein Abendessen.</p>
   </div>
   <div class="sharing-mosaic">
@@ -1026,7 +1089,7 @@
     <div class="weine-grid">
       <div>
         <div class="eyebrow reveal">Weinauswahl</div>
-        <h2 class="reveal d1">Wir lieben<br>guten Wein.</h2>
+        <h2 class="reveal d1">Wir <span class="accent-gold">lieben</span><br>guten Wein.</h2>
         <blockquote class="weine-quote reveal d2">
           "Von kleinen Winzern bis zu den großen Ikonen der Weinwelt."
         </blockquote>
@@ -1136,7 +1199,7 @@
 <!-- RESERVIEREN -->
 <section id="reservieren" aria-label="Jetzt reservieren">
   <div class="eyebrow reveal">Tisch reservieren</div>
-  <h2 class="reveal d1">Come in,<br>say hi.</h2>
+  <h2 class="reveal d1">Come in,<br><span style="font-weight:400;opacity:0.75">say hi.</span></h2>
   <p class="body-lg reveal d2">Kein langer Weg. Einfach einen Tisch buchen und loslegen.<br>Wir freuen uns auf dich.</p>
   <a href="https://bkkthaistreetfood.com/comebysayhi" target="_blank" rel="noopener" class="btn-white reveal d3">Jetzt reservieren</a>
   <div class="res-details reveal d3">
@@ -1240,19 +1303,28 @@
     nav.classList.toggle('scrolled', scroll > 50);
   });
 
-  // ─── PARALLAX: Hero + Sharing section ───
+  // ─── PARALLAX: Hero + Tiger + Sharing ───
   const heroBg = document.getElementById('heroBg');
   const sharingMosaic = document.querySelector('.sharing-mosaic');
+  const tigerBg = document.getElementById('tigerBg');
 
   lenis.on('scroll', ({ scroll }) => {
     // Hero parallax (0.4x speed)
     if (scroll < window.innerHeight * 1.5) {
       heroBg.style.transform = `scale(1.12) translateY(${scroll * 0.4}px)`;
     }
+    // Tiger parallax in story section
+    if (tigerBg) {
+      const storyRect = document.getElementById('story').getBoundingClientRect();
+      if (storyRect.bottom > 0 && storyRect.top < window.innerHeight) {
+        const progress = -storyRect.top / storyRect.height;
+        tigerBg.style.transform = `translateY(calc(-50% + ${progress * 60}px))`;
+      }
+    }
     // Sharing mosaic subtle parallax
     if (sharingMosaic) {
       const rect = sharingMosaic.getBoundingClientRect();
-      const offset = (window.innerHeight * 0.5 - rect.top) * 0.08;
+      const offset = (window.innerHeight * 0.5 - rect.top) * 0.06;
       sharingMosaic.style.transform = `translateY(${offset}px)`;
     }
   });
