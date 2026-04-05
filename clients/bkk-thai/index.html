@@ -365,47 +365,18 @@
     #dishes { background: var(--bg); overflow: hidden; }
     .dishes-header { margin-bottom: 48px; }
 
-    /* Mobile: horizontal scroll */
     .dishes-grid {
-      display: flex;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      gap: 12px;
-      padding: 0 20px 8px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
     }
-    .dishes-grid::-webkit-scrollbar { display: none; }
-    /* Desktop: grid */
-    @media (min-width: 768px) {
-      .dishes-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2px;
-        overflow-x: visible;
-        padding: 0;
-        scroll-snap-type: none;
-      }
-    }
+    @media (min-width: 900px) { .dishes-grid { grid-template-columns: repeat(3, 1fr); } }
 
     .dish {
       position: relative;
       overflow: hidden;
       background: var(--surface-2);
       aspect-ratio: 4/3;
-      border-radius: 16px;
-      /* Mobile: fixed width for snap scroll */
-      min-width: 260px;
-      flex-shrink: 0;
-      scroll-snap-align: start;
-    }
-    @media (min-width: 768px) {
-      .dish {
-        min-width: unset;
-        flex-shrink: unset;
-        border-radius: 0;
-      }
     }
     .dish img {
       width: 100%;
