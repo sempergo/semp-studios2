@@ -22,9 +22,9 @@ Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen:
 
 **Schritt 1 — Research**
 - Alte Website mit Firecrawl scrapen → nur Inhalte extrahieren: Leistungen, Adresse, Öffnungszeiten, Menü, Team
-- Alte Website mit Playwright aufrufen und Screenshot machen → echte Fotos (Gerichte, Räume, Produkte, Team) identifizieren und URLs notieren
+- Alte Website mit Firecrawl scrapen + Screenshot → echte Fotos (Gerichte, Räume, Produkte, Team) identifizieren und URLs notieren
 - Google Maps → Adresse, Öffnungszeiten, Bewertungen, Sterne
-- Instagram/Social Media mit Playwright → echte Fotos, Stimmung, Zielgruppe
+- Instagram/Social Media mit Playwright → echte Fotos, Stimmung, Zielgruppe (Playwright weil Instagram JS-heavy ist)
 - Logo identifizieren und URL notieren
 - NIEMALS Design, Farben, Fonts oder Layout von der alten Website übernehmen — diese sind oft schlecht
 - Texte immer komplett neu schreiben: emotional, überzeugend, auf die Zielgruppe zugeschnitten
@@ -48,8 +48,8 @@ Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen:
   - `mcp__magic__logo_search` → Kunden-Logo oder Branchen-Logos suchen
 
 **Schritt 4 — Review** (Checkliste — alle Punkte müssen erfüllt sein)
-- [ ] Mobile sieht perfekt aus (375px) — das ist die Priorität
-- [ ] Desktop sieht genauso gut aus (1440px)
+- [ ] Firecrawl Screenshot auf Mobile (375px) — das ist die Priorität
+- [ ] Firecrawl Screenshot auf Desktop (1440px)
 - [ ] Jede Section hat einen klaren CTA
 - [ ] Alle Animationen und Scroll-Effekte laufen flüssig
 - [ ] Keine Platzhalter-Texte, keine leeren Felder
