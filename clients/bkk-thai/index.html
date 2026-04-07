@@ -1319,12 +1319,20 @@
     if (scroll < window.innerHeight * 1.5) {
       heroBg.style.transform = `scale(1.12) translateY(${scroll * 0.4}px)`;
     }
-    // Tiger parallax in story section
+    // Tiger: fixed within story section while scrolling through it
     if (tigerBg) {
-      const storyRect = document.getElementById('story').getBoundingClientRect();
-      if (storyRect.bottom > 0 && storyRect.top < window.innerHeight) {
-        const progress = -storyRect.top / storyRect.height;
-        tigerBg.style.transform = `translateY(calc(-50% + ${progress * 60}px))`;
+      const storySection = document.getElementById('story');
+      const rect = storySection.getBoundingClientRect();
+      if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+        tigerBg.style.position = 'fixed';
+        tigerBg.style.top = '50%';
+        tigerBg.style.bottom = 'auto';
+        tigerBg.style.transform = 'translateY(-50%)';
+      } else {
+        tigerBg.style.position = 'absolute';
+        tigerBg.style.top = '50%';
+        tigerBg.style.bottom = 'auto';
+        tigerBg.style.transform = 'translateY(-50%)';
       }
     }
     // Sharing mosaic subtle parallax
