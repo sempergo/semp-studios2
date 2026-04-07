@@ -1319,9 +1319,10 @@
       const storySection = document.getElementById('story');
       const rect = storySection.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Clip tiger to the exact visible area of the section in the viewport
-      const clipTop    = Math.max(0, rect.top);
-      const clipBottom = Math.max(0, vh - rect.bottom);
+      // Clip tiger relative to its own bounding box (inset() is element-relative)
+      const tigerRect  = tigerBg.getBoundingClientRect();
+      const clipTop    = Math.max(0, rect.top - tigerRect.top);
+      const clipBottom = Math.max(0, tigerRect.bottom - rect.bottom);
       tigerBg.style.clipPath = `inset(${clipTop}px 0px ${clipBottom}px 0px)`;
       tigerBg.style.opacity = '0.22';
     }
