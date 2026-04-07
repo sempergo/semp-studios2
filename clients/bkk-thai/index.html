@@ -307,7 +307,6 @@
     #story {
       background: var(--bg-light);
       position: relative;
-      overflow: hidden;
     }
     #story .eyebrow { color: var(--red); }
     #story .eyebrow::before { background: var(--red); }
@@ -317,25 +316,33 @@
     #story .m-text { color: var(--muted); }
     #story .m-title { color: var(--text-dark); }
 
-    /* Tiger parallax bg */
+    /* Tiger decorative SVG */
     .tiger-parallax {
       position: absolute;
-      right: -8%;
+      right: -40px;
       top: 50%;
       transform: translateY(-50%);
-      width: 50%;
-      max-width: 560px;
+      width: min(48%, 480px);
       pointer-events: none;
       user-select: none;
       will-change: transform;
     }
-    .tiger-parallax img {
+    .tiger-parallax svg {
       width: 100%;
-      opacity: 0.06;
-      filter: grayscale(100%) contrast(1.4);
-      border-radius: 50%;
+      height: auto;
+      opacity: 0.07;
+      color: var(--text-dark);
     }
-    @media (max-width: 899px) { .tiger-parallax { display: none; } }
+    @media (max-width: 899px) {
+      .tiger-parallax {
+        right: -60px;
+        width: 70%;
+        top: auto;
+        bottom: -20px;
+        opacity: 0.5;
+        transform: none;
+      }
+    }
 
     .story-grid {
       display: grid;
@@ -941,7 +948,55 @@
 <!-- STORY -->
 <section id="story" class="section" aria-label="Unsere Geschichte">
   <div class="tiger-parallax" id="tigerBg" aria-hidden="true">
-    <img src="https://images.squarespace-cdn.com/content/v1/5cebb77651545f0001c73b8a/1644677897415-1GVIBJBEJQKGUUYT8FC6/MG_2965-scaled.jpeg?format=2500w" alt="">
+    <!-- Tiger silhouette SVG -->
+    <svg viewBox="0 0 520 480" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+      <!-- Body -->
+      <path d="M130 280 C130 220 165 185 215 175 C255 167 310 172 355 195 C400 220 415 260 410 300 C405 340 380 368 340 375 C300 382 250 375 210 360 C165 343 130 340 130 280Z"/>
+      <!-- Neck -->
+      <path d="M205 175 C200 155 210 135 225 125 C240 115 265 115 275 128 C285 142 280 165 270 178"/>
+      <!-- Head -->
+      <path d="M170 140 C170 90 200 60 240 52 C280 44 320 65 335 105 C348 140 335 175 310 190 C285 205 255 205 230 195 C200 183 170 170 170 140Z"/>
+      <!-- Left ear -->
+      <path d="M190 85 C182 65 175 40 185 28 C193 18 210 25 220 42 C225 55 220 75 210 85Z"/>
+      <!-- Right ear -->
+      <path d="M295 78 C300 57 308 33 320 28 C332 23 342 35 338 52 C334 66 320 78 305 82Z"/>
+      <!-- Tail -->
+      <path d="M405 295 Q440 275 460 240 Q478 205 468 170 Q458 138 438 130 Q420 123 412 140 Q406 155 418 168" stroke="currentColor" stroke-width="22" fill="none" stroke-linecap="round"/>
+      <path d="M412 140 Q408 125 418 115 Q430 104 442 112" stroke="currentColor" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <!-- Front left leg -->
+      <path d="M195 355 C192 385 188 415 185 440 C183 455 192 462 200 460 C210 458 215 448 215 435 C215 418 212 390 210 360Z"/>
+      <!-- Front right leg -->
+      <path d="M240 368 C238 398 236 425 235 445 C234 460 243 465 252 462 C262 459 265 448 263 433 C261 415 255 390 250 368Z"/>
+      <!-- Back left leg -->
+      <path d="M310 370 C308 400 306 425 305 448 C304 462 313 468 322 464 C332 460 334 448 332 433 C330 415 324 392 318 370Z"/>
+      <!-- Back right leg -->
+      <path d="M350 358 C350 388 350 415 350 440 C350 455 360 460 368 457 C378 453 380 441 378 426 C375 408 368 385 360 358Z"/>
+      <!-- Stripe 1 forehead -->
+      <path d="M232 68 C228 88 226 112 230 130 C236 112 238 88 232 68Z" fill-opacity="0.35"/>
+      <!-- Stripe 2 left -->
+      <path d="M200 82 C195 100 193 122 198 138 C204 122 206 100 200 82Z" fill-opacity="0.3"/>
+      <!-- Stripe 3 right -->
+      <path d="M268 80 C273 98 274 120 268 136 C262 120 260 98 268 80Z" fill-opacity="0.3"/>
+      <!-- Body stripes -->
+      <path d="M220 210 C215 230 213 255 218 270 C224 255 226 230 220 210Z" fill-opacity="0.25"/>
+      <path d="M280 205 C285 227 286 252 280 268 C274 252 273 227 280 205Z" fill-opacity="0.25"/>
+      <path d="M330 215 C337 237 338 260 332 275 C326 260 325 237 330 215Z" fill-opacity="0.22"/>
+      <path d="M165 240 C158 258 156 278 162 292 C168 278 170 258 165 240Z" fill-opacity="0.22"/>
+      <!-- Eye left -->
+      <ellipse cx="215" cy="148" rx="22" ry="18" fill="var(--bg-light)"/>
+      <ellipse cx="215" cy="148" rx="10" ry="14" fill="currentColor" fill-opacity="0.6"/>
+      <!-- Eye right -->
+      <ellipse cx="285" cy="145" rx="22" ry="18" fill="var(--bg-light)"/>
+      <ellipse cx="285" cy="145" rx="10" ry="14" fill="currentColor" fill-opacity="0.6"/>
+      <!-- Nose -->
+      <path d="M238 175 C243 168 257 168 262 175 L255 185 L250 188 L245 185Z"/>
+      <!-- Whiskers left -->
+      <line x1="230" y1="188" x2="165" y2="182" stroke="currentColor" stroke-width="2.5" fill="none" stroke-opacity="0.5"/>
+      <line x1="228" y1="196" x2="163" y2="196" stroke="currentColor" stroke-width="2.5" fill="none" stroke-opacity="0.5"/>
+      <!-- Whiskers right -->
+      <line x1="270" y1="188" x2="335" y2="182" stroke="currentColor" stroke-width="2.5" fill="none" stroke-opacity="0.5"/>
+      <line x1="272" y1="196" x2="337" y2="196" stroke="currentColor" stroke-width="2.5" fill="none" stroke-opacity="0.5"/>
+    </svg>
   </div>
   <div class="container story-grid">
     <div>
