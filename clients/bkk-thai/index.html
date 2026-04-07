@@ -1314,15 +1314,18 @@
     if (scroll < window.innerHeight * 1.5) {
       heroBg.style.transform = `scale(1.12) translateY(${scroll * 0.4}px)`;
     }
-    // Tiger: scroll-driven opacity — fades in with section, stays fixed
+    // Tiger: clipped + faded to story section bounds only
     if (tigerBg) {
       const storySection = document.getElementById('story');
       const rect = storySection.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Fade in as section enters from bottom (top: vh → 0)
-      const fadeIn  = Math.min(1, Math.max(0, (vh - rect.top) / vh));
-      // Fade out as section exits from top (bottom: vh → 0)
-      const fadeOut = Math.min(1, Math.max(0, rect.bottom / vh));
+      // Clip tiger to the exact visible area of the section in the viewport
+      const clipTop    = Math.max(0, rect.top);
+      const clipBottom = Math.max(0, vh - rect.bottom);
+      tigerBg.style.clipPath = `inset(${clipTop}px 0px ${clipBottom}px 0px)`;
+      // Smooth opacity fade as section fills the viewport
+      const fadeIn  = Math.min(1, Math.max(0, -rect.top / (vh * 0.3)));
+      const fadeOut = Math.min(1, Math.max(0, (rect.bottom - vh) / (vh * 0.3) + 1));
       tigerBg.style.opacity = (Math.min(fadeIn, fadeOut) * 0.22).toFixed(4);
     }
     // Sharing mosaic subtle parallax
