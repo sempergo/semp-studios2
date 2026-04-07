@@ -159,6 +159,18 @@
       transition: opacity 0.9s ease, transform 0.9s ease;
     }
     .hero-content.visible { opacity: 1; transform: translateY(0); }
+    .hero-content::before {
+      content: '';
+      position: absolute;
+      inset: -60px -80px;
+      background: radial-gradient(ellipse at 35% 45%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.38) 45%, transparent 75%);
+      filter: blur(18px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    #hero h1 {
+      text-shadow: 0 0 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.5);
+    }
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
