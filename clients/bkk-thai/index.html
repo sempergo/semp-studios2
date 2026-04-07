@@ -316,15 +316,14 @@
     #story .m-text { color: var(--muted); }
     #story .m-title { color: var(--text-dark); }
 
-    /* Tiger decorative — desktop: fixed layer, mobile: static at section bottom */
+    /* Tiger decorative — fixed background layer, scroll-driven opacity */
     .tiger-parallax {
-      position: absolute;
-      right: -60px;
-      width: 70%;
-      top: auto;
-      bottom: -20px;
-      opacity: 0.5;
-      transform: none;
+      position: fixed;
+      top: 50%;
+      right: -40px;
+      width: min(55%, 480px);
+      opacity: 0;
+      transform: translateY(-50%);
       pointer-events: none;
       user-select: none;
     }
@@ -332,15 +331,10 @@
       width: 100%;
       height: auto;
     }
-    @media (min-width: 900px) {
+    @media (max-width: 599px) {
       .tiger-parallax {
-        position: fixed;
-        top: 50%;
-        right: -40px;
-        bottom: auto;
-        width: min(48%, 480px);
-        opacity: 0;
-        transform: translateY(-50%);
+        right: -60px;
+        width: 85%;
       }
     }
 
@@ -1320,8 +1314,8 @@
     if (scroll < window.innerHeight * 1.5) {
       heroBg.style.transform = `scale(1.12) translateY(${scroll * 0.4}px)`;
     }
-    // Tiger: scroll-driven opacity on desktop — fades in with section, stays fixed
-    if (tigerBg && window.innerWidth >= 900) {
+    // Tiger: scroll-driven opacity — fades in with section, stays fixed
+    if (tigerBg) {
       const storySection = document.getElementById('story');
       const rect = storySection.getBoundingClientRect();
       const vh = window.innerHeight;
