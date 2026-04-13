@@ -364,17 +364,22 @@
     .story-text p + p { margin-top: 14px; }
 
     .story-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px 0;
       margin-top: 44px;
       padding-top: 40px;
       border-top: 1px solid var(--border);
     }
 
+    .story-stats > div {
+      flex: 0 0 33.333%;
+      padding-right: 8px;
+    }
+
     .stat-num {
       font-family: var(--font-display);
-      font-size: 38px;
+      font-size: clamp(24px, 6vw, 38px);
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--orange);
