@@ -707,14 +707,14 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 280px 280px;
+      grid-template-rows: 260px 260px;
       gap: 10px;
     }
 
     @media (max-width: 768px) {
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 180px 180px 180px;
+        grid-template-rows: repeat(3, 170px);
       }
     }
 
@@ -723,10 +723,8 @@
       overflow: hidden;
       cursor: pointer;
       position: relative;
-    }
-
-    .gallery-item:first-child {
-      grid-column: span 2;
+      display: block;
+      text-decoration: none;
     }
 
     .gallery-item img {
@@ -739,18 +737,31 @@
 
     .gallery-item:hover img { transform: scale(1.06); }
 
-    .gallery-item::after {
-      content: '';
+    .gallery-item .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: var(--orange);
-      opacity: 0;
-      transition: opacity 0.3s;
-      mix-blend-mode: multiply;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       pointer-events: none;
     }
 
-    .gallery-item:hover::after { opacity: 0.2; }
+    .gallery-item:hover .gallery-overlay {
+      background: rgba(0,0,0,0.38);
+    }
+
+    .gallery-overlay svg {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .gallery-item:hover .gallery-overlay svg {
+      opacity: 1;
+      transform: scale(1);
+    }
 
     /* ── REVIEWS ─────────────────────────────────── */
     #reviews {
@@ -1286,21 +1297,42 @@
         </h2>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item reveal">
+        <a class="gallery-item reveal" href="https://www.instagram.com/p/CSeApyPIO8V/" target="_blank" rel="noopener noreferrer" aria-label="MANCINI auf Instagram">
           <img src="images/hero.jpg" alt="MANCINI Pizza frisch aus dem Ofen" loading="lazy">
-        </div>
-        <div class="gallery-item reveal">
+          <div class="gallery-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+          </div>
+        </a>
+        <a class="gallery-item reveal" href="https://www.instagram.com/p/C3KpUcsIafU/" target="_blank" rel="noopener noreferrer" aria-label="MANCINI auf Instagram">
           <img src="images/pizza3.jpg" alt="MANCINI Signature Pizza" loading="lazy">
-        </div>
-        <div class="gallery-item reveal">
+          <div class="gallery-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+          </div>
+        </a>
+        <a class="gallery-item reveal" href="https://www.instagram.com/p/DARLmy5IqZa/" target="_blank" rel="noopener noreferrer" aria-label="MANCINI auf Instagram">
           <img src="images/insta1.jpg" alt="MANCINI eat smart Atmosphäre" loading="lazy">
-        </div>
-        <div class="gallery-item reveal">
+          <div class="gallery-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+          </div>
+        </a>
+        <a class="gallery-item reveal" href="https://www.instagram.com/p/CyqsSzdImXN/" target="_blank" rel="noopener noreferrer" aria-label="MANCINI auf Instagram">
           <img src="images/yelp.jpg" alt="MANCINI eat smart Stimmung" loading="lazy">
-        </div>
-        <div class="gallery-item reveal">
+          <div class="gallery-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+          </div>
+        </a>
+        <a class="gallery-item reveal" href="https://www.instagram.com/p/Cs_iEblo_yh/" target="_blank" rel="noopener noreferrer" aria-label="MANCINI auf Instagram">
           <img src="images/pizza6.jpg" alt="MANCINI Pizza Detail" loading="lazy">
-        </div>
+          <div class="gallery-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+          </div>
+        </a>
+        <a class="gallery-item reveal" href="https://www.instagram.com/p/CcK8kP5oUFK/" target="_blank" rel="noopener noreferrer" aria-label="MANCINI auf Instagram">
+          <img src="images/pizza4.jpg" alt="MANCINI Pizza Jasmin" loading="lazy">
+          <div class="gallery-overlay">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="5.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1" fill="white"/></svg>
+          </div>
+        </a>
       </div>
     </div>
   </section>
