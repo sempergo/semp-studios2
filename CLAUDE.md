@@ -38,7 +38,7 @@ Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen:
 - Alte Website mit Firecrawl scrapen → nur Inhalte extrahieren: Leistungen, Adresse, Öffnungszeiten, Menü, Team
 - Alte Website mit Firecrawl scrapen + Screenshot → echte Fotos (Gerichte, Räume, Produkte, Team) identifizieren und URLs notieren
 - Google Maps → Adresse, Öffnungszeiten, Bewertungen, Sterne
-- Instagram/Social Media mit Playwright → echte Fotos, Stimmung, Zielgruppe (Playwright weil Instagram JS-heavy ist)
+- Instagram/Social Media → echte Fotos, Stimmung, Zielgruppe (Firecrawl scrapen oder manuell URLs notieren)
 - Logo identifizieren und URL notieren
 - NIEMALS Design, Farben, Fonts oder Layout von der alten Website übernehmen — diese sind oft schlecht
 - Texte immer komplett neu schreiben: emotional, überzeugend, auf die Zielgruppe zugeschnitten
