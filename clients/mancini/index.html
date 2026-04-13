@@ -145,10 +145,15 @@
     @media (max-width: 768px) {
       .nav-links { display: none; }
       #nav {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
         padding: 10px 16px;
-        justify-content: space-between;
       }
-      .nav-burger { display: flex; }
+      .nav-wordmark { justify-self: start; }
+      .nav-logo { justify-self: center; }
+      .nav-burger { display: flex; justify-self: end; }
+      .nav-logo img { height: 40px; }
     }
 
     /* ── SIDE MENU ───────────────────────────────── */
@@ -1085,6 +1090,9 @@
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Hauptnavigation">
     <a href="#" class="nav-wordmark" aria-label="MANCINI eat smart — Startseite">MANCINI</a>
+    <a href="#" class="nav-logo" aria-label="MANCINI eat smart Logo">
+      <img src="images/mancinilogo.png" alt="MANCINI eat smart Logo">
+    </a>
     <ul class="nav-links">
       <li><a href="#menu">Pizzen</a></li>
       <li><a href="#reviews">Bewertungen</a></li>
