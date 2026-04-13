@@ -65,23 +65,16 @@
     }
 
     .nav-logo {
-      font-family: var(--font-display);
-      font-size: 16px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--black);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 6px;
+      flex-shrink: 0;
     }
 
-    .nav-logo-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--orange);
-      border-radius: 50%;
-      flex-shrink: 0;
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+      display: block;
     }
 
     .nav-links {
@@ -907,22 +900,11 @@
       gap: 20px;
     }
 
-    .footer-logo {
-      font-family: var(--font-display);
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .footer-logo-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--orange);
-      border-radius: 50%;
+    .footer-logo img {
+      height: 48px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
     }
 
     .footer-sub {
@@ -975,8 +957,7 @@
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Hauptnavigation">
     <a href="#" class="nav-logo" aria-label="MANCINI eat smart — Startseite">
-      MANCINI
-      <div class="nav-logo-dot" aria-hidden="true"></div>
+      <img src="images/logo.png" alt="MANCINI eat smart Logo">
     </a>
     <ul class="nav-links">
       <li><a href="#menu">Pizzen</a></li>
@@ -1294,10 +1275,8 @@
     <div class="footer-inner">
       <div>
         <div class="footer-logo">
-          MANCINI
-          <div class="footer-logo-dot" aria-hidden="true"></div>
+          <img src="images/logo.png" alt="MANCINI eat smart Logo">
         </div>
-        <div class="footer-sub" style="margin-top:4px">eat smart</div>
       </div>
       <ul class="footer-links">
         <li><a href="#story">Story</a></li>
