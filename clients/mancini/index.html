@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANCINI eat smart — Pizza Frankfurt Bornheim</title>
+  <meta name="description" content="MANCINI eat smart — Hausgemachte Pizza aus feinstem Dinkelteig, beste Zutaten, echte Leidenschaft. Berger Str. 235, Frankfurt-Bornheim. Di–So ab 15 Uhr.">
+
+  <meta property="og:title" content="MANCINI eat smart — It's all about good pizza">
+  <meta property="og:description" content="Hausgemachte Pizza aus feinstem Dinkelteig. Berger Str. 235, Frankfurt-Bornheim.">
+  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/mancini/">
+  <meta property="og:type" content="website">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='16' fill='%23FF4D00'/><text x='16' y='21' text-anchor='middle' font-size='16' fill='white' font-family='sans-serif' font-weight='bold'>M</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --orange: #FF4D00;
+      --orange-hover: #FF6B2B;
+      --black: #0C0C0C;
+      --white: #FFFFFF;
+      --cream: #F6F4F0;
+      --gray: #767676;
+      --border: #E6E2DC;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px 14px 24px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      opacity: 0;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .nav-links a:hover { color: var(--orange); }
+
+    .nav-cta {
+      background: var(--orange) !important;
+      color: var(--white) !important;
+      padding: 10px 20px !important;
+      border-radius: 100px !important;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover {
+      background: var(--orange-hover) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      #nav { padding: 12px 16px; }
+    }
+
+    /* ── HERO ────────────────────────────────────── */
+    #hero {
+      min-height: 100svh;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 24px 56px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: -20% 0 -20%;
+      background-image: url('images/hero.jpg');
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(12,12,12,0.88) 0%,
+        rgba(12,12,12,0.42) 40%,
+        rgba(12,12,12,0.12) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: rgba(255,77,0,0.14);
+      border: 1px solid rgba(255,77,0,0.28);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    #hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 10vw, 112px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    #hero h1 em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 17px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      max-width: 380px;
+      line-height: 1.65;
+      margin-bottom: 36px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange);
+      color: var(--white);
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+    }
+    .btn-primary:hover {
+      background: var(--orange-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.16); }
+
+    .hero-divider {
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .hero-stars { display: flex; gap: 3px; }
+    .hero-star { width: 15px; height: 15px; color: var(--orange); }
+
+    .hero-rating-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+    }
+    .hero-rating-text strong { color: var(--white); font-weight: 600; }
+
+    /* ── MARQUEE ─────────────────────────────────── */
+    .marquee-wrap {
+      background: var(--orange);
+      padding: 13px 0;
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee-scroll 24s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      flex-shrink: 0;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--white);
+      padding: 0 28px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .marquee-sep {
+      width: 4px;
+      height: 4px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    @keyframes marquee-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+
+    /* ── STORY ───────────────────────────────────── */
+    #story {
+      padding: 112px 24px;
+      background: var(--white);
+    }
+
+    .story-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      #story { padding: 80px 24px; }
+      .story-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 18px;
+    }
+
+    .story-headline {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+
+    .story-headline em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .story-text {
+      font-size: 16px;
+      line-height: 1.72;
+      color: #4A4A4A;
+    }
+
+    .story-text p + p { margin-top: 14px; }
+
+    .story-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 44px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 5px;
+    }
+
+    .story-img-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .story-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .story-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .story-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--orange);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .story-badge-icon svg { color: white; }
+
+    .story-badge-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .story-badge-sub {
+      font-size: 11px;
+      color: var(--gray);
+      margin-top: 1px;
+    }
+
+    /* ── MENU ────────────────────────────────────── */
+    #menu {
+      padding: 96px 0;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .menu-header {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      padding: 0 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .menu-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    .menu-headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      line-height: 0.94;
+      letter-spacing: -0.025em;
+    }
+
+    .menu-headline em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .menu-more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--orange);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      cursor: pointer;
+      transition: gap 0.2s;
+    }
+    .menu-more-link:hover { gap: 10px; }
+
+    .pizza-scroll {
+      display: flex;
+      gap: 16px;
+      padding: 4px 24px 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .pizza-scroll::-webkit-scrollbar { display: none; }
+
+    @media (min-width: 1024px) {
+      .pizza-scroll {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        overflow-x: visible;
+      }
+    }
+
+    .pizza-card {
+      flex-shrink: 0;
+      width: 240px;
+      background: var(--white);
+      border-radius: 18px;
+      overflow: hidden;
+      scroll-snap-align: start;
+      cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    @media (min-width: 1024px) { .pizza-card { width: auto; } }
+
+    .pizza-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba(0,0,0,0.1);
+    }
+
+    .pizza-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pizza-info {
+      padding: 18px 18px 20px;
+    }
+
+    .pizza-name {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 5px;
+    }
+
+    .pizza-desc {
+      font-size: 12px;
+      color: var(--gray);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .pizza-price {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--orange);
+    }
+
+    /* ── GALLERY ─────────────────────────────────── */
+    #gallery {
+      padding: 96px 24px;
+      background: var(--white);
+    }
+
+    .gallery-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-header {
+      margin-bottom: 44px;
+    }
+
+    .gallery-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      margin-top: 4px;
+    }
+
+    .gallery-headline em {
+      font-style: normal;
+      color: var(--orange);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px 180px;
+      }
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover img { transform: scale(1.06); }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--orange);
+      opacity: 0;
+      transition: opacity 0.3s;
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .gallery-item:hover::after { opacity: 0.2; }
+
+    /* ── REVIEWS ─────────────────────────────────── */
+    #reviews {
+      padding: 96px 24px;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .reviews-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .reviews-top {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+    }
+
+    .reviews-score {
+      font-family: var(--font-display);
+      font-size: 88px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .reviews-meta { flex: 1; }
+
+    .reviews-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .review-star { width: 18px; height: 18px; color: var(--orange); }
+
+    .reviews-source {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .reviews-grid { grid-template-columns: 1fr; }
+    }
+
+    .review-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 26px;
+      transition: border-color 0.2s;
+    }
+
+    .review-card:hover {
+      border-color: rgba(255,77,0,0.3);
+    }
+
+    .review-quote-mark {
+      font-family: var(--font-display);
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 12px;
+      opacity: 0.6;
+    }
+
+    .review-text {
+      font-size: 15px;
+      line-height: 1.68;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 20px;
+    }
+
+    .review-author {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── DELIVERY ────────────────────────────────── */
+    #delivery {
+      padding: 80px 24px;
+      background: var(--cream);
+    }
+
+    .delivery-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .delivery-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+
+    .delivery-sub {
+      font-size: 16px;
+      color: var(--gray);
+      margin-bottom: 44px;
+    }
+
+    .delivery-services {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .delivery-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 24px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .delivery-btn:hover {
+      border-color: var(--orange);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    }
+
+    .delivery-btn svg { color: var(--orange); }
+
+    /* ── INFO ────────────────────────────────────── */
+    #info {
+      padding: 96px 24px;
+      background: var(--white);
+    }
+
+    .info-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      #info { padding: 72px 24px; }
+      .info-inner { grid-template-columns: 1fr; gap: 56px; }
+    }
+
+    .info-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 36px;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hours-table td {
+      padding: 13px 0;
+      font-size: 15px;
+    }
+
+    .hours-table td:first-child {
+      color: var(--gray);
+    }
+
+    .hours-table td:last-child {
+      font-weight: 500;
+      text-align: right;
+    }
+
+    .hours-today td { color: var(--orange) !important; font-weight: 700 !important; }
+
+    .info-details {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .info-item-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--cream);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-item-icon svg { color: var(--orange); }
+
+    .info-item-label {
+      font-size: 11px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+
+    .info-item-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    a.info-item-value { transition: color 0.2s; cursor: pointer; }
+    a.info-item-value:hover { color: var(--orange); }
+
+    .map-container {
+      border-radius: 18px;
+      overflow: hidden;
+      height: 460px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .map-container { height: 280px; }
+    }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: 44px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-logo-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .footer-sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.03em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.38);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    .footer-insta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-insta:hover { color: var(--orange); }
+
+    /* ── SCROLL REVEAL ───────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav" role="navigation" aria-label="Hauptnavigation">
+    <a href="#" class="nav-logo" aria-label="MANCINI eat smart — Startseite">
+      MANCINI
+      <div class="nav-logo-dot" aria-hidden="true"></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#menu">Pizzen</a></li>
+      <li><a href="#reviews">Bewertungen</a></li>
+      <li><a href="#info">Kontakt</a></li>
+      <li>
+        <a href="https://wolt.com/de/deu/frankfurt/restaurant/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="nav-cta">
+          Jetzt bestellen
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg" id="heroBg" role="img" aria-label="MANCINI Pizza aus Frankfurt Bornheim"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-tag" aria-label="Standort">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="5"/></svg>
+        Frankfurt · Bornheim
+      </div>
+      <h1>
+        It's all<br>
+        about <em>good</em><br>
+        pizza.
+      </h1>
+      <p class="hero-sub">Hausgemachter Dinkelteig, beste Zutaten, echter Charakter — täglich frisch gebacken.</p>
+      <div class="hero-actions">
+        <a href="https://wolt.com/de/deu/frankfurt/restaurant/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Online bestellen
+        </a>
+        <a href="#menu" class="btn-ghost">Zur Karte</a>
+      </div>
+      <div class="hero-divider">
+        <div class="hero-stars" aria-label="4,5 von 5 Sternen">
+          <svg class="hero-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="hero-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="hero-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="hero-star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="hero-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <span class="hero-rating-text">
+          <strong>4.5</strong> auf TripAdvisor &nbsp;·&nbsp; 26 Bewertungen
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">IT'S ALL ABOUT GOOD PIZZA <span class="marquee-sep"></span></span>
+      <span class="marquee-item">BERGER STR. 235 · BORNHEIM <span class="marquee-sep"></span></span>
+      <span class="marquee-item">WOLT · LIEFERANDO · UBER EATS <span class="marquee-sep"></span></span>
+      <span class="marquee-item">DI–DO 17–23 · FR 17–24 · SA–SO AB 15 UHR <span class="marquee-sep"></span></span>
+      <span class="marquee-item">IT'S ALL ABOUT GOOD PIZZA <span class="marquee-sep"></span></span>
+      <span class="marquee-item">BERGER STR. 235 · BORNHEIM <span class="marquee-sep"></span></span>
+      <span class="marquee-item">WOLT · LIEFERANDO · UBER EATS <span class="marquee-sep"></span></span>
+      <span class="marquee-item">DI–DO 17–23 · FR 17–24 · SA–SO AB 15 UHR <span class="marquee-sep"></span></span>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <section id="story" aria-labelledby="story-heading">
+    <div class="story-inner">
+      <div class="reveal">
+        <p class="section-label">Die Geschichte</p>
+        <h2 class="story-headline" id="story-heading">
+          Pizza wie<br>sie sein <em>soll.</em>
+        </h2>
+        <div class="story-text">
+          <p>Bei MANCINI dreht sich alles um einen Gedanken: Pizza auf höchstem Niveau, ohne Kompromisse. Unser Teig wird aus feinstem Dinkelmehl hergestellt — luftig innen, knusprig außen, unvergesslich im Geschmack.</p>
+          <p>Jede Pizza trägt einen Namen und hat ihre Geschichte. Ob klassisch mit hausgemachter Tomatensauce oder mutig mit Pistazienpesto und Garnelen — wir backen, was wir lieben.</p>
+        </div>
+        <div class="story-stats">
+          <div>
+            <div class="stat-num">12+</div>
+            <div class="stat-label">Signature Pizzen</div>
+          </div>
+          <div>
+            <div class="stat-num">4.5★</div>
+            <div class="stat-label">TripAdvisor</div>
+          </div>
+          <div>
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Dinkelteig</div>
+          </div>
+        </div>
+      </div>
+      <div class="story-img-wrap reveal">
+        <img src="images/interior.jpg" alt="MANCINI eat smart — Restaurant Innenraum Frankfurt Bornheim" loading="lazy">
+        <div class="story-badge" aria-hidden="true">
+          <div class="story-badge-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="story-badge-title">Berger Str. 235</div>
+            <div class="story-badge-sub">Frankfurt-Bornheim</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu" aria-labelledby="menu-heading">
+    <div class="menu-header">
+      <div class="reveal">
+        <p class="section-label">Unsere Karte</p>
+        <h2 class="menu-headline" id="menu-heading">Signature<br><em>Pizzen</em></h2>
+      </div>
+      <a href="https://wolt.com/de/deu/frankfurt/restaurant/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="menu-more-link reveal">
+        Vollständige Karte
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="pizza-scroll" role="list">
+      <div class="pizza-card reveal" role="listitem">
+        <img class="pizza-img" src="images/pizza4.jpg" alt="Pizza Jasmin — Büffelmozzarella, Cime di Rapa, Salsiccia" loading="lazy">
+        <div class="pizza-info">
+          <div class="pizza-name">Pizza Jasmin</div>
+          <div class="pizza-desc">Büffelmozzarella, Cime di Rapa, Salsiccia, Kirschtomaten</div>
+          <div class="pizza-price">€ 8.50</div>
+        </div>
+      </div>
+      <div class="pizza-card reveal" role="listitem">
+        <img class="pizza-img" src="images/pizza5.jpg" alt="Pizza Goodbody — Bresaola, Kräuterseitlinge, Babyspinat" loading="lazy">
+        <div class="pizza-info">
+          <div class="pizza-name">Pizza Goodbody</div>
+          <div class="pizza-desc">Tomatensauce, Mozzarella, Bresaola, Kräuterseitlinge, Pinienkerne, Babyspinat</div>
+          <div class="pizza-price">€ 9.50</div>
+        </div>
+      </div>
+      <div class="pizza-card reveal" role="listitem">
+        <img class="pizza-img" src="images/pizza3.jpg" alt="Pizza Great Leslie — Trüffelcreme, Büffelmozzarella" loading="lazy">
+        <div class="pizza-info">
+          <div class="pizza-name">Pizza Great Leslie</div>
+          <div class="pizza-desc">Trüffelcreme, Büffelmozzarella, Sundried Tomaten, Rucola, Parmesan</div>
+          <div class="pizza-price">€ 9.50</div>
+        </div>
+      </div>
+      <div class="pizza-card reveal" role="listitem">
+        <img class="pizza-img" src="images/pizza6.jpg" alt="Pizza Long Beach — Pistazienpesto, Garnelen" loading="lazy">
+        <div class="pizza-info">
+          <div class="pizza-name">Pizza Long Beach</div>
+          <div class="pizza-desc">Hausgemachtes Pistazienpesto, Mozzarella, Garnelen, schwarze Oliven</div>
+          <div class="pizza-price">€ 9.50</div>
+        </div>
+      </div>
+      <div class="pizza-card reveal" role="listitem">
+        <img class="pizza-img" src="images/pizza2.jpg" alt="Pizza Mika — Mascarpone, frische Feigen, Datteln" loading="lazy">
+        <div class="pizza-info">
+          <div class="pizza-name">Pizza Mika</div>
+          <div class="pizza-desc">Mascarpone, frische Feigen, Datteln, Nüsse, frische Beeren</div>
+          <div class="pizza-price">€ 9.00</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery" aria-labelledby="gallery-heading">
+    <div class="gallery-inner">
+      <div class="gallery-header reveal">
+        <p class="section-label">Impressionen</p>
+        <h2 class="gallery-headline" id="gallery-heading">
+          Schau rein &amp;<br>werde <em>hungrig.</em>
+        </h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="images/hero.jpg" alt="MANCINI Pizza frisch aus dem Ofen" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="images/pizza3.jpg" alt="MANCINI Signature Pizza" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="images/insta1.jpg" alt="MANCINI eat smart Atmosphäre" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="images/yelp.jpg" alt="MANCINI eat smart Stimmung" loading="lazy">
+        </div>
+        <div class="gallery-item reveal">
+          <img src="images/pizza6.jpg" alt="MANCINI Pizza Detail" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" aria-labelledby="reviews-heading">
+    <div class="reviews-inner">
+      <div class="reviews-top reveal">
+        <div class="reviews-score" aria-label="4,5 Sterne">4.5</div>
+        <div class="reviews-meta">
+          <div class="reviews-stars" aria-hidden="true">
+            <svg class="review-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="review-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="review-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="review-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="review-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="reviews-source">26 Bewertungen auf TripAdvisor</div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card reveal">
+          <div class="review-quote-mark" aria-hidden="true">"</div>
+          <p class="review-text">Die beste Pizza in der Stadt. Voll und ganz empfehlenswert — komme immer wieder.</p>
+          <span class="review-author">TripAdvisor Gast</span>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-quote-mark" aria-hidden="true">"</div>
+          <p class="review-text">Ich habe mich in die Pizza Jasmin mit Cime di Rapa verliebt. Einfach ein Erlebnis.</p>
+          <span class="review-author">TripAdvisor Gast</span>
+        </div>
+        <div class="review-card reveal">
+          <div class="review-quote-mark" aria-hidden="true">"</div>
+          <p class="review-text">Freundlicher Service, schnell und ein fantastischer Teig. So muss gute Pizza sein.</p>
+          <span class="review-author">TripAdvisor Gast</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section id="delivery" aria-labelledby="delivery-heading">
+    <div class="delivery-inner">
+      <p class="section-label">Lieferservice</p>
+      <h2 class="delivery-headline reveal" id="delivery-heading">Auch zu dir nach Hause.</h2>
+      <p class="delivery-sub reveal">Bestell direkt über deine Lieblingsplattform.</p>
+      <div class="delivery-services reveal">
+        <a href="https://www.lieferando.de/speisekarte/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="delivery-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+          Lieferando
+        </a>
+        <a href="https://wolt.com/de/deu/frankfurt/restaurant/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="delivery-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Wolt
+        </a>
+        <a href="https://www.ubereats.com/de/store/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="delivery-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 5v3h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Uber Eats
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO & CONTACT -->
+  <section id="info" aria-labelledby="info-heading">
+    <div class="info-inner">
+      <div class="reveal">
+        <h2 class="info-headline" id="info-heading">Öffnungs&shy;zeiten</h2>
+        <table class="hours-table">
+          <tbody>
+            <tr id="row-mo"><td>Montag</td><td>Geschlossen</td></tr>
+            <tr id="row-di"><td>Dienstag</td><td>17:00 – 23:00</td></tr>
+            <tr id="row-mi"><td>Mittwoch</td><td>17:00 – 23:00</td></tr>
+            <tr id="row-do"><td>Donnerstag</td><td>17:00 – 23:00</td></tr>
+            <tr id="row-fr"><td>Freitag</td><td>17:00 – 24:00</td></tr>
+            <tr id="row-sa"><td>Samstag</td><td>15:00 – 24:00</td></tr>
+            <tr id="row-so"><td>Sonntag</td><td>15:00 – 23:00</td></tr>
+          </tbody>
+        </table>
+        <div class="info-details">
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="info-item-label">Adresse</div>
+              <a href="https://maps.google.com/?q=Berger+Str.+235,+60385+Frankfurt" target="_blank" rel="noopener noreferrer" class="info-item-value">
+                Berger Str. 235, 60385 Frankfurt
+              </a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="info-item-label">Telefon</div>
+              <a href="tel:+496990472400" class="info-item-value">069 / 904 72 400</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-item-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </div>
+            <div>
+              <div class="info-item-label">Instagram</div>
+              <a href="https://www.instagram.com/mancinieatsmart/" target="_blank" rel="noopener noreferrer" class="info-item-value">
+                @mancinieatsmart
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-container reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.8!2d8.7077!3d50.1278!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd09e1c0f55555%3A0xabc123!2sBerger+Str.+235%2C+60385+Frankfurt+am+Main!5e0!3m2!1sde!2sde!4v1713000000000!5m2!1sde!2sde"
+          allowfullscreen=""
+          loading="lazy"
+          title="MANCINI eat smart — Berger Str. 235, Frankfurt auf Google Maps"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          MANCINI
+          <div class="footer-logo-dot" aria-hidden="true"></div>
+        </div>
+        <div class="footer-sub" style="margin-top:4px">eat smart</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#story">Story</a></li>
+        <li><a href="#menu">Karte</a></li>
+        <li><a href="#delivery">Lieferung</a></li>
+        <li><a href="#info">Kontakt</a></li>
+      </ul>
+      <a href="https://www.instagram.com/mancinieatsmart/" target="_blank" rel="noopener noreferrer" class="footer-insta">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @mancinieatsmart
+      </a>
+    </div>
+  </footer>
+
+  <script>
+    // ── Lenis smooth scroll ─────────────────────────
+    const lenis = new Lenis({ autoRaf: true });
+
+    // Hero parallax
+    const heroBg = document.getElementById('heroBg');
+    lenis.on('scroll', ({ scroll }) => {
+      if (heroBg) {
+        heroBg.style.transform = `translateY(${scroll * 0.3}px)`;
+      }
+    });
+
+    // ── Highlight today's row ───────────────────────
+    const dayKeys = ['so', 'mo', 'di', 'mi', 'do', 'fr', 'sa'];
+    const todayKey = dayKeys[new Date().getDay()];
+    const todayRow = document.getElementById(`row-${todayKey}`);
+    if (todayRow) todayRow.classList.add('hours-today');
+
+    // ── Scroll reveal ───────────────────────────────
+    const prefersMotion = window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+
+    if (typeof Motion !== 'undefined' && prefersMotion) {
+      const revealEls = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            Motion.animate(
+              entry.target,
+              { opacity: [0, 1], y: [28, 0] },
+              { duration: 0.65, easing: [0.25, 0.46, 0.45, 0.94] }
+            );
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      revealEls.forEach((el) => revealObserver.observe(el));
+
+      // Intro animations
+      Motion.animate('#nav', { opacity: [0, 1], y: [-16, 0] }, { duration: 0.5, delay: 0.15, easing: 'ease-out' });
+      Motion.animate('.hero-content', { opacity: [0, 1], y: [48, 0] }, { duration: 0.9, delay: 0.1, easing: [0.25, 0.46, 0.45, 0.94] });
+      Motion.animate('.hero-bg', { scale: [1.08, 1] }, { duration: 1.4, delay: 0, easing: [0.25, 0.46, 0.45, 0.94] });
+    } else {
+      document.querySelectorAll('.reveal').forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      document.getElementById('nav').style.opacity = '1';
+    }
+  </script>
+</body>
+</html>
