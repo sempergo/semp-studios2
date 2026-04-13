@@ -111,13 +111,118 @@
       transform: translateY(-1px) !important;
     }
 
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--orange);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .nav-burger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav-burger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
       #nav {
         padding: 10px 16px;
-        justify-content: center;
+        justify-content: space-between;
       }
-      .nav-logo img { height: 40px; }
+      .nav-burger { display: flex; }
+    }
+
+    /* ── SIDE MENU ───────────────────────────────── */
+    .sidemenu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(320px, 85vw);
+      background: var(--white);
+      z-index: 200;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+    }
+
+    .sidemenu.open { transform: translateX(0); }
+
+    .sidemenu-close {
+      align-self: flex-end;
+      background: var(--cream);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--black);
+      transition: background 0.2s;
+    }
+    .sidemenu-close:hover { background: var(--border); }
+
+    .sidemenu-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+
+    .sidemenu-link {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .sidemenu-link:last-child { border-bottom: none; }
+    .sidemenu-link:hover { color: var(--orange); }
+
+    .sidemenu-cta { justify-content: center; }
+
+    .sidemenu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 199;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+
+    .sidemenu-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* ── HERO ────────────────────────────────────── */
@@ -979,9 +1084,7 @@
 
   <!-- NAV -->
   <nav id="nav" role="navigation" aria-label="Hauptnavigation">
-    <a href="#" class="nav-logo" aria-label="MANCINI eat smart — Startseite">
-      <img src="images/mancinilogo.png" alt="MANCINI eat smart Logo">
-    </a>
+    <a href="#" class="nav-wordmark" aria-label="MANCINI eat smart — Startseite">MANCINI</a>
     <ul class="nav-links">
       <li><a href="#menu">Pizzen</a></li>
       <li><a href="#reviews">Bewertungen</a></li>
@@ -992,6 +1095,28 @@
         </a>
       </li>
     </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- SIDE MENU -->
+  <div class="sidemenu" id="sideMenu" aria-hidden="true">
+    <button class="sidemenu-close" id="sideMenuClose" aria-label="Menü schließen">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <nav class="sidemenu-nav">
+      <a href="#menu" class="sidemenu-link">Pizzen</a>
+      <a href="#reviews" class="sidemenu-link">Bewertungen</a>
+      <a href="#gallery" class="sidemenu-link">Galerie</a>
+      <a href="#delivery" class="sidemenu-link">Lieferung</a>
+      <a href="#info" class="sidemenu-link">Kontakt</a>
+    </nav>
+    <a href="https://wolt.com/de/deu/frankfurt/restaurant/mancini-eat-smart" target="_blank" rel="noopener noreferrer" class="btn-primary sidemenu-cta">
+      Jetzt bestellen
+    </a>
+  </div>
+  <div class="sidemenu-overlay" id="sideMenuOverlay"></div>
   </nav>
 
   <!-- HERO -->
@@ -1315,6 +1440,36 @@
   </footer>
 
   <script>
+    // ── Side Menu ───────────────────────────────────
+    const burger = document.getElementById('navBurger');
+    const sideMenu = document.getElementById('sideMenu');
+    const overlay = document.getElementById('sideMenuOverlay');
+    const closeBtn = document.getElementById('sideMenuClose');
+
+    function openMenu() {
+      sideMenu.classList.add('open');
+      overlay.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      sideMenu.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      sideMenu.classList.remove('open');
+      overlay.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      sideMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    burger.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    document.querySelectorAll('.sidemenu-link, .sidemenu-cta').forEach(el => {
+      el.addEventListener('click', closeMenu);
+    });
+
     // ── Lenis smooth scroll ─────────────────────────
     const lenis = new Lenis({ autoRaf: true });
 
