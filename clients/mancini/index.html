@@ -325,7 +325,9 @@
 
     #story { padding: 80px 24px; }
 
-    @media (min-width: 769px) {
+    .story-inner > * { min-width: 0; }
+
+    @media (min-width: 600px) {
       #story { padding: 112px 24px; }
       .story-inner { grid-template-columns: 1fr 1fr; gap: 80px; }
     }
@@ -684,7 +686,7 @@
       gap: 16px;
     }
 
-    @media (min-width: 769px) {
+    @media (min-width: 600px) {
       .reviews-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
     }
 
@@ -799,7 +801,9 @@
 
     #info { padding: 72px 24px; }
 
-    @media (min-width: 769px) {
+    .info-inner > * { min-width: 0; }
+
+    @media (min-width: 600px) {
       #info { padding: 96px 24px; }
       .info-inner { grid-template-columns: 1fr 1fr; gap: 80px; }
     }
