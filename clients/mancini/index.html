@@ -364,8 +364,9 @@
     .story-text p + p { margin-top: 14px; }
 
     .story-stats {
-      display: flex;
-      gap: 36px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
       margin-top: 44px;
       padding-top: 40px;
       border-top: 1px solid var(--border);
