@@ -335,6 +335,12 @@
       font-size: clamp(.75rem,1.8vw,.875rem); font-weight: 300;
       letter-spacing: .22em; text-transform: uppercase;
       color: rgba(255,255,255,.72); margin-bottom: .4rem;
+      display: flex; flex-direction: column; align-items: center; gap: .3rem;
+    }
+    .hero-sub .sep { display: none; }
+    @media (min-width: 640px) {
+      .hero-sub { flex-direction: row; justify-content: center; flex-wrap: wrap; gap: 0; }
+      .hero-sub .sep { display: inline; }
     }
     .hero-city {
       font-family: var(--f-display); font-style: italic;
@@ -862,7 +868,7 @@
     <div class="hero-content" id="heroContent">
       <span class="hero-script" id="heroScript"></span>
       <h1 class="hero-h1">kaffeemacherei</h1>
-      <p class="hero-sub">Specialty Coffee · Hausgemachter Kuchen · Frühstück &amp; Brunch · Mittagessen</p>
+      <p class="hero-sub"><span>Specialty Coffee</span><span class="sep"> · </span><span>Hausgemachter Kuchen</span><span class="sep"> · </span><span>Frühstück &amp; Brunch</span><span class="sep"> · </span><span>Mittagessen</span></p>
       <p class="hero-city">Frankfurt Nordend-West</p>
       <div class="hero-vegan-badge"><span>🌱 vegan</span></div>
       <a href="#angebot" class="btn btn-sage">Mehr entdecken</a>
