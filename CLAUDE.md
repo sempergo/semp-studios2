@@ -30,6 +30,13 @@ Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen:
 
 **Mobile-first** — zuerst für Mobile designen und entwickeln (360–390px), dann auf Desktop erweitern. Beide müssen perfekt funktionieren. Kein horizontales Scrollen.
 
+### Effizienz-Regeln (Zeitverschwendung verhindern)
+
+- **Playwright niemals verwenden** — weder für Screenshots noch für irgendwas anderes. Immer Firecrawl nutzen.
+- **Scraping: max. 1 Fehlversuch pro Quelle.** Wenn Instagram, Wolt oder eine andere Quelle beim ersten Versuch nicht lädt oder geblockt wird → sofort abbrechen und mit vorhandenen Daten weiterarbeiten. Nicht mit anderen Parametern nochmal versuchen.
+- **Review immer auf der Live-GitHub-Pages-URL** — niemals localhost für Firecrawl-Screenshots versuchen (funktioniert nicht). Ablauf: erst committen + pushen, dann auf Deploy warten, dann Firecrawl.
+- **Kein ToolSearch für bereits bekannte Tools** — WebFetch, WebSearch, Firecrawl und Bash sind immer verfügbar und brauchen keinen ToolSearch-Aufruf zur Bestätigung.
+
 ---
 
 ## Workflow für neue Kunden-Website
@@ -37,9 +44,10 @@ Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen:
 **Schritt 1 — Research**
 - Alte Website mit Firecrawl scrapen → nur Inhalte extrahieren: Leistungen, Adresse, Öffnungszeiten, Menü, Team
 - Alte Website mit Firecrawl scrapen + Screenshot → echte Fotos (Gerichte, Räume, Produkte, Team) identifizieren und URLs notieren
-- Google Maps → Adresse, Öffnungszeiten, Bewertungen, Sterne
+- Google Maps / Yelp / Gelbe Seiten → Adresse, Öffnungszeiten, Bewertungen, Sterne, echte Bewertungstexte
 - Instagram/Social Media → echte Fotos, Stimmung, Zielgruppe (Firecrawl scrapen oder manuell URLs notieren)
 - Logo identifizieren und URL notieren
+- **Pro Quelle maximal 1 Versuch.** Schlägt eine Quelle fehl (Instagram geblockt, Wolt lädt nicht) → sofort weitermachen, nicht nochmal versuchen.
 - NIEMALS Design, Farben, Fonts oder Layout von der alten Website übernehmen — diese sind oft schlecht
 - Texte immer komplett neu schreiben: emotional, überzeugend, auf die Zielgruppe zugeschnitten
 
@@ -62,8 +70,10 @@ Kreativ denken, nicht mechanisch abarbeiten. Nach dem Research aktiv überlegen:
   - `mcp__magic__logo_search` → Kunden-Logo oder Branchen-Logos suchen
 
 **Schritt 4 — Review** (Checkliste — alle Punkte müssen erfüllt sein)
-- [ ] Firecrawl Screenshot auf Mobile (375px) — das ist die Priorität
-- [ ] Firecrawl Screenshot auf Desktop (1440px)
+- [ ] Erst committen + pushen, dann auf GitHub Pages Deploy warten (30–60s), dann Screenshots
+- [ ] Firecrawl Screenshot auf Mobile (375px) direkt von der Live-GitHub-Pages-URL — das ist die Priorität
+- [ ] Firecrawl Screenshot auf Desktop (1440px) direkt von der Live-GitHub-Pages-URL
+- [ ] **Niemals Playwright für Screenshots nutzen** — ausschließlich Firecrawl
 - [ ] Jede Section hat einen klaren CTA
 - [ ] Alle Animationen und Scroll-Effekte laufen flüssig
 - [ ] Keine Platzhalter-Texte, keine leeren Felder
