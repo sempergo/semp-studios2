@@ -539,18 +539,21 @@
       overflow-x: auto; scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       padding-bottom: 1rem;
-      /* hide scrollbar */
+      padding-left: 1.5rem; padding-right: 1.5rem;
+      margin-left: -1.5rem; margin-right: -1.5rem;
       scrollbar-width: none;
     }
     .offerings-grid::-webkit-scrollbar { display: none; }
     .offerings-grid .offer-card {
-      flex: 0 0 78vw; max-width: 320px;
+      flex: 0 0 75vw; max-width: 300px;
       scroll-snap-align: start;
     }
     @media (min-width: 640px) {
       .offerings-grid {
         display: grid; grid-template-columns: repeat(2,1fr);
         overflow-x: visible; padding-bottom: 0;
+        padding-left: 0; padding-right: 0;
+        margin-left: 0; margin-right: 0;
       }
       .offerings-grid .offer-card { flex: unset; max-width: unset; }
     }
