@@ -342,22 +342,19 @@
       color: rgba(255,255,255,.5); margin-bottom: 2rem;
     }
     .hero-vegan-badge {
-      display: inline-flex; align-items: center; gap: .45rem;
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+    .hero-vegan-badge span {
+      display: inline-flex; align-items: center; gap: .4rem;
       background: rgba(255,255,255,.12);
       border: 1px solid rgba(255,255,255,.28);
       backdrop-filter: blur(8px);
       border-radius: 999px;
-      padding: .4rem 1rem .4rem .75rem;
-      font-size: .7rem; font-weight: 500;
-      letter-spacing: .18em; text-transform: uppercase;
+      padding: .35rem .9rem;
+      font-size: .75rem; font-weight: 500;
+      letter-spacing: .14em; text-transform: uppercase;
       color: rgba(255,255,255,.9);
-      margin-bottom: 2.25rem;
-    }
-    .hero-vegan-badge::before {
-      content: '';
-      display: inline-block; width: .55rem; height: .55rem;
-      background: #7fba5e; border-radius: 50%;
-      flex-shrink: 0;
     }
 
     .hero-scroll-hint {
@@ -867,7 +864,7 @@
       <h1 class="hero-h1">kaffeemacherei</h1>
       <p class="hero-sub">Specialty Coffee · Hausgemachter Kuchen · Frühstück &amp; Brunch · Mittagessen</p>
       <p class="hero-city">Frankfurt Nordend-West</p>
-      <div class="hero-vegan-badge">100 % Vegan</div>
+      <div class="hero-vegan-badge"><span>🌱 vegan</span></div>
       <a href="#angebot" class="btn btn-sage">Mehr entdecken</a>
     </div>
     <div class="hero-scroll-hint" aria-hidden="true">
