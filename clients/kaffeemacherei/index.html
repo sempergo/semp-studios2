@@ -469,6 +469,13 @@
       position: relative; z-index: 1;
       display: grid; grid-template-columns: 1fr; gap: 3.5rem;
     }
+    .about-bean {
+      position: absolute; top: 50%; left: -8%;
+      transform: translateY(-50%) rotate(-18deg);
+      width: clamp(260px, 38vw, 460px);
+      opacity: .055; pointer-events: none; z-index: 0;
+      color: var(--brown);
+    }
     .about-text h2 {
       font-family: var(--f-display);
       font-size: clamp(2.25rem,5.5vw,3.75rem);
@@ -935,6 +942,10 @@
     <div class="orb orb-2" aria-hidden="true"></div>
     <div class="container">
       <div class="about-grid">
+        <svg class="about-bean" aria-hidden="true" viewBox="0 0 220 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="110" cy="170" rx="95" ry="158" stroke="currentColor" stroke-width="7"/>
+          <path d="M110 18 C55 75 165 130 110 185 C55 240 165 295 110 322" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>
+        </svg>
         <div class="about-text reveal">
           <span class="label">Das Café</span>
           <h2 class="split-h2 reveal">Ein Ort, an dem der Tag <em>noch vor dir liegt</em></h2>
