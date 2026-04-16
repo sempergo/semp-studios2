@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chichilas Tex Mex — Mexikanisches Restaurant Frankfurt & Offenbach</title>
+  <meta name="description" content="Chichilas Tex Mex — Authentische mexikanische Küche in Frankfurt & Offenbach. Tacos, Burritos, Quesadillas & Cocktails. Halal. Seit 2017. Jetzt Tisch reservieren.">
+
+  <meta property="og:title" content="Chichilas Tex Mex — Das Original seit 2017">
+  <meta property="og:description" content="Tacos, Burritos, Quesadillas & Cocktails. Authentisch mexikanisch in Frankfurt & Offenbach.">
+  <meta property="og:image" content="https://storage.googleapis.com/cloud_storage_for_ai_seo_marketing/mexikanisches-restaurant.eu/Website_image/Chichilas%20Tex%20Mex%20Media-17.webp">
+  <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/chichilas/">
+  <meta property="og:type" content="restaurant">
+
+  <link rel="icon" href="https://mexikanisches-restaurant.eu/wp-content/uploads/cropped-favicon-32x32-1-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Pacifico&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+
+  <style>
+    /* ── VARIABLES ─────────────────────────────────── */
+    :root {
+      --red:     #C0392B;
+      --red-d:   #9B2D20;
+      --yellow:  #F4A226;
+      --green:   #2D7A3A;
+      --orange:  #E05E2A;
+      --sand:    #F5E6C8;
+      --sand-d:  #EDD9A3;
+      --cream:   #FDF4E3;
+      --dark:    #1A0800;
+      --dark-m:  #3D1A0A;
+      --f-disp:  'Abril Fatface', serif;
+      --f-acc:   'Pacifico', cursive;
+      --f-body:  'Lato', sans-serif;
+    }
+
+    /* ── RESET ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: auto; }
+    body { font-family: var(--f-body); background: var(--sand); color: var(--dark); overflow-x: hidden; }
+    img  { max-width: 100%; height: auto; display: block; }
+    a    { color: inherit; }
+
+    /* ── NAV ───────────────────────────────────────── */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      transition: background .35s, backdrop-filter .35s, box-shadow .35s;
+    }
+    #nav.solid {
+      background: rgba(245,230,200,.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(26,8,0,.1);
+    }
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-btn {
+      background: var(--red); color: #fff;
+      padding: 11px 22px; border-radius: 100px;
+      text-decoration: none; font-weight: 700; font-size: 13px; letter-spacing: .5px;
+      box-shadow: 0 4px 16px rgba(192,57,43,.35);
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+    .nav-btn:hover { background: var(--red-d); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(192,57,43,.45); }
+
+    /* ── HERO ──────────────────────────────────────── */
+    #hero {
+      position: relative; min-height: 100svh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 120px 24px 100px; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; will-change: transform;
+      background: url('https://storage.googleapis.com/cloud_storage_for_ai_seo_marketing/mexikanisches-restaurant.eu/Website_image/Chichilas%20Tex%20Mex%20Media-17.webp') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(26,8,0,.25) 0%, rgba(26,8,0,.6) 55%, rgba(26,8,0,.82) 100%);
+    }
+
+    /* papel picado string + flags */
+    .picado-wrap {
+      position: absolute; top: 0; left: 0; right: 0; height: 110px;
+      pointer-events: none; z-index: 4; overflow: hidden;
+    }
+    .picado-wrap svg { width: 100%; height: 110px; }
+
+    .hero-content {
+      position: relative; z-index: 5; max-width: 680px;
+      opacity: 0; transform: translateY(28px);
+      animation: hIn 1s cubic-bezier(.25,.46,.45,.94) .6s forwards;
+    }
+    @keyframes hIn { to { opacity:1; transform:translateY(0); } }
+
+    .hero-eyebrow {
+      font-family: var(--f-acc); font-size: 15px; color: var(--yellow);
+      margin-bottom: 18px; letter-spacing: .5px;
+    }
+    .hero-title {
+      font-family: var(--f-disp);
+      font-size: clamp(46px, 13vw, 108px);
+      line-height: 1.0; color: #fff;
+      text-shadow: 0 4px 32px rgba(0,0,0,.35);
+      margin-bottom: 24px;
+    }
+    .hero-title em { font-style: normal; color: var(--yellow); }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px); font-weight: 300;
+      color: rgba(255,255,255,.82); line-height: 1.75;
+      max-width: 480px; margin: 0 auto 36px;
+    }
+    .hero-ctas { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-p {
+      background: var(--red); color: #fff;
+      padding: 15px 30px; border-radius: 100px;
+      text-decoration: none; font-weight: 700; font-size: 15px; letter-spacing: .4px;
+      box-shadow: 0 4px 20px rgba(192,57,43,.4);
+      transition: all .25s; display: inline-block;
+    }
+    .btn-p:hover { background: var(--red-d); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(192,57,43,.5); }
+    .btn-s {
+      background: rgba(255,255,255,.12);
+      backdrop-filter: blur(8px);
+      color: #fff; padding: 15px 30px; border-radius: 100px;
+      text-decoration: none; font-weight: 700; font-size: 15px;
+      border: 1.5px solid rgba(255,255,255,.55);
+      transition: all .25s; display: inline-block;
+    }
+    .btn-s:hover { background: rgba(255,255,255,.22); border-color: #fff; }
+
+    .hero-badges {
+      position: relative; z-index: 5; margin-top: 40px;
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center;
+      opacity: 0; animation: hIn 1s ease 1.1s forwards;
+    }
+    .hbadge {
+      background: rgba(255,255,255,.12); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.2);
+      color: rgba(255,255,255,.9); padding: 8px 16px; border-radius: 100px;
+      font-size: 12px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase;
+    }
+    .hbadge.green { background: rgba(45,122,58,.7); border-color: var(--green); }
+
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      z-index: 5; color: rgba(255,255,255,.5); font-size: 11px; letter-spacing: 2.5px;
+      text-transform: uppercase;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: float 2.5s ease-in-out infinite;
+      opacity: 0; animation: hIn 1s ease 1.4s forwards, float 2.5s ease 2.4s infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
+
+    /* ── TICKER ─────────────────────────────────────── */
+    .ticker-wrap {
+      background: var(--red); padding: 14px 0; overflow: hidden;
+      position: relative; z-index: 2;
+    }
+    .ticker-track {
+      display: flex; width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .ticker-item {
+      font-family: var(--f-disp); font-size: 18px; color: #fff;
+      padding: 0 32px; white-space: nowrap; letter-spacing: .5px;
+    }
+    .ticker-dot { color: var(--yellow); margin: 0 8px; }
+
+    /* ── SECTION SHARED ─────────────────────────────── */
+    .sec { padding: 88px 24px; }
+    .sec-tag  { font-family: var(--f-acc); font-size: 15px; color: var(--orange); display: block; margin-bottom: 8px; }
+    .sec-h    { font-family: var(--f-disp); font-size: clamp(30px, 6vw, 54px); line-height: 1.1; }
+    .sec-line { width: 52px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--red), var(--orange)); margin-top: 14px; }
+    .sec-head { text-align: center; margin-bottom: 52px; }
+    .sec-head .sec-line { margin: 14px auto 0; }
+
+    /* ── WAVE DIVIDER ────────────────────────────────── */
+    .wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── MENU ────────────────────────────────────────── */
+    #menu {
+      background: var(--cream);
+      background-image: url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26 2L50 26 26 50 2 26Z' fill='none' stroke='%23C0392B' stroke-opacity='.06' stroke-width='1'/%3E%3C/svg%3E");
+    }
+    .menu-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 1200px; margin: 0 auto; }
+    .mcard {
+      background: #fff; border-radius: 20px; overflow: hidden;
+      box-shadow: 0 4px 28px rgba(26,8,0,.07);
+      opacity: 0; transform: translateY(44px);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .mcard:hover { box-shadow: 0 20px 56px rgba(26,8,0,.14); transform: translateY(-6px) !important; }
+    .mcard-img { position: relative; aspect-ratio: 4/3; overflow: hidden; }
+    .mcard-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+    .mcard:hover .mcard-img img { transform: scale(1.06); }
+    .mcard-tag {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--yellow); color: var(--dark);
+      font-family: var(--f-acc); font-size: 12px; padding: 4px 12px; border-radius: 100px;
+    }
+    .mcard-tag.r { background: var(--red); color: #fff; }
+    .mcard-tag.g { background: var(--green); color: #fff; }
+    .mcard-tag.o { background: var(--orange); color: #fff; }
+    .mcard-body { padding: 24px 24px 28px; }
+    .mcard-name { font-family: var(--f-acc); font-size: 22px; margin-bottom: 10px; }
+    .mcard-desc { font-size: 14px; line-height: 1.7; color: rgba(26,8,0,.62); margin-bottom: 16px; }
+    .mcard-link {
+      color: var(--red); font-weight: 700; font-size: 13px; text-decoration: none;
+      letter-spacing: .5px; border-bottom: 2px solid var(--red); padding-bottom: 1px;
+      display: inline-block; transition: color .2s, border-color .2s;
+    }
+    .mcard-link:hover { color: var(--orange); border-color: var(--orange); }
+
+    /* Cocktail card special */
+    .cocktail-bg {
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1A0800 0%, #3D1A0A 40%, #C0392B 75%, #F4A226 100%);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .cocktail-bg::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle at 30% 70%, rgba(244,162,38,.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(224,94,42,.2) 0%, transparent 50%);
+    }
+
+    /* ── ABOUT ───────────────────────────────────────── */
+    #about { background: var(--dark); position: relative; overflow: hidden; }
+    .about-sombrero {
+      position: absolute; top: 32px; right: -20px;
+      opacity: .08; pointer-events: none; transform: rotate(15deg);
+    }
+    .about-mustache {
+      position: absolute; bottom: 32px; left: -20px;
+      opacity: .07; pointer-events: none;
+    }
+    .about-inner {
+      max-width: 1100px; margin: 0 auto; position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr; gap: 52px; align-items: center;
+    }
+    .about-img-wrap { position: relative; }
+    .about-img-wrap img {
+      width: 100%; aspect-ratio: 4/3; object-fit: cover;
+      border-radius: 20px; box-shadow: 0 24px 72px rgba(0,0,0,.5);
+    }
+    .about-sombrero-small {
+      position: absolute; top: -28px; right: -18px;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,.4));
+    }
+    .about-text .sec-h { color: #fff; }
+    .about-text .sec-tag { color: var(--yellow); }
+    .about-body { color: rgba(255,255,255,.68); font-size: 16px; line-height: 1.85; margin-top: 22px; }
+    .about-body + .about-body { margin-top: 14px; }
+    .about-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+    .chip {
+      padding: 9px 18px; border-radius: 100px; font-size: 13px; font-weight: 700;
+      letter-spacing: .4px; border: 1.5px solid;
+    }
+    .chip.g  { background: rgba(45,122,58,.25); border-color: var(--green); color: #6fcf6a; }
+    .chip.y  { background: rgba(244,162,38,.15); border-color: var(--yellow); color: var(--yellow); }
+    .chip.w  { background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.75); }
+    .chip.r  { background: rgba(192,57,43,.25); border-color: var(--red); color: #f08080; }
+
+    /* ── LOCATIONS ───────────────────────────────────── */
+    #locations { background: var(--sand); }
+    .loc-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 960px; margin: 0 auto; }
+    .loc-card {
+      background: #fff; border-radius: 20px; padding: 32px;
+      box-shadow: 0 4px 28px rgba(26,8,0,.08);
+      border-top: 5px solid var(--red);
+      opacity: 0; transform: translateY(32px);
+    }
+    .loc-card:nth-child(2) { border-top-color: var(--orange); }
+    .loc-title { font-family: var(--f-disp); font-size: 26px; margin-bottom: 22px; }
+    .loc-rows { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .loc-row { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; line-height: 1.55; color: rgba(26,8,0,.68); }
+    .loc-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--red); margin-top: 1px; }
+    .loc-row strong { color: var(--dark); }
+    .loc-row a { color: var(--red); text-decoration: none; font-weight: 700; }
+    .loc-row a:hover { text-decoration: underline; }
+    .btn-map {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--dark); color: #fff;
+      padding: 13px 22px; border-radius: 100px;
+      text-decoration: none; font-size: 14px; font-weight: 700;
+      transition: all .25s;
+    }
+    .btn-map:hover { background: var(--red); transform: translateY(-2px); }
+    .btn-map.o:hover { background: var(--orange); }
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer { background: var(--dark); padding: 68px 24px 40px; }
+    .ft-inner { max-width: 1100px; margin: 0 auto; }
+    .ft-top {
+      display: grid; grid-template-columns: 1fr; gap: 44px;
+      padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,.09);
+      margin-bottom: 32px;
+    }
+    .ft-logo img { height: 52px; filter: brightness(10); opacity: .85; margin-bottom: 16px; }
+    .ft-tagline { font-size: 14px; color: rgba(255,255,255,.52); line-height: 1.7; max-width: 260px; }
+    .ft-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .ft-soc {
+      width: 40px; height: 40px; border-radius: 100%; background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, transform .2s; text-decoration: none;
+    }
+    .ft-soc:hover { background: var(--red); transform: translateY(-2px); }
+    .ft-col h4 { font-family: var(--f-acc); font-size: 17px; color: var(--yellow); margin-bottom: 16px; }
+    .ft-col p, .ft-col a {
+      font-size: 14px; line-height: 1.85; color: rgba(255,255,255,.52);
+      text-decoration: none; display: block;
+    }
+    .ft-col a:hover { color: var(--yellow); }
+    .ft-col a.cta { color: var(--yellow); font-weight: 700; margin-top: 12px; }
+    .ft-bottom { text-align: center; font-size: 12px; color: rgba(255,255,255,.25); }
+
+    /* ── DIAMOND PATTERN ─────────────────────────────── */
+    .diamond-bg {
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 2L38 20 20 38 2 20Z' fill='none' stroke='%23C0392B' stroke-opacity='.055' stroke-width='1'/%3E%3C/svg%3E");
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (min-width: 640px) {
+      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .loc-grid  { grid-template-columns: 1fr 1fr; }
+      .ft-top    { grid-template-columns: 1fr 1fr; }
+    }
+    @media (min-width: 1024px) {
+      .menu-grid  { grid-template-columns: repeat(4, 1fr); }
+      .about-inner { grid-template-columns: 1fr 1fr; }
+      .ft-top     { grid-template-columns: 2fr 1fr 1fr; }
+      #nav { padding: 20px 48px; }
+      .sec { padding: 108px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav id="nav">
+  <a href="#" aria-label="Chichilas Tex Mex">
+    <img src="https://mexikanisches-restaurant.eu/wp-content/uploads/Mexikanisches-Restaurant-Frankfurt-Logo-ohne-Hintergrund-1.webp"
+         alt="Chichilas Tex Mex Logo" class="nav-logo" style="height:44px;width:auto;" loading="eager">
+  </a>
+  <a href="https://www.restaurantlogin.com/ordering/restaurant/menu/reservation?restaurant_uid=05777984-5bc9-4fd9-a504-14628c9369ef&reservation=true&client_is_mobile=true"
+     class="nav-btn" target="_blank" rel="noopener">Tisch reservieren</a>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <!-- Papel Picado Flags -->
+  <div class="picado-wrap" aria-hidden="true">
+    <svg viewBox="0 0 1200 110" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <!-- Main string -->
+      <path d="M0,22 Q150,18 300,22 Q450,26 600,22 Q750,18 900,22 Q1050,26 1200,22"
+            stroke="#7B4A1E" stroke-width="1.5" fill="none" opacity=".6"/>
+
+      <!-- Flag 1 — RED with diamond cutout -->
+      <g transform="translate(30,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="0 30 0;3 30 0;-2 30 0;0 30 0" dur="3.2s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#C0392B"/>
+        <polygon points="20,20 40,20 30,45" fill="#C0392B" opacity="0" class="cutout"/>
+        <!-- diamond cutout -->
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.25)"/>
+        <circle cx="30" cy="42" r="5" fill="rgba(0,0,0,.25)"/>
+      </g>
+
+      <!-- Flag 2 — YELLOW -->
+      <g transform="translate(100,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-2 30 0;2 30 0;-3 30 0;-2 30 0" dur="3.8s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#F4A226"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 3 — GREEN -->
+      <g transform="translate(170,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="1 30 0;-3 30 0;2 30 0;1 30 0" dur="2.9s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#2D7A3A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 4 — ORANGE -->
+      <g transform="translate(240,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-1 30 0;3 30 0;-2 30 0;-1 30 0" dur="4.1s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#E05E2A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 5 — RED -->
+      <g transform="translate(310,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="2 30 0;-2 30 0;3 30 0;2 30 0" dur="3.5s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#C0392B"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.25)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.25)"/>
+      </g>
+
+      <!-- Flag 6 — YELLOW -->
+      <g transform="translate(380,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-3 30 0;1 30 0;-1 30 0;-3 30 0" dur="3.0s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#F4A226"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 7 — GREEN -->
+      <g transform="translate(450,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="0 30 0;3 30 0;-2 30 0;0 30 0" dur="4.4s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#2D7A3A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 8 — ORANGE -->
+      <g transform="translate(520,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="2 30 0;-3 30 0;1 30 0;2 30 0" dur="3.6s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#E05E2A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 9 — RED -->
+      <g transform="translate(590,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-1 30 0;2 30 0;-3 30 0;-1 30 0" dur="3.3s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#C0392B"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.25)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.25)"/>
+      </g>
+
+      <!-- Flag 10 — YELLOW -->
+      <g transform="translate(660,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="3 30 0;-1 30 0;2 30 0;3 30 0" dur="2.7s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#F4A226"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 11 — GREEN -->
+      <g transform="translate(730,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-2 30 0;3 30 0;-1 30 0;-2 30 0" dur="3.9s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#2D7A3A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 12 — ORANGE -->
+      <g transform="translate(800,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="1 30 0;-2 30 0;3 30 0;1 30 0" dur="4.2s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#E05E2A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 13 — RED -->
+      <g transform="translate(870,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-3 30 0;2 30 0;-1 30 0;-3 30 0" dur="3.1s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#C0392B"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.25)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.25)"/>
+      </g>
+
+      <!-- Flag 14 — YELLOW -->
+      <g transform="translate(940,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="2 30 0;-3 30 0;1 30 0;2 30 0" dur="3.7s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#F4A226"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 15 — GREEN -->
+      <g transform="translate(1010,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="-1 30 0;3 30 0;-2 30 0;-1 30 0" dur="4.0s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#2D7A3A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+
+      <!-- Flag 16 — ORANGE -->
+      <g transform="translate(1080,22)">
+        <animateTransform attributeName="transform" type="rotate" additive="sum"
+          values="3 30 0;-1 30 0;2 30 0;3 30 0" dur="3.4s" repeatCount="indefinite"/>
+        <polygon points="0,0 60,0 30,80" fill="#E05E2A"/>
+        <polygon points="22,18 30,12 38,18 30,24" fill="rgba(0,0,0,.2)"/>
+        <circle cx="30" cy="44" r="5" fill="rgba(0,0,0,.2)"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">¡Bienvenidos — Frankfurt & Offenbach!</p>
+    <h1 class="hero-title">
+      Seit&nbsp;2017<br>schmeckt<br>Frankfurt nach<br><em>México.</em>
+    </h1>
+    <p class="hero-sub">Tacos, Burritos, Quesadillas & Cocktails — hausgemacht, 100&nbsp;% halal und voller Seele. Das echte Mexiko wartet auf dich.</p>
+    <div class="hero-ctas">
+      <a href="https://www.restaurantlogin.com/ordering/restaurant/menu/reservation?restaurant_uid=05777984-5bc9-4fd9-a504-14628c9369ef&reservation=true&client_is_mobile=true"
+         class="btn-p" target="_blank" rel="noopener">Tisch reservieren</a>
+      <a href="#menu" class="btn-s">Speisekarte entdecken</a>
+    </div>
+  </div>
+
+  <div class="hero-badges">
+    <span class="hbadge green">✓ Halal</span>
+    <span class="hbadge">⭐ 4,4 Google</span>
+    <span class="hbadge">🌮 Seit 2017</span>
+    <span class="hbadge">📍 2 Standorte</span>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <svg width="22" height="32" viewBox="0 0 22 32" fill="none">
+      <rect x="1" y="1" width="20" height="24" rx="10" stroke="currentColor" stroke-width="1.5"/>
+      <rect x="9.5" y="6" width="3" height="6" rx="1.5" fill="currentColor">
+        <animate attributeName="y" values="6;12;6" dur="1.6s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0;1" dur="1.6s" repeatCount="indefinite"/>
+      </rect>
+    </svg>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TICKER
+══════════════════════════════════════ -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <!-- Two copies for seamless loop -->
+    <span class="ticker-item">Tacos</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Burritos</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Quesadillas</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Cocktails</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">¡Viva México!</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Halal</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Seit 2017</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Frankfurt & Offenbach</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Tacos</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Burritos</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Quesadillas</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Cocktails</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">¡Viva México!</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Halal</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Seit 2017</span><span class="ticker-dot">◆</span>
+    <span class="ticker-item">Frankfurt & Offenbach</span><span class="ticker-dot">◆</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     MENU
+══════════════════════════════════════ -->
+<section id="menu" class="sec diamond-bg">
+  <div class="sec-head">
+    <span class="sec-tag">¡A comer!</span>
+    <h2 class="sec-h">Was dein Herz begehrt</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="menu-grid">
+
+    <!-- Tacos -->
+    <article class="mcard">
+      <div class="mcard-img">
+        <img src="https://storage.googleapis.com/cloud_storage_for_ai_seo_marketing/mexikanisches-restaurant.eu/chihcilas_fotos/Tacos.webp"
+             alt="Chichilas Tacos" loading="lazy">
+        <span class="mcard-tag">Bestseller</span>
+      </div>
+      <div class="mcard-body">
+        <p class="mcard-name">Tacos</p>
+        <p class="mcard-desc">Knusprig oder weich — mit zartem Hähnchen, Rind oder Gemüse, frischem Koriander, einem Spritzer Limette und hausgemachter Salsa. Einer reicht nie.</p>
+        <a href="https://mexikanisches-restaurant.eu/tacos-frankfurt/" class="mcard-link" target="_blank">Mehr erfahren →</a>
+      </div>
+    </article>
+
+    <!-- Burritos -->
+    <article class="mcard">
+      <div class="mcard-img">
+        <img src="https://storage.googleapis.com/cloud_storage_for_ai_seo_marketing/mexikanisches-restaurant.eu/chihcilas_fotos/Burittos.webp"
+             alt="Chichilas Burritos" loading="lazy">
+        <span class="mcard-tag r">Satt & glücklich</span>
+      </div>
+      <div class="mcard-body">
+        <p class="mcard-name">Burritos</p>
+        <p class="mcard-desc">Saftiges Fleisch, cremige Bohnen, geschmolzener Käse, feurige Salsa — alles warm eingewickelt in eine goldene Weizentortilla. Ein Umschlag voller Glück.</p>
+        <a href="https://mexikanisches-restaurant.eu/burritos-frankfurt/" class="mcard-link" target="_blank">Mehr erfahren →</a>
+      </div>
+    </article>
+
+    <!-- Quesadillas -->
+    <article class="mcard">
+      <div class="mcard-img">
+        <img src="https://storage.googleapis.com/cloud_storage_for_ai_seo_marketing/mexikanisches-restaurant.eu/chihcilas_fotos/Quesadillas.webp"
+             alt="Chichilas Quesadillas" loading="lazy">
+        <span class="mcard-tag g">Vegan möglich</span>
+      </div>
+      <div class="mcard-body">
+        <p class="mcard-name">Quesadillas</p>
+        <p class="mcard-desc">Zwei goldbraune Tortillas, dazwischen fließt Käse — serviert mit hausgemachter Guacamole und Sour Cream. Das Geheimnis liegt in der Einfachheit.</p>
+        <a href="https://mexikanisches-restaurant.eu/quesadillas-frankfurt/" class="mcard-link" target="_blank">Mehr erfahren →</a>
+      </div>
+    </article>
+
+    <!-- Cocktails -->
+    <article class="mcard">
+      <div class="cocktail-bg">
+        <svg viewBox="0 0 160 140" width="140" height="122" fill="none" aria-hidden="true">
+          <!-- Glass body -->
+          <path d="M45 18 L28 118 L132 118 L115 18 Z" stroke="rgba(244,162,38,.6)" stroke-width="2" fill="rgba(244,162,38,.08)"/>
+          <!-- Liquid fill -->
+          <path d="M50 62 L32 118 L128 118 L110 62 Z" fill="rgba(192,57,43,.35)"/>
+          <!-- Highlight -->
+          <path d="M56 72 L42 112" stroke="rgba(255,255,255,.2)" stroke-width="3" stroke-linecap="round"/>
+          <!-- Lime wheel -->
+          <circle cx="48" cy="32" r="16" fill="rgba(45,122,58,.7)" stroke="rgba(45,122,58,1)" stroke-width="1.5"/>
+          <circle cx="48" cy="32" r="9" fill="rgba(45,122,58,.4)"/>
+          <line x1="48" y1="16" x2="48" y2="48" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+          <line x1="32" y1="32" x2="64" y2="32" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+          <!-- Straw -->
+          <line x1="108" y1="14" x2="96" y2="118" stroke="#F4A226" stroke-width="4" stroke-linecap="round"/>
+          <!-- Ice cubes -->
+          <rect x="60" y="75" width="18" height="18" rx="3" fill="rgba(255,255,255,.2)" transform="rotate(-10 69 84)"/>
+          <rect x="85" y="82" width="14" height="14" rx="2" fill="rgba(255,255,255,.15)" transform="rotate(8 92 89)"/>
+          <!-- Rim salt -->
+          <path d="M28 118 Q80 112 132 118" stroke="rgba(255,255,255,.3)" stroke-width="3" fill="none"/>
+          <!-- Stars -->
+          <circle cx="38" cy="50" r="2" fill="#F4A226" opacity=".6"/>
+          <circle cx="125" cy="42" r="1.5" fill="#F4A226" opacity=".5"/>
+          <circle cx="135" cy="70" r="1" fill="#F4A226" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="mcard-body">
+        <p class="mcard-name">Cocktails</p>
+        <p class="mcard-desc">Margarita, Frozen Strawberry, Mojito — frisch gemixt, großzügig eingeschenkt, mit mexikanischer Seele. Der perfekte Abend beginnt hier.</p>
+        <a href="https://www.restaurantlogin.com/api/fb/_z9_o3_e" class="mcard-link" target="_blank">Jetzt bestellen →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Wave divider -->
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;background:var(--cream)">
+    <path d="M0,40 C240,70 480,10 720,40 C960,70 1200,10 1440,40 L1440,0 L0,0 Z" fill="#1A0800"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════
+     ABOUT
+══════════════════════════════════════ -->
+<section id="about" class="sec">
+
+  <!-- Decorative sombrero -->
+  <svg class="about-sombrero" width="260" height="180" viewBox="0 0 260 180" fill="none" aria-hidden="true">
+    <ellipse cx="130" cy="150" rx="125" ry="28" fill="#F4A226"/>
+    <ellipse cx="130" cy="110" rx="75" ry="62" fill="#C0392B"/>
+    <ellipse cx="130" cy="106" rx="82" ry="18" fill="#F4A226"/>
+    <path d="M60 110 Q130 50 200 110" stroke="#E05E2A" stroke-width="6" fill="none"/>
+    <circle cx="18"  cy="150" r="11" fill="#F4A226"/>
+    <circle cx="242" cy="150" r="11" fill="#F4A226"/>
+    <circle cx="130" cy="170" r="11" fill="#F4A226"/>
+    <circle cx="74"  cy="166" r="8"  fill="#E05E2A"/>
+    <circle cx="186" cy="166" r="8"  fill="#E05E2A"/>
+    <circle cx="48"  cy="158" r="7"  fill="#2D7A3A"/>
+    <circle cx="212" cy="158" r="7"  fill="#2D7A3A"/>
+  </svg>
+
+  <!-- Decorative mustache -->
+  <svg class="about-mustache" width="200" height="80" viewBox="0 0 200 80" fill="none" aria-hidden="true">
+    <path d="M10 40 Q30 10 60 25 Q85 38 100 38 Q115 38 140 25 Q170 10 190 40 Q170 66 140 52 Q115 40 100 40 Q85 40 60 52 Q30 66 10 40Z" fill="#F4A226"/>
+  </svg>
+
+  <div class="about-inner">
+    <div class="about-img-wrap">
+      <img src="https://storage.googleapis.com/cloud_storage_for_ai_seo_marketing/mexikanisches-restaurant.eu/Frankfurt/chichilas_mexikanisches_restaurant_4603.webp"
+           alt="Chichilas Tex Mex Restaurant Frankfurt — Atmosphäre" loading="lazy">
+      <!-- small sombrero badge -->
+      <svg class="about-sombrero-small" width="72" height="52" viewBox="0 0 72 52" fill="none" aria-hidden="true">
+        <ellipse cx="36" cy="42" rx="34" ry="9" fill="#F4A226"/>
+        <ellipse cx="36" cy="28" rx="21" ry="17" fill="#C0392B"/>
+        <ellipse cx="36" cy="26" rx="23" ry="6" fill="#F4A226"/>
+        <circle cx="6"  cy="42" r="4" fill="#F4A226"/>
+        <circle cx="66" cy="42" r="4" fill="#F4A226"/>
+        <circle cx="36" cy="50" r="4" fill="#F4A226"/>
+      </svg>
+    </div>
+
+    <div class="about-text">
+      <div style="margin-bottom:24px;">
+        <span class="sec-tag">Nuestra historia</span>
+        <h2 class="sec-h" style="color:#fff;">Wo Mexiko<br>nach Hause kommt.</h2>
+        <div class="sec-line"></div>
+      </div>
+      <p class="about-body">2017 brachten wir ein Stück echtes Mexiko nach Frankfurt — nicht als Klischee, sondern als Herzensangelegenheit. Frische Mais-Tortillas, hausgemachte Salsas, ehrliche Zutaten. Jedes Gericht ein Gruß aus der Heimat.</p>
+      <p class="about-body">Heute haben wir zwei Standorte in Frankfurt und Offenbach, hunderte von Stammgästen und eine unveränderliche Mission: dass jeder Bissen eine kleine Fiesta im Mund auslöst. ¡Siempre con amor!</p>
+      <div class="about-chips">
+        <span class="chip g">✓ 100 % Halal</span>
+        <span class="chip y">🌱 Vegan möglich</span>
+        <span class="chip w">🕐 Seit 2017</span>
+        <span class="chip w">📍 2 Standorte</span>
+        <span class="chip r">🚴 Uber Eats</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Wave divider -->
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;background:#1A0800">
+    <path d="M0,20 C360,60 720,0 1080,40 C1260,60 1380,10 1440,20 L1440,60 L0,60 Z" fill="#F5E6C8"/>
+  </svg>
+</div>
+
+<!-- ══════════════════════════════════════
+     LOCATIONS
+══════════════════════════════════════ -->
+<section id="locations" class="sec">
+  <div class="sec-head">
+    <span class="sec-tag">¿Dónde estamos?</span>
+    <h2 class="sec-h">Unsere Standorte</h2>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="loc-grid">
+
+    <!-- Frankfurt -->
+    <div class="loc-card">
+      <h3 class="loc-title">🌮 Frankfurt</h3>
+      <div class="loc-rows">
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <span>Oeder Weg 23<br>60318 Frankfurt am Main</span>
+        </div>
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div>
+            <strong>Täglich geöffnet</strong><br>
+            Mo – So &nbsp;11:30 – 22:00 Uhr
+          </div>
+        </div>
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012.18 1h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 8.16a16 16 0 006.93 6.93l1.52-1.52a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          <a href="tel:+496996751883">+49 69 96751883</a>
+        </div>
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <a href="mailto:kontakt@chichilas.de">kontakt@chichilas.de</a>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=Oeder+Weg+23+Frankfurt+am+Main" class="btn-map" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        In Google Maps öffnen
+      </a>
+    </div>
+
+    <!-- Offenbach -->
+    <div class="loc-card">
+      <h3 class="loc-title">🌮 Offenbach</h3>
+      <div class="loc-rows">
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <span>Offenbach am Main</span>
+        </div>
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div>
+            <strong>Täglich geöffnet</strong><br>
+            Mo – So &nbsp;11:30 – 22:00 Uhr
+          </div>
+        </div>
+        <div class="loc-row">
+          <svg class="loc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>Ideal für die ganze Familie — gemütlich, authentisch, lecker.</span>
+        </div>
+      </div>
+      <a href="https://www.restaurantlogin.com/api/fb/4_q9_ea" class="btn-map o" target="_blank" rel="noopener" style="background:var(--orange);">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Online bestellen — Offenbach
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+
+      <div class="ft-logo">
+        <img src="https://mexikanisches-restaurant.eu/wp-content/uploads/Mexikanisches-Restaurant-Frankfurt-Logo-ohne-Hintergrund-1.webp"
+             alt="Chichilas Tex Mex" loading="lazy">
+        <p class="ft-tagline">Authentische Tex Mex Küche in Frankfurt & Offenbach. Halal. Mit Liebe gemacht — seit 2017.</p>
+        <div class="ft-socials">
+          <a href="https://www.instagram.com/chichilas_frankfurt/" class="ft-soc" target="_blank" rel="noopener" aria-label="Instagram @chichilas_frankfurt">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.facebook.com/Chichilas.texmex/" class="ft-soc" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="https://www.ubereats.com/de/store/chichilas-tex-mex/IVSICxBJSjmmWFtVf7UHjg" class="ft-soc" target="_blank" rel="noopener" aria-label="Uber Eats">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M19.5 3h-15A1.5 1.5 0 003 4.5v15A1.5 1.5 0 004.5 21h15a1.5 1.5 0 001.5-1.5v-15A1.5 1.5 0 0019.5 3zm-5 10.5a2.5 2.5 0 01-5 0v-5h1.5v5a1 1 0 002 0v-5H14.5v5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="ft-col">
+        <h4>Frankfurt</h4>
+        <p>Oeder Weg 23</p>
+        <p>60318 Frankfurt am Main</p>
+        <a href="tel:+496996751883" style="margin-top:10px;">+49 69 96751883</a>
+        <a href="mailto:kontakt@chichilas.de">kontakt@chichilas.de</a>
+        <a href="https://maps.google.com/?q=Oeder+Weg+23+Frankfurt" target="_blank" rel="noopener" style="margin-top:10px;">Google Maps →</a>
+      </div>
+
+      <div class="ft-col">
+        <h4>Öffnungszeiten</h4>
+        <p>Montag – Sonntag</p>
+        <p>11:30 – 22:00 Uhr</p>
+        <a href="https://www.restaurantlogin.com/ordering/restaurant/menu/reservation?restaurant_uid=05777984-5bc9-4fd9-a504-14628c9369ef&reservation=true&client_is_mobile=true"
+           class="cta" target="_blank" rel="noopener">Tisch reservieren →</a>
+        <a href="https://www.ubereats.com/de/store/chichilas-tex-mex/IVSICxBJSjmmWFtVf7UHjg"
+           class="cta" target="_blank" rel="noopener">Uber Eats →</a>
+      </div>
+
+    </div>
+    <p class="ft-bottom">© 2024 Chichilas Tex Mex &nbsp;·&nbsp; Mit ❤️ & Koriander gemacht &nbsp;·&nbsp; <a href="https://mexikanisches-restaurant.eu/" style="color:rgba(255,255,255,.3);">mexikanisches-restaurant.eu</a></p>
+  </div>
+</footer>
+
+<script>
+  // ── LENIS ─────────────────────────────────────
+  const lenis = new Lenis({ autoRaf: true });
+
+  // ── NAV SCROLL STATE ──────────────────────────
+  const nav = document.getElementById('nav');
+  lenis.on('scroll', ({ scroll }) => {
+    nav.classList.toggle('solid', scroll > 60);
+  });
+
+  // ── HERO PARALLAX ─────────────────────────────
+  const heroBg = document.getElementById('heroBg');
+  lenis.on('scroll', ({ scroll }) => {
+    heroBg.style.transform = `translateY(${scroll * 0.32}px)`;
+  });
+
+  // ── SCROLL ANIMATIONS (Motion.js) ─────────────
+  const { animate, inView } = Motion;
+
+  // Menu cards — stagger in
+  let menuAnimated = false;
+  inView('#menu', () => {
+    if (menuAnimated) return;
+    menuAnimated = true;
+    const cards = document.querySelectorAll('.mcard');
+    cards.forEach((c, i) => {
+      animate(c,
+        { opacity: [0, 1], y: [44, 0] },
+        { delay: i * 0.12, duration: 0.65, easing: [0.22, 1, 0.36, 1] }
+      );
+    });
+  }, { amount: 0.05 });
+
+  // About image
+  inView('.about-img-wrap', () => {
+    animate('.about-img-wrap',
+      { opacity: [0, 1], x: [-40, 0] },
+      { duration: 0.8, easing: [0.22, 1, 0.36, 1] }
+    );
+    animate('.about-text',
+      { opacity: [0, 1], x: [40, 0] },
+      { duration: 0.8, delay: 0.12, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { amount: 0.2 });
+
+  // Location cards
+  let locAnimated = false;
+  inView('#locations', () => {
+    if (locAnimated) return;
+    locAnimated = true;
+    const cards = document.querySelectorAll('.loc-card');
+    cards.forEach((c, i) => {
+      animate(c,
+        { opacity: [0, 1], y: [32, 0] },
+        { delay: i * 0.18, duration: 0.6, easing: [0.22, 1, 0.36, 1] }
+      );
+    });
+  }, { amount: 0.15 });
+
+  // ── SMOOTH ANCHOR SCROLL ──────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const target = id === '#' ? document.body : document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: -72, duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
