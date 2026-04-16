@@ -632,26 +632,23 @@
       text-transform: uppercase; color: var(--mid);
     }
 
-    .ig-embed-grid {
+    .ig-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: .625rem;
+      gap: .5rem;
       margin-bottom: 3rem;
     }
-    @media (min-width: 640px)  { .ig-embed-grid { grid-template-columns: repeat(4, 1fr); } }
-    .ig-embed-item {
-      overflow: hidden; border-radius: 2px;
-      background: var(--oat);
-      line-height: 0;
+    @media (min-width: 640px)  { .ig-grid { grid-template-columns: repeat(4, 1fr); } }
+    .ig-grid a {
+      display: block; overflow: hidden;
+      border-radius: 2px; line-height: 0;
+      aspect-ratio: 1;
     }
-    .ig-embed-item .instagram-media {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      width: 100% !important;
-      margin: 0 !important;
-      border: none !important;
-      box-shadow: none !important;
+    .ig-grid img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .55s cubic-bezier(0.22,1,0.36,1);
     }
+    .ig-grid a:hover img { transform: scale(1.06); }
     .insta-cta { text-align: center; }
 
     /* ─── CONTACT ─── */
@@ -1049,33 +1046,29 @@
         <h2 class="split-h2 reveal">Unser Alltag in Bildern</h2>
         <p class="insta-handle">@kaffeemacherei auf Instagram</p>
       </div>
-      <div class="ig-embed-grid reveal">
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DVyC0SGDLKV/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DP0963KjIem/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DKmG-NZoHMa/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DIOYNFUIzBw/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DHa0rr3IX00/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DHI05CAoGzu/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DGSwPiHooXF/" data-instgrm-version="14"></blockquote>
-        </div>
-        <div class="ig-embed-item">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DF-J1Bmoa8p/" data-instgrm-version="14"></blockquote>
-        </div>
+      <div class="ig-grid reveal">
+        <a href="https://www.instagram.com/p/DVyC0SGDLKV/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post649671815_18567762520051131_7573201722207641384_n.jpg?t51.82787-15/649671815_18567762520051131_7573201722207641384_n.jpg?stp=dst-jpg_e35_s640x640_sh0.08_tt6&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xMzA2eDEzMDYuc2RyLmY4Mjc4Ny5kZWZhdWx0X2ltYWdlLmMyIn0&_nc_ht=scontent-dfw6-1.cdninstagram.com&_nc_cat=103&_nc_ohc=X4SjeT6iJZ4Q7kNvwGEze-s&ccb=7-5&oh=00_Af00qDysyprjYfu7HNZBdX0UIeE_iXRleH2W1CyC-lJmbA&oe=69E723ED" alt="Zitronentarte der kaffeemacherei" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/p/DKmG-NZoHMa/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post504471454_18507144100051131_8413119289558982571_n.jpg?t51.75761-15/504471454_18507144100051131_8413119289558982571_n.jpg?stp=dst-jpg_e35_s1179x1179_tt6&_nc_cat=111&ig_cache_key=MzY0OTYzNTIxMTMwNTU3OTI5MA%3D%3D.3-ccb7-5&ccb=7-5&_nc_ohc=lhYyWTLjyB4Q7kNvwHhtyzW&oh=00_Af3Ks1h0h3goByWLI94ZJf0yTvuLXY9a8DPlUM5IwdIaVg&oe=69E717ED" alt="Erdbeertarte der kaffeemacherei" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/p/DIOYNFUIzBw/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post488824552_18495978280051131_5332988134980931769_n.jpg?t51.75761-15/488824552_18495978280051131_5332988134980931769_n.jpg?stp=dst-jpg_e35_s1179x1179_tt6&_nc_cat=107&ig_cache_key=MzYwNjkyNjgwMzc0NjM2OTY0OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_ohc=cqMcdavs2vEQ7kNvwFlD3YD&oh=00_Af0n6HPKC2ahbBOOpjwejtU7YydjLNGZpPvvj7nZQwsTRg&oe=69E71384" alt="Eis Saison in der kaffeemacherei" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/p/DHa0rr3IX00/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post485440229_18491676787051131_1084432694614279265_n.jpg?t51.75761-15/485440229_18491676787051131_1084432694614279265_n.jpg?stp=dst-jpg_e35_s1179x1179_tt6&_nc_cat=111&ig_cache_key=MzU5MjQxNTM1MzIzMzMwODk4MA%3D%3D.3-ccb7-5&ccb=7-5&_nc_ohc=ZwGMy2bT-bIQ7kNvwGOH64D&oh=00_Af0dcFBEKwTVflru03GrUJzznvcq-6pEihvWXbStP3Xhqw&oe=69E71E3F" alt="Mango Cheesecake der kaffeemacherei" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/p/DHI05CAoGzu/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post483425666_18490091836051131_4157940332315095256_n.jpg?t51.75761-15/483425666_18490091836051131_4157940332315095256_n.jpg?stp=dst-jpg_e35_s1179x1179_tt6&_nc_cat=111&ig_cache_key=MzU4NzM0OTcyMDc4NzM0ODcxOA%3D%3D.3-ccb7-5&ccb=7-5&_nc_ohc=vc5bmfSil68Q7kNvwH41j26&oh=00_Af0Wmoi0i1LGnRE9cD7LKHaS6F0T1qmLbbrIF8GBJIxnKg&oe=69E713E4" alt="Iced Mango Latte der kaffeemacherei" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/p/DGSwPiHooXF/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post480353820_18485968057051131_8560370238748670490_n.jpg?t51.75761-15/480353820_18485968057051131_8560370238748670490_n.jpg?stp=dst-jpg_e35_s1179x1179_tt6&_nc_cat=109&ig_cache_key=MzU3MjEyOTYyODExODIyMjI3Nw%3D%3D.3-ccb7-5&ccb=7-5&_nc_ohc=TFQPlxvccNMQ7kNvwG_LCVa&oh=00_Af3FQZ6FA4tWb01MREPhFA-eJ-IqzArF-HjyeumqZ78ntQ&oe=69E7160C" alt="Kastenkuchen der kaffeemacherei" loading="lazy">
+        </a>
+        <a href="https://www.instagram.com/p/DF-J1Bmoa8p/" target="_blank" rel="noopener">
+          <img src="https://s1.imginn.com/post478000171_18484546315051131_2099861227572812467_n.jpg?t51.75761-15/478000171_18484546315051131_2099861227572812467_n.jpg?stp=dst-jpg_e35_s1179x1179_tt6&_nc_cat=102&ig_cache_key=MzU2NjMzMTE4MTE5Njc1MDYzMw%3D%3D.3-ccb7-5&ccb=7-5&_nc_ohc=W1VMAkmEMvkQ7kNvwGE0y_o&oh=00_Af1CbzKaTpor2SQD9KD9mvHSSY4xP7D5mt3nKdALlNNLHA&oe=69E6FFD2" alt="Latte Art der kaffeemacherei" loading="lazy">
+        </a>
       </div>
-      <script async src="//www.instagram.com/embed.js"></script>
       <div class="insta-cta reveal">
         <a href="https://www.instagram.com/kaffeemacherei/" target="_blank" rel="noopener noreferrer"
            class="btn btn-outline-dark">Auf Instagram folgen</a>
