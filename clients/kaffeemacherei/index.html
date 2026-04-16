@@ -972,6 +972,8 @@
     }
     /* em inside split keeps italic */
     .split-h2 em { font-style: italic; color: var(--brown); }
+    .offerings-title-break { display: inline; }
+    @media (max-width: 639px) { .offerings-title-break { display: block; } }
     /* stagger first 8 words */
     .split-h2.in .word:nth-child(1) .word-inner { transition-delay: .00s; transform: none; }
     .split-h2.in .word:nth-child(2) .word-inner { transition-delay: .06s; transform: none; }
@@ -1141,7 +1143,7 @@
     <div class="container">
       <div class="offerings-head reveal">
         <span class="label">Was uns ausmacht</span>
-        <h2 class="split-h2 reveal">Kaffee. Kuchen. Morgen. Mittag.</h2>
+        <h2 class="split-h2 reveal">Kaffee. Kuchen.<span class="offerings-title-break"> Morgen. Mittag.</span></h2>
       </div>
       <div class="offerings-grid">
 
