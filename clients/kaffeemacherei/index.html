@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kaffeemacherei — Specialty Coffee · Frankfurt Nordend</title>
+  <meta name="description" content="kaffeemacherei in Frankfurt Nordend-West: Specialty Coffee, hausgemachter Kuchen und Frühstück & Brunch. Eckenheimer Landstraße 70. Mo–Do 8:30–18 Uhr, Fr 8:30–23 Uhr, Sa–So 10–18 Uhr.">
+
+  <!-- OG Tags -->
+  <meta property="og:title" content="kaffeemacherei — Specialty Coffee · Frankfurt">
+  <meta property="og:description" content="Specialty Coffee, hausgemachter Kuchen und Frühstück & Brunch im Herzen von Frankfurt Nordend. served with love.">
+  <meta property="og:image" content="https://s3-media0.fl.yelpcdn.com/bphoto/UhDYNVnH0zp2L0xH76PSHw/o.jpg">
+  <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/kaffeemacherei/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="kaffeemacherei">
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://www.die-kaffeemacherei.de/apple-touch-icon.png">
+  <link rel="apple-touch-icon" href="https://www.die-kaffeemacherei.de/apple-touch-icon.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <!-- Motion Animations -->
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+
+  <style>
+    /* ─── RESET ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #FDFBF7;
+      --oat:          #F4EDE3;
+      --oat-2:        #EDE4D8;
+      --sage:         #B5C9B0;
+      --sage-dark:    #8BA888;
+      --sage-light:   #D8E8D4;
+      --brown:        #8B7355;
+      --brown-light:  #BFA98C;
+      --dark:         #2C2416;
+      --dark-2:       #4A3F2F;
+      --mid:          #7A6E5F;
+      --border:       #E8E0D4;
+
+      --f-display: 'Cormorant Garamond', Georgia, serif;
+      --f-body:    'DM Sans', -apple-system, sans-serif;
+      --f-script:  'Dancing Script', cursive;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--f-body);
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ─── LAYOUT ─── */
+    .container {
+      width: min(100% - 3rem, 1140px);
+      margin-inline: auto;
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-block;
+      padding: .875rem 2.25rem;
+      border-radius: 100px;
+      font-family: var(--f-body);
+      font-size: .8125rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: transform .3s ease, box-shadow .3s ease, background .3s ease, color .3s ease, border-color .3s ease;
+      cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-sage {
+      background: var(--sage);
+      color: var(--dark);
+      border: 1.5px solid var(--sage);
+    }
+    .btn-sage:hover {
+      background: var(--sage-dark);
+      border-color: var(--sage-dark);
+      box-shadow: 0 8px 28px rgba(139,168,136,.35);
+    }
+
+    .btn-outline-light {
+      background: transparent;
+      color: var(--cream);
+      border: 1.5px solid rgba(255,255,255,.45);
+    }
+    .btn-outline-light:hover {
+      background: var(--cream);
+      color: var(--dark);
+      border-color: var(--cream);
+    }
+
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--dark);
+      border: 1.5px solid var(--dark);
+    }
+    .btn-outline-dark:hover {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .label {
+      display: block;
+      font-family: var(--f-body);
+      font-size: .6875rem;
+      font-weight: 500;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--brown);
+      margin-bottom: 1rem;
+    }
+    .label--light { color: var(--sage-light); }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 100;
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: padding .4s ease, background .4s ease, box-shadow .4s ease;
+    }
+    nav.scrolled {
+      background: var(--cream);
+      padding: 1rem 1.5rem;
+      box-shadow: 0 1px 0 var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--f-display);
+      font-size: 1.1875rem;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: white;
+      transition: color .4s ease;
+    }
+    nav.scrolled .nav-logo { color: var(--dark); }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: .75rem;
+      font-weight: 400;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+      transition: color .3s ease;
+    }
+    nav.scrolled .nav-links a { color: var(--mid); }
+    .nav-links a:hover, nav.scrolled .nav-links a:hover { color: var(--dark); }
+    nav:not(.scrolled) .nav-links a:hover { color: white; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .nav-cta-pill {
+      display: none;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: white;
+      border: 1px solid rgba(255,255,255,.4);
+      padding: .45rem 1.1rem;
+      border-radius: 100px;
+      transition: all .3s ease;
+    }
+    nav.scrolled .nav-cta-pill { color: var(--dark); border-color: var(--border); }
+    .nav-cta-pill:hover { background: white; color: var(--dark); }
+    nav.scrolled .nav-cta-pill:hover { background: var(--dark); color: var(--cream); border-color: var(--dark); }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: white;
+      transition: background .4s ease, transform .3s ease, opacity .3s ease;
+      transform-origin: center;
+    }
+    nav.scrolled .hamburger span { background: var(--dark); }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    @media (min-width: 1024px) {
+      nav { padding: 2rem 3.5rem; }
+      nav.scrolled { padding: 1.25rem 3.5rem; }
+      .nav-links { display: flex; }
+      .nav-cta-pill { display: block; }
+      .hamburger { display: none; }
+    }
+
+    /* ─── MOBILE MENU ─── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: var(--f-display);
+      font-size: 2.75rem;
+      font-weight: 300;
+      color: var(--dark);
+      transition: color .3s ease;
+      letter-spacing: .02em;
+    }
+    .mobile-menu a:hover { color: var(--brown); }
+    .mobile-menu-footer {
+      position: absolute;
+      bottom: 2.5rem;
+      font-size: .75rem;
+      color: var(--mid);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100svh;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      will-change: transform;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        165deg,
+        rgba(28,20,10,.15) 0%,
+        rgba(28,20,10,.50) 45%,
+        rgba(28,20,10,.72) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      opacity: 0;
+    }
+
+    .hero-script {
+      display: block;
+      font-family: var(--f-script);
+      font-size: clamp(1.625rem, 4.5vw, 2.625rem);
+      font-weight: 500;
+      color: var(--sage-light);
+      margin-bottom: .75rem;
+      letter-spacing: .01em;
+    }
+
+    .hero-h1 {
+      font-family: var(--f-display);
+      font-size: clamp(3.5rem, 13vw, 8rem);
+      font-weight: 300;
+      letter-spacing: .04em;
+      line-height: .95;
+      text-transform: lowercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(.75rem, 1.8vw, .875rem);
+      font-weight: 300;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+      margin-bottom: .4rem;
+    }
+
+    .hero-city {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: rgba(255,255,255,.5);
+      margin-bottom: 2.75rem;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+      color: rgba(255,255,255,.4);
+      font-size: .6875rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, rgba(255,255,255,.6), transparent);
+      animation: scrollAnim 2s ease-in-out infinite;
+    }
+    @keyframes scrollAnim {
+      0%   { opacity: 0; transform: scaleY(0); transform-origin: top; }
+      50%  { opacity: 1; transform: scaleY(1); transform-origin: top; }
+      100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+    }
+
+    /* ─── INTRO BANNER ─── */
+    .intro-banner {
+      background: var(--sage);
+      padding: 3.75rem 2rem;
+      text-align: center;
+    }
+    .intro-banner blockquote {
+      font-family: var(--f-display);
+      font-size: clamp(1.25rem, 3.2vw, 2rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--dark);
+      max-width: 740px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+    .intro-banner blockquote::before { content: '\201E'; }
+    .intro-banner blockquote::after  { content: '\201C'; }
+
+    /* ─── WAVE ─── */
+    .wave { line-height: 0; display: block; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ─── ABOUT ─── */
+    .about {
+      padding: 6rem 0 5rem;
+      background: var(--cream);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+    .about-text h2 {
+      font-family: var(--f-display);
+      font-size: clamp(2.25rem, 5.5vw, 3.75rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1.75rem;
+      color: var(--dark);
+    }
+    .about-text h2 em {
+      font-style: italic;
+      color: var(--brown);
+    }
+    .about-text p {
+      font-size: .9375rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--dark-2);
+      margin-bottom: 1.25rem;
+    }
+    .about-text p:last-of-type { margin-bottom: 2rem; }
+
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-wrap img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+    .about-dot {
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      background: var(--sage-light);
+      border-radius: 50%;
+      bottom: -2rem;
+      right: -1rem;
+      z-index: -1;
+    }
+    .about-dot-2 {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--oat-2);
+      border-radius: 50%;
+      top: -1.5rem;
+      left: -1.5rem;
+      z-index: -1;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 7rem;
+        align-items: center;
+      }
+      .about-image-wrap img { height: 580px; }
+    }
+
+    /* ─── OFFERINGS ─── */
+    .offerings {
+      padding: 6rem 0;
+      background: var(--oat);
+    }
+    .offerings-head {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .offerings-head h2 {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.1;
+    }
+
+    .offerings-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .offerings-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .offer-card {
+      background: var(--cream);
+      border-radius: 2px;
+      overflow: hidden;
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+    .offer-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 48px rgba(44,36,22,.1);
+    }
+    .offer-card-img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+    .offer-card:hover .offer-card-img {
+      transform: scale(1.04);
+    }
+    .offer-card-img-wrap {
+      overflow: hidden;
+    }
+    .offer-body {
+      padding: 1.875rem;
+    }
+    .offer-num {
+      font-family: var(--f-display);
+      font-size: 3.5rem;
+      font-weight: 300;
+      color: var(--sage);
+      line-height: 1;
+      margin-bottom: .5rem;
+    }
+    .offer-body h3 {
+      font-family: var(--f-display);
+      font-size: 1.625rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: .75rem;
+      line-height: 1.2;
+    }
+    .offer-body p {
+      font-size: .9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--mid);
+    }
+    .offer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .375rem;
+      margin-top: 1.25rem;
+    }
+    .offer-tag {
+      font-size: .6875rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--brown);
+      background: var(--oat);
+      padding: .3rem .875rem;
+      border-radius: 100px;
+    }
+
+    /* ─── REVIEWS ─── */
+    .reviews {
+      padding: 6rem 0;
+      background: var(--cream);
+    }
+    .reviews-head {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .stars-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: .75rem;
+      margin-bottom: .5rem;
+    }
+    .stars {
+      color: #D4A96A;
+      font-size: 1.125rem;
+      letter-spacing: .12em;
+    }
+    .rating-big {
+      font-family: var(--f-display);
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .rating-meta {
+      font-size: .75rem;
+      color: var(--mid);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .review-card {
+      background: var(--oat);
+      padding: 2rem 1.75rem 1.75rem;
+      border-radius: 2px;
+      position: relative;
+    }
+    .review-card::before {
+      content: '\201E';
+      position: absolute;
+      top: .75rem;
+      left: 1.5rem;
+      font-family: var(--f-display);
+      font-size: 4.5rem;
+      line-height: 1;
+      font-weight: 300;
+      color: var(--sage);
+    }
+    .review-text {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.0625rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--dark-2);
+      margin-top: 1.75rem;
+    }
+    .review-author {
+      margin-top: 1.25rem;
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--brown);
+    }
+
+    /* ─── INSTAGRAM ─── */
+    .insta-section {
+      padding: 6rem 0;
+      background: var(--oat);
+    }
+    .insta-head {
+      text-align: center;
+      margin-bottom: 3.25rem;
+    }
+    .insta-head h2 {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 300;
+      color: var(--dark);
+      margin-bottom: .5rem;
+    }
+    .insta-handle {
+      font-size: .8125rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .masonry {
+      columns: 2;
+      column-gap: .75rem;
+      margin-bottom: 3rem;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: .75rem;
+      overflow: hidden;
+      border-radius: 1px;
+      cursor: pointer;
+    }
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .masonry-item:hover img { transform: scale(1.06); }
+
+    @media (min-width: 640px)  { .masonry { columns: 3; } }
+    @media (min-width: 1024px) {
+      .masonry { columns: 4; column-gap: 1rem; }
+      .masonry-item { margin-bottom: 1rem; }
+    }
+
+    .insta-cta { text-align: center; }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      padding: 6rem 0;
+      background: var(--dark);
+      color: var(--cream);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4.5rem;
+    }
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 7rem;
+        align-items: start;
+      }
+    }
+
+    .contact h2 {
+      font-family: var(--f-display);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 2.75rem;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2.5rem;
+    }
+    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,.07); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td {
+      padding: .9rem 0;
+      font-size: .9375rem;
+      vertical-align: top;
+    }
+    .hours-table td:first-child {
+      color: rgba(255,255,255,.45);
+      width: 55%;
+      font-weight: 300;
+    }
+    .hours-table td:last-child { font-weight: 400; color: var(--cream); }
+    .hours-table tr.today td { color: var(--sage) !important; }
+
+    .contact-details { display: flex; flex-direction: column; gap: 1.75rem; }
+    .ci-label {
+      font-size: .6875rem;
+      font-weight: 500;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: .3rem;
+    }
+    .ci-value {
+      font-size: .9375rem;
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.65;
+    }
+    .ci-value a { color: var(--cream); transition: color .3s ease; }
+    .ci-value a:hover { color: var(--sage); }
+
+    .map-frame {
+      margin-top: 2.5rem;
+      border-radius: 2px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .map-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      filter: grayscale(.2) contrast(.95);
+    }
+
+    .contact-cta-box {
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 2px;
+      padding: 2rem;
+    }
+    .contact-cta-box p {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.1875rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.75);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1a1008;
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--f-display);
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: .08em;
+      color: var(--cream);
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links a {
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      transition: color .3s ease;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,.8); }
+    .footer-copy {
+      font-size: .6875rem;
+      color: rgba(255,255,255,.2);
+      letter-spacing: .06em;
+    }
+
+    /* ─── REVEAL ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    .reveal.in {
+      transition: opacity .75s ease, transform .75s ease;
+      opacity: 1;
+      transform: none;
+    }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+  </style>
+</head>
+<body>
+
+  <!-- ░░ MOBILE MENU ░░ -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#cafe"      onclick="closeMob()">Das Café</a>
+    <a href="#angebot"   onclick="closeMob()">Angebot</a>
+    <a href="#instagram" onclick="closeMob()">Instagram</a>
+    <a href="#kontakt"   onclick="closeMob()">Besuchen</a>
+    <p class="mobile-menu-footer">Eckenheimer Landstraße 70 · Frankfurt</p>
+  </div>
+
+  <!-- ░░ NAV ░░ -->
+  <nav id="nav" aria-label="Hauptnavigation">
+    <a href="#home" class="nav-logo">kaffeemacherei</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#cafe">Das Café</a></li>
+      <li><a href="#angebot">Angebot</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+      <li><a href="#kontakt">Besuchen</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="tel:+496948008766" class="nav-cta-pill">+49 69 48 00 87 66</a>
+      <button class="hamburger" id="hambBtn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ░░ HERO ░░ -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <img
+        src="https://s3-media0.fl.yelpcdn.com/bphoto/UhDYNVnH0zp2L0xH76PSHw/o.jpg"
+        alt="kaffeemacherei Frankfurt — warme Atmosphäre, frisch gebrühter Kaffee"
+        fetchpriority="high"
+        id="heroBgImg"
+      >
+    </div>
+    <div class="hero-content" id="heroContent">
+      <span class="hero-script">served with love</span>
+      <h1 class="hero-h1">kaffeemacherei</h1>
+      <p class="hero-sub">Specialty Coffee · Hausgemachter Kuchen · Frühstück &amp; Brunch</p>
+      <p class="hero-city">Frankfurt Nordend-West</p>
+      <a href="#angebot" class="btn btn-sage">Mehr entdecken</a>
+    </div>
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ░░ INTRO BANNER ░░ -->
+  <div class="intro-banner">
+    <blockquote>
+      Das Café, das du dir für deinen Sonntagmorgen vorstellst —
+      warmes Licht, Keramiktassen und alles, was das Herz begehrt.
+    </blockquote>
+  </div>
+
+  <!-- ░░ ABOUT ░░ -->
+  <section id="cafe" class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="label">Das Café</span>
+          <h2>Ein Ort, an dem der<br>Tag <em>noch vor dir liegt</em></h2>
+          <p>Im Herzen von Frankfurt Nordend-West, an der Eckenheimer Landstraße, liegt ein kleines Café, das größer ist als sein Grundriss. Die kaffeemacherei ist kein Konzept, kein Trend — sie ist ein Ort zum Bleiben.</p>
+          <p>Inhaberin Golnaz Frud hat hier einen Raum geschaffen, der sich anfühlt wie das Zuhause einer Freundin, die zufällig auch die beste Köchin im Viertel ist. Hausgemachte Kuchen, Frühstück mit Herz und Kaffee, der nach etwas schmeckt — nicht nach Masse.</p>
+          <p>Die Stühle sind immer besetzt, der Duft von frisch Gemahlenem zieht durch die Tür, und irgendwie hat man das Gefühl: heute könnte alles gut werden.</p>
+          <a href="#kontakt" class="btn btn-outline-dark">Uns besuchen</a>
+        </div>
+        <div class="about-image-wrap reveal reveal-d2">
+          <img
+            src="https://s3-media0.fl.yelpcdn.com/bphoto/EsYiM8vJaCsDYMgYT9gaig/l.jpg"
+            alt="Gemütliches Interieur der kaffeemacherei Frankfurt"
+            loading="lazy"
+          >
+          <div class="about-dot" aria-hidden="true"></div>
+          <div class="about-dot-2" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave cream→oat -->
+  <div class="wave" style="background:var(--cream);" aria-hidden="true">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,18 C400,52 1040,0 1440,30 L1440,52 L0,52 Z" fill="var(--oat)"/>
+    </svg>
+  </div>
+
+  <!-- ░░ OFFERINGS ░░ -->
+  <section id="angebot" class="offerings">
+    <div class="container">
+      <div class="offerings-head reveal">
+        <span class="label">Was uns ausmacht</span>
+        <h2>Kaffee. Kuchen. Morgen.</h2>
+      </div>
+      <div class="offerings-grid">
+
+        <div class="offer-card reveal">
+          <div class="offer-card-img-wrap">
+            <img
+              src="https://s3-media0.fl.yelpcdn.com/bphoto/d1odh5n3T1ZbrHy2w_bwPA/l.jpg"
+              alt="Flat White aus der kaffeemacherei Frankfurt"
+              class="offer-card-img"
+              loading="lazy"
+            >
+          </div>
+          <div class="offer-body">
+            <div class="offer-num">01</div>
+            <h3>Specialty Coffee</h3>
+            <p>We speak good coffee — und das seit Jahren. Jede Tasse mit Sorgfalt gezogen, jede Milch richtig temperiert. Kein Lärm, kein Stress. Nur der Kaffee, der so schmeckt, wie er soll.</p>
+            <div class="offer-tags">
+              <span class="offer-tag">Espresso</span>
+              <span class="offer-tag">Flat White</span>
+              <span class="offer-tag">Cortado</span>
+              <span class="offer-tag">Galão</span>
+              <span class="offer-tag">Americano</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer-card reveal reveal-d1">
+          <div class="offer-card-img-wrap">
+            <img
+              src="https://s3-media0.fl.yelpcdn.com/bphoto/w-2_MM2gTm_fxQHiTUmmuQ/348s.jpg"
+              alt="Hausgemachter Apple Pie mit Latte Macchiato"
+              class="offer-card-img"
+              loading="lazy"
+            >
+          </div>
+          <div class="offer-body">
+            <div class="offer-num">02</div>
+            <h3>Hausgemachter Kuchen</h3>
+            <p>Täglich frisch gebacken — nicht mit Backmischung, sondern mit Zeit. Von Apple Pie über Käsekuchen bis zu veganen Varianten: hier ist Kuchen kein Nachtisch, sondern ein Argument herzukommen.</p>
+            <div class="offer-tags">
+              <span class="offer-tag">Apple Pie</span>
+              <span class="offer-tag">Käsekuchen</span>
+              <span class="offer-tag">Saisonal</span>
+              <span class="offer-tag">Vegan</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="offer-card reveal reveal-d2">
+          <div class="offer-card-img-wrap">
+            <img
+              src="https://s3-media0.fl.yelpcdn.com/bphoto/inRul27M6AM5uABfzd3j8g/l.jpg"
+              alt="Mini-Frühstück mit Croissant, Butter und Marmelade"
+              class="offer-card-img"
+              loading="lazy"
+            >
+          </div>
+          <div class="offer-body">
+            <div class="offer-num">03</div>
+            <h3>Frühstück &amp; Brunch</h3>
+            <p>Croissant mit hausgemachter Marmelade. Avocado-Brot, das aussieht wie es schmeckt. Warme Quiche und ein Kaffee, der alles besser macht. So fängt ein guter Tag an.</p>
+            <div class="offer-tags">
+              <span class="offer-tag">Croissant</span>
+              <span class="offer-tag">Avocado</span>
+              <span class="offer-tag">Quiche</span>
+              <span class="offer-tag">Vegetarisch</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave oat→cream -->
+  <div class="wave" style="background:var(--oat);" aria-hidden="true">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,30 C480,0 960,52 1440,18 L1440,52 L0,52 Z" fill="var(--cream)"/>
+    </svg>
+  </div>
+
+  <!-- ░░ REVIEWS ░░ -->
+  <section class="reviews">
+    <div class="container">
+      <div class="reviews-head reveal">
+        <div class="stars-row">
+          <span class="stars">★★★★★</span>
+          <span class="rating-big">4.7</span>
+        </div>
+        <p class="rating-meta">41 Bewertungen · Yelp &amp; Google</p>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card reveal">
+          <p class="review-text">So cute and cosy even the Danes would have no choice but to brand it <em>hygge</em>. The most balanced espresso drink I have had the pleasure of sipping on the continent.</p>
+          <p class="review-author">Bea B. — San Francisco</p>
+        </div>
+
+        <div class="review-card reveal reveal-d1">
+          <p class="review-text">Mein täglicher Anlaufpunkt für Kaffee und Kuchen in Frankfurt. Die Damen sind unglaublich freundlich und die Kuchen wirklich köstlich. Ich komme immer wieder.</p>
+          <p class="review-author">Marina K. — Frankfurt</p>
+        </div>
+
+        <div class="review-card reveal reveal-d2">
+          <p class="review-text">Super leckerer Kaffee und fantastischer Kuchen, wahrscheinlich hausgemacht. Klein, aber sehr fein — wir kommen sicher wieder!</p>
+          <p class="review-author">Yelp-Nutzer — Frankfurt</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave cream→oat -->
+  <div class="wave" style="background:var(--cream);" aria-hidden="true">
+    <svg viewBox="0 0 1440 52" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,10 C360,52 1080,4 1440,38 L1440,52 L0,52 Z" fill="var(--oat)"/>
+    </svg>
+  </div>
+
+  <!-- ░░ INSTAGRAM ░░ -->
+  <section id="instagram" class="insta-section">
+    <div class="container">
+      <div class="insta-head reveal">
+        <span class="label">Immer dabei sein</span>
+        <h2>Unser Alltag in Bildern</h2>
+        <p class="insta-handle">@kaffeemacherei auf Instagram</p>
+      </div>
+      <div class="masonry reveal">
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/P8mfuV5neuJb_nL1VkuNWQ/l.jpg"
+               alt="Americano und Rosentee in der kaffeemacherei" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/NhxqvZrsQvaFdt4dhjjRpw/348s.jpg"
+               alt="Croissant mit Erdbeermarmelade und Latte Macchiato" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/YjX1j0Zfkzz1EiUMAakKFA/l.jpg"
+               alt="Atmosphäre in der kaffeemacherei" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/eoEScD9R4nR1hgMKtl_wlg/348s.jpg"
+               alt="Latte Macchiato in der kaffeemacherei Frankfurt" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/hpq50_rVWrHB36K6rmt04g/348s.jpg"
+               alt="Zwei Kaffeespezialitäten" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/cn4xNSmixJ2reE-Nn_E2FA/l.jpg"
+               alt="kaffeemacherei Frankfurt" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/0rTBwdflKaUCjJdQW6I6QA/l.jpg"
+               alt="Stimmung im Café" loading="lazy">
+        </div>
+        <div class="masonry-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/8o82uXuX6pQtyGiY1EQRCw/348s.jpg"
+               alt="Espressomaschine in der kaffeemacherei" loading="lazy">
+        </div>
+      </div>
+      <div class="insta-cta reveal">
+        <a href="https://www.instagram.com/kaffeemacherei/"
+           target="_blank" rel="noopener noreferrer"
+           class="btn btn-outline-dark">
+          Auf Instagram folgen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ CONTACT / HOURS ░░ -->
+  <section id="kontakt" class="contact">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div>
+          <span class="label label--light">Öffnungszeiten</span>
+          <h2>Wir freuen uns<br>auf euren Besuch</h2>
+          <table class="hours-table" aria-label="Öffnungszeiten kaffeemacherei">
+            <tbody id="hoursBody">
+              <tr data-days="1,2,3,4">
+                <td>Montag – Donnerstag</td>
+                <td>8:30 – 18:00 Uhr</td>
+              </tr>
+              <tr data-days="5">
+                <td>Freitag</td>
+                <td>8:30 – 23:00 Uhr</td>
+              </tr>
+              <tr data-days="6">
+                <td>Samstag</td>
+                <td>10:00 – 18:00 Uhr</td>
+              </tr>
+              <tr data-days="0">
+                <td>Sonntag</td>
+                <td>10:00 – 18:00 Uhr</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="contact-cta-box reveal">
+            <p>Einfach vorbeikommen — keine Reservierung nötig. Wir sind fast jeden Tag für euch da.</p>
+            <a href="mailto:post@die-kaffeemacherei.de" class="btn btn-sage">E-Mail schreiben</a>
+          </div>
+        </div>
+
+        <div>
+          <span class="label label--light" style="display:block; margin-bottom:2rem;">Hier findet ihr uns</span>
+          <div class="contact-details reveal">
+            <div>
+              <p class="ci-label">Adresse</p>
+              <p class="ci-value">
+                <a href="https://maps.google.com/?q=kaffeemacherei+Eckenheimer+Landstraße+70+Frankfurt"
+                   target="_blank" rel="noopener">
+                  Eckenheimer Landstraße 70<br>
+                  60318 Frankfurt am Main<br>
+                  Nordend-West
+                </a>
+              </p>
+            </div>
+            <div>
+              <p class="ci-label">Telefon</p>
+              <p class="ci-value"><a href="tel:+496948008766">+49 69 48 00 87 66</a></p>
+            </div>
+            <div>
+              <p class="ci-label">E-Mail</p>
+              <p class="ci-value"><a href="mailto:post@die-kaffeemacherei.de">post@die-kaffeemacherei.de</a></p>
+            </div>
+          </div>
+
+          <div class="map-frame reveal reveal-d1">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2557.4!2d8.6844!3d50.1241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0eb84abd4035%3A0x29d255a9ed33d673!2skaffeemacherei!5e0!3m2!1sde!2sde!4v1713254400000!5m2!1sde!2sde"
+              title="kaffeemacherei auf Google Maps"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ░░ FOOTER ░░ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">kaffeemacherei</span>
+        <ul class="footer-links" role="list">
+          <li><a href="https://www.instagram.com/kaffeemacherei/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/kaffeemacherei/" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.die-kaffeemacherei.de/impressum/" target="_blank" rel="noopener">Impressum</a></li>
+        </ul>
+        <p class="footer-copy" id="footerCopy">© kaffeemacherei · Eckenheimer Landstraße 70 · Frankfurt am Main</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ── LENIS ── */
+    const lenis = new Lenis({ autoRaf: true });
+
+    /* ── NAV SCROLL ── */
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ── MOBILE MENU ── */
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hambBtn    = document.getElementById('hambBtn');
+
+    hambBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      hambBtn.classList.toggle('active', open);
+      hambBtn.setAttribute('aria-expanded', String(open));
+      mobileMenu.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    function closeMob() {
+      mobileMenu.classList.remove('open');
+      hambBtn.classList.remove('active');
+      hambBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    /* ── HERO ENTRANCE ── */
+    window.addEventListener('load', () => {
+      const hero = document.getElementById('heroContent');
+      if (typeof Motion !== 'undefined') {
+        Motion.animate(hero,
+          { opacity: [0, 1], y: [32, 0] },
+          { duration: 1.3, easing: [0.22, 1, 0.36, 1], delay: 0.2 }
+        );
+      } else {
+        hero.style.opacity = '1';
+      }
+    });
+
+    /* ── HERO PARALLAX ── */
+    const heroBgImg = document.getElementById('heroBgImg');
+    lenis.on('scroll', ({ scroll }) => {
+      if (scroll < window.innerHeight * 1.2) {
+        heroBgImg.style.transform = `translateY(${scroll * 0.28}px)`;
+      }
+    });
+
+    /* ── SCROLL REVEAL ── */
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    /* ── HIGHLIGHT TODAY IN HOURS ── */
+    const today = new Date().getDay(); // 0=Sun, 1=Mon…6=Sat
+    document.querySelectorAll('#hoursBody tr').forEach(row => {
+      const days = (row.dataset.days || '').split(',').map(Number);
+      if (days.includes(today)) row.classList.add('today');
+    });
+
+    /* ── FOOTER YEAR ── */
+    document.getElementById('footerCopy').textContent =
+      `© ${new Date().getFullYear()} kaffeemacherei · Eckenheimer Landstraße 70 · Frankfurt am Main`;
+  </script>
+</body>
+</html>
