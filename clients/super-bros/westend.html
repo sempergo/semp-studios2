@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Westend — Super Bro's Frankfurt · Der Neue Bruder seit 2024</title>
+  <meta name="description" content="Super Bro's Westend: Grüneburgweg 78, Frankfurt. Neapolitanische Pizza seit 2024. Der neue Bruder im Herzen des Westends. Jetzt bestellen bei Wolt.">
+  <meta property="og:title" content="Super Bro's Westend — Der Neue Bruder">
+  <meta property="og:description" content="Seit 2024 am Grüneburgweg. Gewachsen aus Liebe zur Pizza. Neapolitanische Pizza im Westend.">
+  <meta property="og:image" content="https://static.wixstatic.com/media/f21c7c_4632dd6af43d4229a34b1f919e9bf1b5~mv2.png/v1/fill/w_2500,h_1875,al_c/f21c7c_4632dd6af43d4229a34b1f919e9bf1b5~mv2.png">
+  <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/super-bros/westend.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="https://static.wixstatic.com/media/f21c7c_31155db5f1fe45c4bc3a117aace2ad2d~mv2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --rosa: #E8547A; --rosa-light: #F2A0B4; --rosa-dark: #C43860;
+      --cream: #FDF8F2; --cream-2: #F5EDE2;
+      --charcoal: #1A1614; --charcoal-2: #3D3330; --mid: #8C7B74;
+      --f-display: 'Archivo Black', sans-serif; --f-body: 'Archivo', sans-serif;
+      --f-fine: 'Inter', sans-serif; --f-italic: 'Playfair Display', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--f-fine); background: var(--rosa); color: var(--charcoal); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    .grain { position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: .04; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>"); animation: grain .4s steps(1) infinite; }
+    @keyframes grain { 0%{background-position:0 0} 25%{background-position:-50px -25px} 50%{background-position:-100px -10px} 75%{background-position:-30px -60px} }
+
+    /* NAV — dark on rosa hero */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 64px; transition: background .3s, box-shadow .3s; }
+    nav.scrolled { background: rgba(26,22,20,.96); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.05); }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: none; gap: 32px; font-family: var(--f-body); font-weight: 500; font-size: .875rem; letter-spacing: .04em; text-transform: uppercase; }
+    nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,.8); }
+    nav.scrolled .nav-links a { color: rgba(255,255,255,.65); }
+    .nav-links a:hover, .nav-links a.active { color: white !important; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-icons { display: flex; gap: 12px; }
+    .nav-icons a { display: flex; opacity: .75; transition: opacity .2s; }
+    .nav-icons a:hover { opacity: 1; }
+    .nav-icons svg { width: 20px; height: 20px; fill: white; }
+    .btn-wolt { display: inline-flex; align-items: center; gap: 6px; background: var(--charcoal); color: white; font-family: var(--f-body); font-weight: 600; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; padding: 10px 18px; border-radius: 100px; transition: background .2s, transform .2s; white-space: nowrap; }
+    nav.scrolled .btn-wolt { background: var(--rosa); }
+    .btn-wolt:hover { background: var(--charcoal-2); transform: translateY(-1px); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+    .mobile-menu { position: fixed; inset: 0; z-index: 999; background: var(--charcoal); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateX(100%); transition: transform .4s cubic-bezier(.76,0,.24,1); }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { font-family: var(--f-display); font-size: 2.5rem; color: white; letter-spacing: -.02em; transition: color .2s; }
+    .mobile-menu a:hover, .mobile-menu a.active { color: var(--rosa); }
+    .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: white; cursor: pointer; background: none; border: none; }
+    @media (min-width: 768px) { nav { padding: 0 48px; } .nav-links { display: flex; } .hamburger { display: none; } }
+
+    /* HERO — rosa bg, dark text */
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; padding: 0 0 80px; background: var(--rosa); overflow: hidden; }
+    .hero-wordmark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: var(--f-display); font-size: clamp(100px, 28vw, 340px); color: white; opacity: .06; letter-spacing: -.05em; white-space: nowrap; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; padding: 0 24px; max-width: 1140px; margin: 0 auto; width: 100%; }
+    .hero-badge { display: inline-block; font-family: var(--f-body); font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; background: rgba(255,255,255,.2); color: white; backdrop-filter: blur(4px); padding: 6px 16px; border-radius: 100px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,.25); }
+    .hero-title { font-family: var(--f-display); font-size: clamp(3rem, 10vw, 7rem); color: white; letter-spacing: -.03em; line-height: .92; margin-bottom: 20px; }
+    .hero-since { font-family: var(--f-italic); font-size: 1.2rem; color: rgba(255,255,255,.8); margin-bottom: 8px; }
+    .hero-addr { font-family: var(--f-fine); font-size: 1rem; color: rgba(255,255,255,.65); margin-bottom: 32px; line-height: 1.6; }
+    .hero-addr a { color: white; font-weight: 500; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; background: var(--charcoal); color: white; font-family: var(--f-body); font-weight: 700; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; padding: 16px 32px; border-radius: 100px; transition: background .2s, transform .2s; }
+    .btn-primary:hover { background: var(--charcoal-2); transform: translateY(-2px); }
+    .btn-ghost { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: white; border: 1.5px solid rgba(255,255,255,.5); font-family: var(--f-body); font-weight: 600; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; padding: 16px 32px; border-radius: 100px; transition: all .2s; }
+    .btn-ghost:hover { border-color: white; background: rgba(255,255,255,.12); transform: translateY(-2px); }
+
+    /* SECTIONS */
+    .section { padding: 80px 24px; }
+    .section-inner { max-width: 1140px; margin: 0 auto; }
+    .section-label { font-family: var(--f-body); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--rosa); margin-bottom: 12px; }
+    .section-title { font-family: var(--f-display); font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -.03em; line-height: .95; }
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* INTRO — cream bg */
+    .intro-section { background: var(--cream-2); }
+    .intro-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    .intro-text .section-title { color: var(--charcoal); margin-bottom: 20px; }
+    .intro-text p { font-family: var(--f-fine); font-size: 1rem; color: var(--charcoal-2); line-height: 1.75; margin-bottom: 16px; }
+    .intro-img { border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
+    .intro-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .intro-img:hover img { transform: scale(1.04); }
+    @media (min-width: 900px) { .intro-grid { grid-template-columns: 1fr 1fr; } .section { padding: 120px 48px; } }
+
+    /* ANGEBOT HIGHLIGHTS */
+    .offer-section { background: var(--charcoal); }
+    .offer-section .section-label { color: var(--rosa-light); }
+    .offer-section .section-title { color: white; margin-bottom: 40px; }
+    .offer-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .offer-card { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 24px; transition: border-color .2s, transform .2s; }
+    .offer-card:hover { border-color: rgba(232,84,122,.35); transform: translateY(-2px); }
+    .offer-icon { font-size: 2rem; margin-bottom: 12px; }
+    .offer-title { font-family: var(--f-display); font-size: 1.1rem; color: white; letter-spacing: -.02em; margin-bottom: 8px; }
+    .offer-desc { font-family: var(--f-fine); font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.65; }
+    @media (min-width: 768px) { .offer-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .offer-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* APERITIVO */
+    .aperitivo-section { background: var(--rosa); padding: 80px 24px; }
+    .aperitivo-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    .aperitivo-text { }
+    .aperitivo-text .section-label { color: rgba(255,255,255,.6); }
+    .aperitivo-text .section-title { color: white; margin-bottom: 20px; }
+    .aperitivo-text p { font-family: var(--f-fine); font-size: 1rem; color: rgba(255,255,255,.75); line-height: 1.75; margin-bottom: 16px; }
+    .aperitivo-quote { font-family: var(--f-italic); font-size: clamp(1.2rem, 2.5vw, 1.5rem); color: white; opacity: .9; line-height: 1.5; border-left: 3px solid rgba(255,255,255,.4); padding-left: 20px; margin: 28px 0; }
+    @media (min-width: 900px) { .aperitivo-inner { grid-template-columns: 1fr 1fr; } .aperitivo-section { padding: 120px 48px; } }
+
+    /* MAP */
+    .map-section { background: var(--charcoal); padding: 0; }
+    .map-container { display: grid; grid-template-columns: 1fr; }
+    .map-frame { height: 300px; }
+    .map-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+    .map-info { padding: 48px 24px; }
+    .map-info .section-label { color: var(--rosa-light); }
+    .map-info h2 { font-family: var(--f-display); font-size: clamp(1.6rem, 4vw, 2.4rem); color: white; letter-spacing: -.03em; margin: 8px 0 20px; }
+    .map-info p { font-family: var(--f-fine); font-size: .95rem; color: rgba(255,255,255,.5); line-height: 1.7; margin-bottom: 12px; }
+    .map-info a.phone { color: var(--rosa-light); font-weight: 500; display: block; margin-bottom: 20px; }
+    .contact-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+    .btn-rosa { display: inline-flex; align-items: center; gap: 8px; background: var(--rosa); color: white; font-family: var(--f-body); font-weight: 700; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; padding: 14px 28px; border-radius: 100px; transition: background .2s, transform .2s; }
+    .btn-rosa:hover { background: var(--rosa-dark); transform: translateY(-2px); }
+    .btn-outline { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: rgba(255,255,255,.65); border: 1.5px solid rgba(255,255,255,.2); font-family: var(--f-body); font-weight: 600; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; padding: 14px 28px; border-radius: 100px; transition: all .2s; }
+    .btn-outline:hover { border-color: white; color: white; background: rgba(255,255,255,.06); transform: translateY(-2px); }
+    @media (min-width: 900px) { .map-container { grid-template-columns: 1.2fr 1fr; } .map-frame { height: auto; min-height: 400px; } .map-info { padding: 80px 60px; } }
+
+    /* FOOTER */
+    footer { background: var(--charcoal); color: rgba(255,255,255,.5); padding: 60px 24px 32px; font-family: var(--f-fine); font-size: .875rem; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .footer-logo img { height: 32px; margin-bottom: 16px; opacity: .6; }
+    .footer-tagline { font-family: var(--f-italic); font-size: 1rem; color: rgba(255,255,255,.35); margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 14px; }
+    .footer-social a { display: flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; transition: border-color .2s, background .2s; }
+    .footer-social a:hover { border-color: var(--rosa); background: rgba(232,84,122,.1); }
+    .footer-social svg { width: 16px; height: 16px; fill: rgba(255,255,255,.6); }
+    .footer-location h4 { font-family: var(--f-body); font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--rosa-light); margin-bottom: 10px; }
+    .footer-location p { line-height: 1.8; color: rgba(255,255,255,.45); }
+    .footer-location a { color: var(--rosa-light); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.06); margin-top: 40px; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: .75rem; color: rgba(255,255,255,.25); }
+    .footer-bottom a { color: rgba(255,255,255,.35); transition: color .2s; }
+    .footer-bottom a:hover { color: var(--rosa-light); }
+    @media (min-width: 768px) { footer { padding: 80px 48px 40px; } .footer-inner { grid-template-columns: 1.5fr 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="grain"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose">×</button>
+    <a href="index.html">Home</a>
+    <a href="nordend.html">Nordend</a>
+    <a href="westend.html" class="active">Westend</a>
+    <a href="story.html">Story</a>
+    <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-wolt">Bestellen ↗</a>
+  </div>
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/828df7_1501072510ba435897584519cfdfa708~mv2.png" alt="Super Bro's" loading="lazy"></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="nordend.html">Nordend</a>
+      <a href="westend.html" class="active">Westend</a>
+      <a href="story.html">Story</a>
+    </div>
+    <div class="nav-right">
+      <div class="nav-icons">
+        <a href="https://www.instagram.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.facebook.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      </div>
+      <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-wolt">Bestellen ↗</a>
+      <button class="hamburger" id="menuToggle" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO — rosa bg -->
+  <section class="hero">
+    <div class="hero-wordmark">WEST</div>
+    <div class="hero-content">
+      <span class="hero-badge">Der Neue Bruder</span>
+      <h1 class="hero-title">West&shy;end.</h1>
+      <p class="hero-since"><em>Seit 2024 am Grüneburgweg.</em></p>
+      <p class="hero-addr">Grüneburgweg 78 / Parkstrasse 1 · 60322 Frankfurt am Main<br><a href="tel:+496921029842">069 – 210 298 42</a></p>
+      <div class="hero-ctas">
+        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-primary">Jetzt bestellen</a>
+        <a href="https://www.super-bros.de/menu" target="_blank" rel="noopener" class="btn-ghost">Speisekarte</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section intro-section">
+    <div class="section-inner">
+      <div class="intro-grid">
+        <div class="intro-text reveal">
+          <p class="section-label">Gewachsen aus Liebe</p>
+          <h2 class="section-title">Der jüngere Bruder hat gelernt.</h2>
+          <p>Was 2017 im Nordend als eine Idee begann, ist 2024 im Westend zu einem neuen Kapitel geworden. Gleiche DNA — neuer Ort, neue Energie.</p>
+          <p>Das Westend verdient echte Neapolitanische Pizza. Nicht das Kopieren einer Kopie, sondern das Original — denselben Teig, dieselbe Hitze, dieselbe Leidenschaft. Nur eine neue Adresse.</p>
+          <p style="margin-top: 8px;"><a href="story.html" style="color: var(--rosa); font-weight: 600; font-size:.875rem; letter-spacing:.05em; text-transform: uppercase; border-bottom: 1.5px solid var(--rosa); padding-bottom: 1px;">Lies unsere Geschichte →</a></p>
+        </div>
+        <div class="intro-img reveal">
+          <img src="https://static.wixstatic.com/media/f21c7c_0e4c1df8373d47d8904e5e50d1911a88~mv2.png/v1/crop/x_341,y_405,w_1670,h_1524/fill/w_800,h_730,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Super%20Bro's%20Hero.png" alt="Pizza Super Bro's Westend" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANGEBOT -->
+  <section class="section offer-section">
+    <div class="section-inner">
+      <div class="reveal">
+        <p class="section-label">Was uns ausmacht</p>
+        <h2 class="section-title">Pizza. Drinks. Vita.</h2>
+      </div>
+      <div class="offer-grid" style="margin-top: 40px;">
+        <div class="offer-card reveal">
+          <div class="offer-icon">🍕</div>
+          <p class="offer-title">Vera Napoletana</p>
+          <p class="offer-desc">48h-Teigruhe, Stefano Ferrara Ofen, 480 Grad. Jede Pizza ist ein Original.</p>
+        </div>
+        <div class="offer-card reveal">
+          <div class="offer-icon">🌿</div>
+          <p class="offer-title">Vegane Optionen</p>
+          <p class="offer-desc">Echte Alternativen ohne Kompromisse beim Geschmack. Kalabrien war immer auch Gemüse.</p>
+        </div>
+        <div class="offer-card reveal">
+          <div class="offer-icon">🍷</div>
+          <p class="offer-title">Aperitivo</p>
+          <p class="offer-desc">Aperol Spritz, Malfy Gin & Tonic, Negroni. Aus ausgewählten italienischen Spirituosen.</p>
+        </div>
+        <div class="offer-card reveal">
+          <div class="offer-icon">🥗</div>
+          <p class="offer-title">Salate & Dessert</p>
+          <p class="offer-desc">Frische Salate und süße Abschlüsse — weil nach der Pizza vor der Pizza ist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APERITIVO HIGHLIGHT -->
+  <section class="aperitivo-section">
+    <div class="aperitivo-inner">
+      <div class="aperitivo-text reveal">
+        <p class="section-label">Die Westend-Energie</p>
+        <h2 class="section-title">Aperitivo Hour.</h2>
+        <p>Das Westend hat seinen eigenen Rhythmus. Nach dem Büro, vor dem Abend. Ein Spritz, eine Pizza, gute Gesellschaft.</p>
+        <p>Im Sommer auf der Terrasse. Im Winter drinnen am Ofen. Immer mit demselben Grinsen wenn die erste Pizza aus dem Ofen kommt.</p>
+        <blockquote class="aperitivo-quote">
+          <em>"Die Malfy & Tonic fühlt sich an wie Sommer in einem Glas."</em>
+        </blockquote>
+        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:white; color:var(--rosa-dark); font-family:var(--f-body); font-weight:700; font-size:.875rem; letter-spacing:.05em; text-transform:uppercase; padding:14px 28px; border-radius:100px; transition:transform .2s, box-shadow .2s;">Jetzt bestellen ↗</a>
+      </div>
+      <div class="reveal" style="display:flex; flex-direction:column; gap:16px;">
+        <div style="background:rgba(255,255,255,.15); border-radius:16px; padding:28px; border:1px solid rgba(255,255,255,.2);">
+          <p style="font-family:var(--f-display); font-size:2.8rem; color:white; letter-spacing:-.03em; line-height:1;">4.5</p>
+          <p style="font-family:var(--f-body); font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-top:6px;">Google-Bewertung</p>
+        </div>
+        <div style="background:rgba(255,255,255,.15); border-radius:16px; padding:28px; border:1px solid rgba(255,255,255,.2);">
+          <p style="font-family:var(--f-display); font-size:2.8rem; color:white; letter-spacing:-.03em; line-height:1;">2017</p>
+          <p style="font-family:var(--f-body); font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-top:6px;">Pizza seit</p>
+        </div>
+        <div style="background:rgba(255,255,255,.15); border-radius:16px; padding:28px; border:1px solid rgba(255,255,255,.2);">
+          <p style="font-family:var(--f-display); font-size:2.8rem; color:white; letter-spacing:-.03em; line-height:1;">48h</p>
+          <p style="font-family:var(--f-body); font-size:.75rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.6); margin-top:6px;">Teigruhe</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <div class="map-section">
+    <div class="map-container">
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2559.2!2d8.668!3d50.1185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47bd0f8a4567efgh%3A0x5678!2sGr%C3%BCneburgweg+78%2C+60322+Frankfurt+am+Main!5e0!3m2!1sde!2sde!4v1" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Super Bro's Westend Karte"></iframe>
+      </div>
+      <div class="map-info reveal">
+        <p class="section-label">Anfahrt</p>
+        <h2>Grüneburgweg 78.</h2>
+        <p>60322 Frankfurt am Main<br>U-Bahn: Grüneburgweg (U1/U2/U3)<br>Bus 36</p>
+        <a href="tel:+496921029842" class="phone">069 – 210 298 42</a>
+        <div class="contact-ctas">
+          <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-rosa">Jetzt bestellen</a>
+          <a href="https://maps.google.com/?q=Grüneburgweg+78,+60322+Frankfurt" target="_blank" rel="noopener" class="btn-outline">In Maps öffnen ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <img src="https://static.wixstatic.com/media/828df7_1501072510ba435897584519cfdfa708~mv2.png" alt="Super Bro's" class="footer-logo" loading="lazy">
+        <p class="footer-tagline"><em>La Passione per la Pizza.<br>Seit 2017 im Herzen von Frankfurt.</em></p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-location">
+        <h4>Nordend · Das Original</h4>
+        <p>Oeder Weg 55–57<br>60318 Frankfurt am Main<br><a href="tel:+496926497580">069 – 264 975 80</a></p>
+      </div>
+      <div class="footer-location">
+        <h4>Westend · Der Neue Bruder</h4>
+        <p>Grüneburgweg 78<br>60322 Frankfurt am Main<br><a href="tel:+496921029842">069 – 210 298 42</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom" style="max-width:1140px; margin:0 auto;">
+      <span>© Super Bro's GbR</span>
+      <div style="display:flex; gap:24px;"><a href="https://www.super-bros.de/grueneburgweg-impressum" target="_blank">Impressum</a><a href="https://www.super-bros.de/datenschutz" target="_blank">Datenschutz</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const lenis = new Lenis({ autoRaf: true });
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 80); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
