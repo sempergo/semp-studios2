@@ -95,13 +95,22 @@
     .offer-section .section-label { color: var(--rosa-light); }
     .offer-section .section-title { color: white; margin-bottom: 40px; }
     .offer-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-    .offer-card { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; padding: 24px; transition: border-color .2s, transform .2s; }
-    .offer-card:hover { border-color: rgba(232,84,122,.35); transform: translateY(-2px); }
-    .offer-icon { font-size: 2rem; margin-bottom: 12px; }
-    .offer-title { font-family: var(--f-display); font-size: 1.1rem; color: white; letter-spacing: -.02em; margin-bottom: 8px; }
+    .offer-card { border: 1px solid rgba(255,255,255,.08); border-radius: 14px; overflow: hidden; transition: border-color .25s, transform .25s, box-shadow .25s; }
+    .offer-card:hover { border-color: rgba(232,84,122,.4); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+    .offer-card-photo { aspect-ratio: 16/10; overflow: hidden; }
+    .offer-card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .offer-card:hover .offer-card-photo img { transform: scale(1.07); }
+    .offer-card-body { padding: 20px 22px 24px; }
+    .offer-title { font-family: var(--f-display); font-size: 1.05rem; color: white; letter-spacing: -.02em; margin-bottom: 8px; }
     .offer-desc { font-family: var(--f-fine); font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.65; }
     @media (min-width: 768px) { .offer-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .offer-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    /* PIZZA STRIP */
+    .pizza-strip { display: grid; grid-template-columns: repeat(3, 1fr); height: 280px; }
+    .pizza-strip-item { overflow: hidden; }
+    .pizza-strip-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s ease; }
+    .pizza-strip-item:hover img { transform: scale(1.08); }
+    @media (min-width: 768px) { .pizza-strip { height: 380px; } }
 
     /* APERITIVO */
     .aperitivo-section { background: var(--rosa); padding: 80px 24px; }
@@ -218,24 +227,20 @@
       </div>
       <div class="offer-grid" style="margin-top: 40px;">
         <div class="offer-card reveal">
-          <div class="offer-icon">🍕</div>
-          <p class="offer-title">Vera Napoletana</p>
-          <p class="offer-desc">48h-Teigruhe, Stefano Ferrara Ofen, 480 Grad. Jede Pizza ist ein Original.</p>
+          <div class="offer-card-photo"><img src="https://s3-media0.fl.yelpcdn.com/bphoto/_zfZKrCD3xjU_gt2dsgd3Q/o.jpg" alt="Burratina Pizza" loading="lazy"></div>
+          <div class="offer-card-body"><p class="offer-title">Vera Napoletana</p><p class="offer-desc">48h-Teigruhe, Stefano Ferrara Ofen, 480 Grad. Jede Pizza ist ein Original aus Neapel.</p></div>
         </div>
         <div class="offer-card reveal">
-          <div class="offer-icon">🌿</div>
-          <p class="offer-title">Vegane Optionen</p>
-          <p class="offer-desc">Echte Alternativen ohne Kompromisse beim Geschmack. Kalabrien war immer auch Gemüse.</p>
+          <div class="offer-card-photo"><img src="https://s3-media0.fl.yelpcdn.com/bphoto/H_RqNEoGQa0EQRi9PNXH7A/o.jpg" alt="Margherita Antica" loading="lazy"></div>
+          <div class="offer-card-body"><p class="offer-title">Die Klassiker</p><p class="offer-desc">Margherita, Marinara, Bufala — Rezepte die sich seit Generationen nicht verändert haben. Weil sie nicht müssen.</p></div>
         </div>
         <div class="offer-card reveal">
-          <div class="offer-icon">🍷</div>
-          <p class="offer-title">Aperitivo</p>
-          <p class="offer-desc">Aperol Spritz, Malfy Gin & Tonic, Negroni. Aus ausgewählten italienischen Spirituosen.</p>
+          <div class="offer-card-photo"><img src="https://s3-media0.fl.yelpcdn.com/bphoto/dpkSKAoaerMHhGms6lFcLQ/o.jpg" alt="Super Bros Deluxe" loading="lazy"></div>
+          <div class="offer-card-body"><p class="offer-title">Super Bros Deluxe</p><p class="offer-desc">Die Hauskreation. Belegt mit dem Besten aus Kampanien — die Pizza die alle immer zuerst essen wollen.</p></div>
         </div>
         <div class="offer-card reveal">
-          <div class="offer-icon">🥗</div>
-          <p class="offer-title">Salate & Dessert</p>
-          <p class="offer-desc">Frische Salate und süße Abschlüsse — weil nach der Pizza vor der Pizza ist.</p>
+          <div class="offer-card-photo"><img src="https://s3-media0.fl.yelpcdn.com/bphoto/bUizrMtksqEdta0338eM9A/o.jpg" alt="Quattro Stagioni" loading="lazy"></div>
+          <div class="offer-card-body"><p class="offer-title">Aperitivo & Mehr</p><p class="offer-desc">Aperol Spritz, Malfy Gin & Tonic, Negroni. Salate, Desserts. Alles was der Abend braucht.</p></div>
         </div>
       </div>
     </div>
@@ -270,6 +275,13 @@
       </div>
     </div>
   </section>
+
+  <!-- PIZZA STRIP -->
+  <div class="pizza-strip">
+    <div class="pizza-strip-item"><img src="https://s3-media0.fl.yelpcdn.com/bphoto/DkH7wvolZgC8dj0Qo_N4Pw/o.jpg" alt="Pizza Napolitana" loading="lazy"></div>
+    <div class="pizza-strip-item"><img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/f8/93/a8/sehr-leckere-pizza-aus.jpg?w=600&h=600&s=1" alt="Pizza aus dem Holzofen" loading="lazy"></div>
+    <div class="pizza-strip-item"><img src="https://s3-media0.fl.yelpcdn.com/bphoto/dpkSKAoaerMHhGms6lFcLQ/o.jpg" alt="Super Bros Deluxe" loading="lazy"></div>
+  </div>
 
   <!-- MAP -->
   <div class="map-section">
