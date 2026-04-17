@@ -7,458 +7,263 @@
   <meta name="description" content="Super Bro's: Die beste neapolitanische Pizza in Frankfurt. Seit 2017 im Nordend, seit 2024 im Westend. 48h-Teig, Stefano Ferrara Ofen, 100% aus Leidenschaft.">
   <meta property="og:title" content="Super Bro's — Neapolitanische Pizza · Frankfurt">
   <meta property="og:description" content="Neapel. Kalabrien. Frankfurt. Die Pizza-Story einer Familie — seit 2017 im Nordend.">
-  <meta property="og:image" content="https://static.wixstatic.com/media/f21c7c_4632dd6af43d4229a34b1f919e9bf1b5~mv2.png/v1/fill/w_2500,h_1875,al_c/f21c7c_4632dd6af43d4229a34b1f919e9bf1b5~mv2.png">
+  <meta property="og:image" content="https://s3-media0.fl.yelpcdn.com/bphoto/_zfZKrCD3xjU_gt2dsgd3Q/o.jpg">
   <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/super-bros/">
   <meta property="og:type" content="website">
   <link rel="icon" href="https://static.wixstatic.com/media/f21c7c_31155db5f1fe45c4bc3a117aace2ad2d~mv2.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lenis@latest/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
-
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --rosa:        #E8547A;
-      --rosa-light:  #F2A0B4;
-      --rosa-dark:   #C43860;
-      --cream:       #FDF8F2;
-      --cream-2:     #F5EDE2;
-      --charcoal:    #1A1614;
-      --charcoal-2:  #3D3330;
-      --mid:         #8C7B74;
-      --white:       #FFFFFF;
-      --f-display:   'Archivo Black', sans-serif;
-      --f-body:      'Archivo', sans-serif;
-      --f-fine:      'Inter', sans-serif;
-      --f-italic:    'Playfair Display', serif;
+      --rosa: #E8547A; --rosa-light: #F2A0B4; --rosa-dark: #C43860;
+      --cream: #FDF8F2; --cream-2: #F5EDE2;
+      --charcoal: #1A1614; --charcoal-2: #3D3330; --mid: #8C7B74;
+      --f-display: 'Archivo Black', sans-serif;
+      --f-body: 'Archivo', sans-serif;
+      --f-fine: 'Inter', sans-serif;
+      --f-italic: 'Playfair Display', serif;
     }
-
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--f-fine);
-      background: var(--cream);
-      color: var(--charcoal);
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { font-family: var(--f-fine); background: var(--charcoal); color: var(--cream); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
 
-    /* ── GRAIN ── */
-    .grain {
-      position: fixed; inset: 0; z-index: 9998; pointer-events: none;
-      opacity: .035; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>");
-      animation: grain .4s steps(1) infinite;
-    }
-    @keyframes grain {
-      0%  { background-position: 0 0; }
-      25% { background-position: -50px -25px; }
-      50% { background-position: -100px -10px; }
-      75% { background-position: -30px -60px; }
-    }
+    .grain { position: fixed; inset: 0; z-index: 9998; pointer-events: none; opacity: .032; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/></filter><rect width='200' height='200' filter='url(%23g)'/></svg>"); animation: grain .4s steps(1) infinite; }
+    @keyframes grain { 0%{background-position:0 0} 25%{background-position:-50px -25px} 50%{background-position:-100px -10px} 75%{background-position:-30px -60px} }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 24px; height: 64px;
-      transition: background .3s ease, box-shadow .3s ease;
-    }
-    nav.scrolled {
-      background: rgba(253,248,242,0.94);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 1px 0 rgba(26,22,20,.08);
-    }
-    .nav-logo img { height: 36px; width: auto; }
-    .nav-links {
-      display: none;
-      gap: 32px;
-      font-family: var(--f-body);
-      font-weight: 500;
-      font-size: .875rem;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-    }
-    .nav-links a { color: var(--charcoal); transition: color .2s; }
-    .nav-links a:hover { color: var(--rosa); }
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 64px; transition: background .35s ease, box-shadow .35s ease; }
+    nav.scrolled { background: rgba(26,22,20,.96); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(255,255,255,.06); }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: none; gap: 32px; font-family: var(--f-body); font-weight: 500; font-size: .875rem; letter-spacing: .04em; text-transform: uppercase; }
+    .nav-links a { color: rgba(255,255,255,.6); transition: color .2s; }
+    .nav-links a:hover { color: white; }
     .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-icons { display: flex; gap: 12px; align-items: center; }
-    .nav-icons a { display: flex; opacity: .7; transition: opacity .2s; }
+    .nav-icons { display: flex; gap: 12px; }
+    .nav-icons a { display: flex; opacity: .6; transition: opacity .2s; }
     .nav-icons a:hover { opacity: 1; }
-    .nav-icons svg { width: 20px; height: 20px; fill: var(--charcoal); }
-    nav.scrolled .nav-icons svg { fill: var(--charcoal); }
-    nav:not(.scrolled) .nav-icons svg { fill: var(--white); }
-    .btn-wolt {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--rosa); color: var(--white);
-      font-family: var(--f-body); font-weight: 600;
-      font-size: .8rem; letter-spacing: .05em; text-transform: uppercase;
-      padding: 10px 18px; border-radius: 100px;
-      transition: background .2s, transform .2s;
-      white-space: nowrap;
-    }
+    .nav-icons svg { width: 20px; height: 20px; fill: white; }
+    .btn-wolt { display: inline-flex; align-items: center; gap: 6px; background: var(--rosa); color: white; font-family: var(--f-body); font-weight: 600; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; padding: 10px 18px; border-radius: 100px; transition: background .2s, transform .2s; white-space: nowrap; }
     .btn-wolt:hover { background: var(--rosa-dark); transform: translateY(-1px); }
-    .hamburger {
-      display: flex; flex-direction: column; gap: 5px;
-      cursor: pointer; padding: 4px; background: none; border: none;
-    }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--white); border-radius: 2px;
-      transition: background .3s;
-    }
-    nav.scrolled .hamburger span { background: var(--charcoal); }
-
-    .mobile-menu {
-      position: fixed; inset: 0; z-index: 999;
-      background: var(--charcoal);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 32px;
-      transform: translateX(100%); transition: transform .4s cubic-bezier(.76,0,.24,1);
-    }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 2px; background: white; border-radius: 2px; }
+    .mobile-menu { position: fixed; inset: 0; z-index: 999; background: var(--charcoal); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px; transform: translateX(100%); transition: transform .4s cubic-bezier(.76,0,.24,1); }
     .mobile-menu.open { transform: translateX(0); }
-    .mobile-menu a {
-      font-family: var(--f-display); font-size: 2.5rem; color: var(--white);
-      letter-spacing: -.02em; transition: color .2s;
-    }
+    .mobile-menu a { font-family: var(--f-display); font-size: 2.5rem; color: white; letter-spacing: -.02em; transition: color .2s; }
     .mobile-menu a:hover { color: var(--rosa); }
-    .mobile-menu-close {
-      position: absolute; top: 20px; right: 24px;
-      font-size: 2rem; color: var(--white); cursor: pointer;
-      background: none; border: none; line-height: 1;
-    }
-    .mobile-menu .btn-wolt { margin-top: 8px; }
+    .mobile-menu-close { position: absolute; top: 20px; right: 24px; font-size: 2rem; color: white; cursor: pointer; background: none; border: none; }
+    @media (min-width: 768px) { nav { padding: 0 48px; } .nav-links { display: flex; } .hamburger { display: none; } }
 
-    @media (min-width: 768px) {
-      nav { padding: 0 48px; }
-      .nav-links { display: flex; }
-      .hamburger { display: none; }
-      .nav-logo img { height: 40px; }
-    }
-
-    /* ── HERO ── */
+    /* HERO — split: text left, pizza right */
     .hero {
-      position: relative; min-height: 100svh;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 100px 24px 60px;
+      min-height: 100svh; display: grid;
+      grid-template-columns: 1fr;
       background: var(--charcoal);
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-    .hero-bg {
-      position: absolute; inset: 0;
-      background-image: url('https://static.wixstatic.com/media/f21c7c_4632dd6af43d4229a34b1f919e9bf1b5~mv2.png/v1/fill/w_2500,h_1875,al_c/f21c7c_4632dd6af43d4229a34b1f919e9bf1b5~mv2.png');
-      background-size: cover; background-position: center;
-      opacity: .18; transform: scale(1.05);
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 120px 24px 64px; position: relative; z-index: 2;
     }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(26,22,20,.3) 0%, rgba(26,22,20,.8) 100%);
+    .hero-right {
+      display: none;
+      position: relative; overflow: hidden;
     }
-    .hero-wordmark {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      font-family: var(--f-display); font-size: clamp(120px, 30vw, 320px);
-      color: var(--rosa); opacity: .04; letter-spacing: -.04em; white-space: nowrap;
-      pointer-events: none; user-select: none; line-height: 1;
-    }
-    .hero-content { position: relative; z-index: 2; max-width: 720px; }
-    .hero-logo {
-      width: clamp(60px, 16vw, 100px); margin: 0 auto 28px;
-      opacity: 0; transform: translateY(20px);
-    }
-    .hero-logo.visible { opacity: 1; transform: translateY(0); transition: all .8s ease; }
-    .hero-tag {
-      font-family: var(--f-body); font-size: .75rem; font-weight: 600;
-      letter-spacing: .2em; text-transform: uppercase;
-      color: var(--rosa); margin-bottom: 20px;
-      opacity: 0; transform: translateY(16px);
-    }
-    .hero-tag.visible { opacity: 1; transform: none; transition: all .7s .15s ease; }
-    .hero-claim {
-      font-family: var(--f-display);
-      font-size: clamp(3rem, 10vw, 7.5rem);
-      color: var(--white); line-height: .92;
-      letter-spacing: -.03em; margin-bottom: 24px;
-      opacity: 0; transform: translateY(24px);
-    }
-    .hero-claim.visible { opacity: 1; transform: none; transition: all .8s .25s ease; }
-    .hero-claim span { color: var(--rosa); }
-    .hero-sub {
-      font-family: var(--f-italic); font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: rgba(255,255,255,.7); margin-bottom: 40px;
-      opacity: 0; transform: translateY(16px);
-    }
-    .hero-sub.visible { opacity: 1; transform: none; transition: all .7s .4s ease; }
-    .hero-ctas {
-      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
-      opacity: 0; transform: translateY(16px);
-    }
-    .hero-ctas.visible { opacity: 1; transform: none; transition: all .7s .55s ease; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--rosa); color: var(--white);
-      font-family: var(--f-body); font-weight: 700;
-      font-size: .9rem; letter-spacing: .06em; text-transform: uppercase;
-      padding: 16px 32px; border-radius: 100px;
-      transition: background .2s, transform .2s;
-    }
+    .hero-right img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: brightness(.85); }
+    .hero-right::after { content: ''; position: absolute; left: 0; inset-block: 0; width: 120px; background: linear-gradient(to right, var(--charcoal), transparent); z-index: 1; }
+    .hero-tag { font-family: var(--f-body); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--rosa); margin-bottom: 20px; opacity: 0; transform: translateY(12px); }
+    .hero-tag.in { opacity: 1; transform: none; transition: all .7s .1s ease; }
+    .hero-title { font-family: var(--f-display); font-size: clamp(3.2rem, 11vw, 8rem); color: white; line-height: .9; letter-spacing: -.04em; margin-bottom: 28px; opacity: 0; transform: translateY(20px); }
+    .hero-title.in { opacity: 1; transform: none; transition: all .8s .2s ease; }
+    .hero-title span { color: var(--rosa); }
+    .hero-sub { font-family: var(--f-italic); font-size: clamp(1rem, 2.2vw, 1.25rem); color: rgba(255,255,255,.55); margin-bottom: 40px; max-width: 400px; opacity: 0; transform: translateY(12px); }
+    .hero-sub.in { opacity: 1; transform: none; transition: all .7s .35s ease; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; opacity: 0; transform: translateY(12px); }
+    .hero-ctas.in { opacity: 1; transform: none; transition: all .7s .5s ease; }
+    .btn-primary { display: inline-flex; align-items: center; background: var(--rosa); color: white; font-family: var(--f-body); font-weight: 700; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; padding: 16px 32px; border-radius: 100px; transition: background .2s, transform .2s; }
     .btn-primary:hover { background: var(--rosa-dark); transform: translateY(-2px); }
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: transparent; color: var(--white);
-      border: 1.5px solid rgba(255,255,255,.4);
-      font-family: var(--f-body); font-weight: 600;
-      font-size: .9rem; letter-spacing: .06em; text-transform: uppercase;
-      padding: 16px 32px; border-radius: 100px;
-      transition: border-color .2s, background .2s, transform .2s;
-    }
-    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.08); transform: translateY(-2px); }
-    .hero-scroll {
-      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: rgba(255,255,255,.4); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase;
-    }
-    .hero-scroll-line {
-      width: 1px; height: 40px; background: rgba(255,255,255,.2);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
-
-    /* ── SECTION UTILS ── */
-    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-    .section-label {
-      font-family: var(--f-body); font-size: .7rem; font-weight: 600;
-      letter-spacing: .2em; text-transform: uppercase; color: var(--rosa);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-family: var(--f-display); line-height: .94;
-      letter-spacing: -.03em;
-    }
-
-    /* ── STORY TEASER ── */
-    .story-section {
-      padding: 80px 24px;
-      background: var(--cream-2);
-    }
-    .story-inner {
-      max-width: 1140px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr; gap: 48px;
-    }
-    .story-text { display: flex; flex-direction: column; justify-content: center; }
-    .story-title { font-size: clamp(2rem, 6vw, 3.8rem); color: var(--charcoal); margin-bottom: 20px; }
-    .story-italic {
-      font-family: var(--f-italic); font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-      color: var(--charcoal-2); line-height: 1.7; margin-bottom: 28px;
-    }
-    .btn-link {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--f-body); font-weight: 600;
-      font-size: .875rem; letter-spacing: .06em; text-transform: uppercase;
-      color: var(--rosa); border-bottom: 1.5px solid var(--rosa);
-      padding-bottom: 2px; width: fit-content;
-      transition: gap .2s;
-    }
-    .btn-link:hover { gap: 14px; }
-    .story-img {
-      border-radius: 16px; overflow: hidden;
-      aspect-ratio: 4/3;
-    }
-    .story-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform .6s ease;
-    }
-    .story-img:hover img { transform: scale(1.04); }
+    .btn-ghost { display: inline-flex; align-items: center; background: transparent; color: rgba(255,255,255,.7); border: 1.5px solid rgba(255,255,255,.25); font-family: var(--f-body); font-weight: 600; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; padding: 16px 32px; border-radius: 100px; transition: all .2s; }
+    .btn-ghost:hover { border-color: white; color: white; background: rgba(255,255,255,.06); transform: translateY(-2px); }
+    .hero-scroll { position: absolute; bottom: 28px; left: 24px; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.25); font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; }
+    .hero-scroll-line { width: 40px; height: 1px; background: rgba(255,255,255,.2); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:.2} 50%{opacity:.7} }
 
     @media (min-width: 900px) {
-      .story-section { padding: 120px 48px; }
-      .story-inner { grid-template-columns: 1fr 1fr; align-items: center; }
+      .hero { grid-template-columns: 1fr 1fr; }
+      .hero-left { padding: 140px 60px 80px; }
+      .hero-right { display: block; }
+    }
+    @media (min-width: 1200px) {
+      .hero { grid-template-columns: 1fr 1.1fr; }
+      .hero-left { padding: 140px 80px 80px; }
     }
 
-    /* ── LOCATIONS ── */
-    .locations-section {
-      padding: 80px 24px;
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* FOTO-MOSAIC */
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
       background: var(--charcoal);
     }
+    .mosaic-item { overflow: hidden; aspect-ratio: 1/1; position: relative; }
+    .mosaic-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .mosaic-item:hover img { transform: scale(1.06); }
+    .mosaic-item.wide { grid-column: span 2; aspect-ratio: 2/1; }
+    .mosaic-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 16px 14px;
+      background: linear-gradient(to top, rgba(26,22,20,.75) 0%, transparent 100%);
+      font-family: var(--f-body); font-size: .75rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.8);
+    }
+    @media (min-width: 768px) {
+      .mosaic { grid-template-columns: repeat(4, 1fr); }
+      .mosaic-item { aspect-ratio: 3/4; }
+      .mosaic-item.wide { grid-column: span 2; aspect-ratio: 3/2; }
+    }
+
+    /* STATEMENT */
+    .statement {
+      padding: 80px 24px; background: var(--rosa); text-align: center;
+    }
+    .statement-text {
+      font-family: var(--f-display); font-size: clamp(1.8rem, 5vw, 3.5rem);
+      color: white; letter-spacing: -.03em; line-height: 1.05; max-width: 800px; margin: 0 auto 16px;
+    }
+    .statement-sub { font-family: var(--f-italic); font-size: 1.1rem; color: rgba(255,255,255,.75); }
+    @media (min-width: 768px) { .statement { padding: 100px 48px; } }
+
+    /* STORY */
+    .story-section { padding: 80px 24px; background: var(--charcoal-2); }
+    .story-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 48px; }
+    .story-text { display: flex; flex-direction: column; justify-content: center; }
+    .section-label { font-family: var(--f-body); font-size: .7rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--rosa-light); margin-bottom: 12px; }
+    .section-title { font-family: var(--f-display); letter-spacing: -.03em; line-height: .94; }
+    .story-title { font-size: clamp(1.8rem, 5vw, 3.2rem); color: white; margin-bottom: 20px; }
+    .story-italic { font-family: var(--f-italic); font-size: clamp(1rem, 2.2vw, 1.2rem); color: rgba(255,255,255,.65); line-height: 1.75; margin-bottom: 24px; }
+    .story-body { font-size: .95rem; color: rgba(255,255,255,.45); line-height: 1.75; margin-bottom: 28px; }
+    .btn-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-body); font-weight: 600; font-size: .875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--rosa-light); border-bottom: 1.5px solid var(--rosa-light); padding-bottom: 2px; width: fit-content; transition: gap .2s; }
+    .btn-link:hover { gap: 14px; }
+    .story-img { border-radius: 12px; overflow: hidden; aspect-ratio: 4/3; }
+    .story-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .story-img:hover img { transform: scale(1.04); }
+    @media (min-width: 900px) { .story-section { padding: 120px 48px; } .story-inner { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+    /* PIZZA BANNER — full-bleed single photo */
+    .pizza-banner {
+      height: clamp(300px, 50vw, 600px);
+      position: relative; overflow: hidden;
+    }
+    .pizza-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; }
+    .pizza-banner-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(26,22,20,.75) 0%, rgba(26,22,20,.2) 60%);
+      display: flex; align-items: center; padding: 0 32px;
+    }
+    .pizza-banner-text { max-width: 480px; }
+    .pizza-banner-text h2 { font-family: var(--f-display); font-size: clamp(2rem, 6vw, 4rem); color: white; letter-spacing: -.03em; line-height: .94; margin-bottom: 12px; }
+    .pizza-banner-text p { font-family: var(--f-italic); font-size: 1.1rem; color: rgba(255,255,255,.65); }
+    @media (min-width: 768px) { .pizza-banner-overlay { padding: 0 80px; } }
+
+    /* LOCATIONS */
+    .locations-section { padding: 80px 24px; background: var(--charcoal); }
     .locations-inner { max-width: 1140px; margin: 0 auto; }
-    .locations-head {
-      text-align: center; margin-bottom: 56px;
-    }
+    .locations-head { text-align: center; margin-bottom: 48px; }
     .locations-head .section-label { color: var(--rosa-light); }
-    .locations-head .section-title {
-      font-size: clamp(2rem, 6vw, 3.8rem);
-      color: var(--white);
-    }
-    .locations-grid {
-      display: grid; grid-template-columns: 1fr; gap: 24px;
-    }
-    .loc-card {
-      background: var(--charcoal-2); border-radius: 20px;
-      padding: 40px 32px; position: relative; overflow: hidden;
-      border: 1px solid rgba(255,255,255,.06);
-      transition: transform .3s ease, border-color .3s;
-    }
+    .locations-head .section-title { font-size: clamp(2rem, 5vw, 3.2rem); color: white; }
+    .locations-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    .loc-card { border-radius: 16px; overflow: hidden; position: relative; border: 1px solid rgba(255,255,255,.06); transition: transform .3s, border-color .3s; }
     .loc-card:hover { transform: translateY(-4px); border-color: rgba(232,84,122,.3); }
-    .loc-badge {
-      display: inline-block; font-family: var(--f-body); font-size: .7rem;
-      font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
-      background: var(--rosa); color: var(--white);
-      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
-    }
-    .loc-card.secondary .loc-badge { background: rgba(232,84,122,.15); color: var(--rosa-light); }
-    .loc-name {
-      font-family: var(--f-display); font-size: clamp(1.8rem, 4vw, 2.6rem);
-      color: var(--white); line-height: 1; letter-spacing: -.03em; margin-bottom: 8px;
-    }
-    .loc-since {
-      font-family: var(--f-italic); font-size: 1rem; color: var(--rosa-light);
-      margin-bottom: 20px;
-    }
-    .loc-addr {
-      font-family: var(--f-fine); font-size: .9rem; color: rgba(255,255,255,.55);
-      line-height: 1.6; margin-bottom: 28px;
-    }
+    .loc-card-photo { aspect-ratio: 16/9; overflow: hidden; }
+    .loc-card-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+    .loc-card:hover .loc-card-photo img { transform: scale(1.06); }
+    .loc-card-body { padding: 28px 24px; background: var(--charcoal-2); }
+    .loc-badge { display: inline-block; font-family: var(--f-body); font-size: .65rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; background: var(--rosa); color: white; padding: 4px 12px; border-radius: 100px; margin-bottom: 14px; }
+    .loc-card.secondary .loc-badge { background: rgba(232,84,122,.15); color: var(--rosa-light); border: 1px solid rgba(232,84,122,.2); }
+    .loc-name { font-family: var(--f-display); font-size: clamp(1.6rem, 4vw, 2.2rem); color: white; letter-spacing: -.03em; line-height: 1; margin-bottom: 6px; }
+    .loc-since { font-family: var(--f-italic); font-size: .95rem; color: var(--rosa-light); margin-bottom: 14px; }
+    .loc-addr { font-family: var(--f-fine); font-size: .875rem; color: rgba(255,255,255,.45); line-height: 1.65; margin-bottom: 22px; }
     .loc-addr a { color: inherit; }
     .loc-ctas { display: flex; flex-wrap: wrap; gap: 10px; }
-    .btn-loc {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: var(--rosa); color: var(--white);
-      font-family: var(--f-body); font-weight: 600;
-      font-size: .8rem; letter-spacing: .05em; text-transform: uppercase;
-      padding: 10px 20px; border-radius: 100px;
-      transition: background .2s, transform .2s;
-    }
+    .btn-loc { display: inline-flex; align-items: center; gap: 6px; background: var(--rosa); color: white; font-family: var(--f-body); font-weight: 600; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; padding: 10px 20px; border-radius: 100px; transition: background .2s, transform .2s; }
     .btn-loc:hover { background: var(--rosa-dark); transform: translateY(-1px); }
-    .btn-loc.outline {
-      background: transparent; border: 1.5px solid rgba(255,255,255,.2);
-      color: rgba(255,255,255,.7);
-    }
-    .btn-loc.outline:hover { border-color: var(--white); color: var(--white); background: rgba(255,255,255,.06); }
+    .btn-loc.outline { background: transparent; border: 1.5px solid rgba(255,255,255,.18); color: rgba(255,255,255,.6); }
+    .btn-loc.outline:hover { border-color: white; color: white; background: rgba(255,255,255,.06); }
+    @media (min-width: 768px) { .locations-section { padding: 120px 48px; } .locations-grid { grid-template-columns: 1fr 1fr; } }
 
-    @media (min-width: 768px) {
-      .locations-section { padding: 120px 48px; }
-      .locations-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* ── REVIEWS ── */
+    /* REVIEWS */
     .reviews-section { padding: 80px 24px; background: var(--cream); }
     .reviews-inner { max-width: 1140px; margin: 0 auto; }
     .reviews-head { text-align: center; margin-bottom: 16px; }
-    .reviews-head .section-title { font-size: clamp(2rem, 5vw, 3.2rem); color: var(--charcoal); }
-    .google-rating {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      margin-bottom: 56px;
-    }
+    .reviews-head .section-title { font-size: clamp(2rem, 5vw, 3rem); color: var(--charcoal); }
+    .reviews-head .section-label { color: var(--rosa); }
+    .google-rating { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 48px; }
     .rating-stars { display: flex; gap: 3px; }
     .rating-stars svg { width: 22px; height: 22px; fill: var(--rosa); }
-    .rating-num {
-      font-family: var(--f-display); font-size: 1.6rem; color: var(--charcoal);
-    }
-    .rating-count {
-      font-size: .85rem; color: var(--mid); font-family: var(--f-fine);
-    }
-    .reviews-grid {
-      display: grid; grid-template-columns: 1fr; gap: 20px;
-    }
-    .review-card {
-      background: var(--cream-2); border-radius: 16px; padding: 28px 24px;
-      border: 1px solid rgba(26,22,20,.06);
-    }
-    .review-quote {
-      font-family: var(--f-italic); font-size: 1.05rem; color: var(--charcoal-2);
-      line-height: 1.65; margin-bottom: 20px;
-    }
+    .rating-num { font-family: var(--f-display); font-size: 1.6rem; color: var(--charcoal); }
+    .rating-count { font-size: .85rem; color: var(--mid); }
+    .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    .review-card { background: var(--cream-2); border-radius: 16px; padding: 28px 24px; border: 1px solid rgba(26,22,20,.06); }
+    .review-quote { font-family: var(--f-italic); font-size: 1.05rem; color: var(--charcoal-2); line-height: 1.65; margin-bottom: 18px; }
     .review-quote::before { content: '\201C'; color: var(--rosa); font-size: 1.8rem; line-height: 0; vertical-align: -0.35em; margin-right: 3px; }
-    .review-author {
-      font-family: var(--f-body); font-size: .8rem; font-weight: 600;
-      color: var(--mid); letter-spacing: .05em; text-transform: uppercase;
-    }
-    @media (min-width: 900px) {
-      .reviews-section { padding: 120px 48px; }
-      .reviews-grid { grid-template-columns: repeat(3, 1fr); }
-    }
+    .review-author { font-family: var(--f-body); font-size: .75rem; font-weight: 600; color: var(--mid); letter-spacing: .05em; text-transform: uppercase; }
+    @media (min-width: 768px) { .reviews-section { padding: 120px 48px; } .reviews-grid { grid-template-columns: repeat(3, 1fr); } }
 
-    /* ── WOLT CTA ── */
-    .wolt-section {
-      background: var(--rosa); padding: 80px 24px; text-align: center;
+    /* PIZZA CLOSE-UP — dark feature */
+    .pizza-feature {
+      display: grid; grid-template-columns: 1fr; background: var(--charcoal);
     }
-    .wolt-title {
-      font-family: var(--f-display);
-      font-size: clamp(1.8rem, 5vw, 3.2rem);
-      color: var(--white); letter-spacing: -.03em; line-height: 1.05;
-      margin-bottom: 12px;
-    }
-    .wolt-sub {
-      font-family: var(--f-italic); font-size: 1.1rem;
-      color: rgba(255,255,255,.75); margin-bottom: 36px;
-    }
+    .pizza-feature-photo { aspect-ratio: 4/3; overflow: hidden; }
+    .pizza-feature-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .pizza-feature-text { padding: 60px 24px; display: flex; flex-direction: column; justify-content: center; }
+    .pizza-feature-text .section-label { color: var(--rosa-light); }
+    .pizza-feature-text h2 { font-family: var(--f-display); font-size: clamp(1.8rem, 4vw, 3rem); color: white; letter-spacing: -.03em; line-height: .95; margin: 12px 0 20px; }
+    .pizza-feature-text p { font-family: var(--f-fine); font-size: .95rem; color: rgba(255,255,255,.5); line-height: 1.75; margin-bottom: 16px; }
+    .pizza-feature-text .stat { display: inline-block; font-family: var(--f-display); font-size: 2.5rem; color: var(--rosa); letter-spacing: -.04em; line-height: 1; margin-right: 12px; }
+    .pizza-feature-text .stat-label { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.35); }
+    .stats-row { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+    @media (min-width: 900px) { .pizza-feature { grid-template-columns: 1fr 1fr; } .pizza-feature-photo { aspect-ratio: auto; } .pizza-feature-text { padding: 80px 60px; } }
+
+    /* WOLT */
+    .wolt-section { background: var(--rosa); padding: 80px 24px; text-align: center; }
+    .wolt-title { font-family: var(--f-display); font-size: clamp(1.8rem, 5vw, 3.2rem); color: white; letter-spacing: -.03em; line-height: 1.05; margin-bottom: 12px; }
+    .wolt-sub { font-family: var(--f-italic); font-size: 1.1rem; color: rgba(255,255,255,.7); margin-bottom: 36px; }
     .wolt-btns { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
-    .btn-wolt-loc {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--white); color: var(--rosa-dark);
-      font-family: var(--f-body); font-weight: 700;
-      font-size: .875rem; letter-spacing: .05em; text-transform: uppercase;
-      padding: 14px 28px; border-radius: 100px;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .btn-wolt-loc:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+    .btn-wolt-loc { display: inline-flex; align-items: center; gap: 8px; background: white; color: var(--rosa-dark); font-family: var(--f-body); font-weight: 700; font-size: .875rem; letter-spacing: .05em; text-transform: uppercase; padding: 14px 28px; border-radius: 100px; transition: transform .2s, box-shadow .2s; }
+    .btn-wolt-loc:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.15); }
+    @media (min-width: 768px) { .wolt-section { padding: 100px 48px; } }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--charcoal); color: rgba(255,255,255,.5);
-      padding: 60px 24px 32px;
-      font-family: var(--f-fine); font-size: .875rem;
-    }
-    .footer-inner {
-      max-width: 1140px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr; gap: 40px;
-    }
-    .footer-logo img { height: 32px; margin-bottom: 16px; opacity: .6; }
-    .footer-tagline {
-      font-family: var(--f-italic); font-size: 1rem;
-      color: rgba(255,255,255,.35); margin-bottom: 24px;
-    }
+    /* FOOTER */
+    footer { background: var(--charcoal); color: rgba(255,255,255,.45); padding: 60px 24px 32px; font-family: var(--f-fine); font-size: .875rem; }
+    .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; }
+    .footer-logo img { height: 32px; margin-bottom: 16px; opacity: .55; }
+    .footer-tagline { font-family: var(--f-italic); font-size: 1rem; color: rgba(255,255,255,.3); margin-bottom: 24px; }
     .footer-social { display: flex; gap: 14px; }
-    .footer-social a {
-      display: flex; width: 36px; height: 36px; align-items: center; justify-content: center;
-      border: 1px solid rgba(255,255,255,.12); border-radius: 50%;
-      transition: border-color .2s, background .2s;
-    }
+    .footer-social a { display: flex; width: 36px; height: 36px; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.1); border-radius: 50%; transition: border-color .2s, background .2s; }
     .footer-social a:hover { border-color: var(--rosa); background: rgba(232,84,122,.1); }
-    .footer-social svg { width: 16px; height: 16px; fill: rgba(255,255,255,.6); }
-    .footer-location h4 {
-      font-family: var(--f-body); font-size: .7rem; font-weight: 700;
-      letter-spacing: .16em; text-transform: uppercase;
-      color: var(--rosa-light); margin-bottom: 10px;
-    }
-    .footer-location p { line-height: 1.8; color: rgba(255,255,255,.45); }
+    .footer-social svg { width: 16px; height: 16px; fill: rgba(255,255,255,.55); }
+    .footer-location h4 { font-family: var(--f-body); font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--rosa-light); margin-bottom: 10px; }
+    .footer-location p { line-height: 1.8; color: rgba(255,255,255,.4); }
     .footer-location a { color: var(--rosa-light); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.06);
-      margin-top: 40px; padding-top: 24px;
-      display: flex; flex-wrap: wrap; gap: 16px;
-      justify-content: space-between; align-items: center;
-      font-size: .75rem; color: rgba(255,255,255,.25);
-    }
-    .footer-bottom a { color: rgba(255,255,255,.35); transition: color .2s; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.05); margin-top: 40px; padding-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: .75rem; color: rgba(255,255,255,.22); }
+    .footer-bottom a { color: rgba(255,255,255,.3); transition: color .2s; }
     .footer-bottom a:hover { color: var(--rosa-light); }
-    @media (min-width: 768px) {
-      footer { padding: 80px 48px 40px; }
-      .footer-inner { grid-template-columns: 1.5fr 1fr 1fr; }
-    }
+    @media (min-width: 768px) { footer { padding: 80px 48px 40px; } .footer-inner { grid-template-columns: 1.5fr 1fr 1fr; } }
   </style>
 </head>
 <body>
   <div class="grain"></div>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <button class="mobile-menu-close" id="menuClose" aria-label="Schließen">×</button>
+    <button class="mobile-menu-close" id="menuClose">×</button>
     <a href="index.html">Home</a>
     <a href="nordend.html">Nordend</a>
     <a href="westend.html">Westend</a>
@@ -466,11 +271,8 @@
     <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-wolt">Bestellen ↗</a>
   </div>
 
-  <!-- NAV -->
   <nav id="navbar">
-    <a href="index.html" class="nav-logo">
-      <img src="https://static.wixstatic.com/media/828df7_1501072510ba435897584519cfdfa708~mv2.png" alt="Super Bro's" loading="lazy">
-    </a>
+    <a href="index.html" class="nav-logo"><img src="https://static.wixstatic.com/media/828df7_1501072510ba435897584519cfdfa708~mv2.png" alt="Super Bro's" loading="eager"></a>
     <div class="nav-links">
       <a href="index.html">Home</a>
       <a href="nordend.html">Nordend</a>
@@ -479,44 +281,62 @@
     </div>
     <div class="nav-right">
       <div class="nav-icons">
-        <a href="https://www.instagram.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-        <a href="https://www.facebook.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        </a>
+        <a href="https://www.instagram.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+        <a href="https://www.facebook.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
       </div>
       <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-wolt">Bestellen ↗</a>
-      <button class="hamburger" id="menuToggle" aria-label="Menü öffnen">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="hamburger" id="menuToggle" aria-label="Menü"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-wordmark">PIZZA</div>
-    <div class="hero-content">
-      <img src="https://static.wixstatic.com/media/828df7_4fda75d65ba84b2b827c4447ccedaa0e~mv2.png" alt="Super Bro's" class="hero-logo" id="heroLogo" loading="eager">
+    <div class="hero-left">
       <p class="hero-tag" id="heroTag">Neapolitanische Pizza · Frankfurt</p>
-      <h1 class="hero-claim" id="heroClaim">
-        Neapel.<br><span>Kalabrien.</span><br>Frankfurt.
-      </h1>
-      <p class="hero-sub" id="heroSub">
-        <em>La vera pizza napoletana — fatto con amore, servito con orgoglio.</em>
-      </p>
+      <h1 class="hero-title" id="heroTitle">Neapel.<br><span>Kala&shy;brien.</span><br>Frank&shy;furt.</h1>
+      <p class="hero-sub" id="heroSub"><em>La vera pizza napoletana — fatto con amore, servito con orgoglio.</em></p>
       <div class="hero-ctas" id="heroCtas">
         <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-primary">Jetzt bestellen</a>
-        <a href="https://www.super-bros.de/menu" target="_blank" rel="noopener" class="btn-ghost">Zur Speisekarte</a>
+        <a href="story.html" class="btn-ghost">Unsere Geschichte</a>
       </div>
+      <div class="hero-scroll"><div class="hero-scroll-line"></div><span>Scroll</span></div>
     </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      <span>Scroll</span>
+    <div class="hero-right">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/_zfZKrCD3xjU_gt2dsgd3Q/o.jpg" alt="Burratina — Super Bro's" loading="eager">
     </div>
   </section>
+
+  <!-- FOTO-MOSAIC -->
+  <div class="mosaic">
+    <div class="mosaic-item wide reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/H_RqNEoGQa0EQRi9PNXH7A/o.jpg" alt="Margherita Antica" loading="lazy">
+      <span class="mosaic-label">Margherita Antica</span>
+    </div>
+    <div class="mosaic-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/bUizrMtksqEdta0338eM9A/o.jpg" alt="Quattro" loading="lazy">
+      <span class="mosaic-label">Quattro</span>
+    </div>
+    <div class="mosaic-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/_zfZKrCD3xjU_gt2dsgd3Q/o.jpg" alt="Burratina" loading="lazy">
+      <span class="mosaic-label">Burratina</span>
+    </div>
+    <div class="mosaic-item reveal">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/dpkSKAoaerMHhGms6lFcLQ/o.jpg" alt="Super Bros Deluxe" loading="lazy">
+      <span class="mosaic-label">Super Bros Deluxe</span>
+    </div>
+    <div class="mosaic-item reveal">
+      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/f8/93/a8/sehr-leckere-pizza-aus.jpg?w=1200&h=1200&s=1" alt="Aus dem Holzofen" loading="lazy">
+      <span class="mosaic-label">Aus dem Holzofen</span>
+    </div>
+  </div>
+
+  <!-- STATEMENT -->
+  <div class="statement">
+    <div class="reveal">
+      <p class="statement-text">Die Pizza die Frankfurt endlich verdient hat.</p>
+      <p class="statement-sub"><em>48 Stunden Teigruhe. 480 Grad. 90 Sekunden. Fertig.</em></p>
+    </div>
+  </div>
 
   <!-- STORY TEASER -->
   <section class="story-section">
@@ -524,52 +344,63 @@
       <div class="story-text reveal">
         <p class="section-label">Unsere Geschichte</p>
         <h2 class="section-title story-title">Wie ein Teig eine Familie zusammenhält.</h2>
-        <p class="story-italic">
-          Unser Urgroßopa, ursprünglich Neapolitaner, heiratete eine Kalabresin. Aus dieser Vereinigung entsprangen nicht nur viele Bambini, sondern auch etliche kulinarische Leckerbissen…
-        </p>
-        <p style="font-size:.95rem; color: var(--charcoal-2); line-height: 1.7; margin-bottom: 28px;">
-          Während die Eltern Pasta mit selbstgemachter Tomatensauce kochten, zauberte der Papanonno seine berühmt-berüchtigte Pizza. Dieses Stück Heimat haben wir uns bewahrt — und nach Frankfurt gebracht.
-        </p>
+        <p class="story-italic"><em>Unser Urgroßopa, ursprünglich Neapolitaner, heiratete eine Kalabresin. Aus dieser Vereinigung entsprangen nicht nur viele Bambini, sondern auch etliche kulinarische Leckerbissen…</em></p>
+        <p class="story-body">Während die Eltern Pasta mit selbstgemachter Tomatensauce kochten, zauberte der Papanonno seine berühmt-berüchtigte Pizza. Dieses Stück Heimat haben wir uns bewahrt — und nach Frankfurt gebracht.</p>
         <a href="story.html" class="btn-link">Lies die ganze Geschichte →</a>
       </div>
       <div class="story-img reveal">
-        <img src="https://static.wixstatic.com/media/f21c7c_0e4c1df8373d47d8904e5e50d1911a88~mv2.png/v1/crop/x_341,y_405,w_1670,h_1524/fill/w_800,h_730,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Super%20Bro's%20Hero.png" alt="Pizza von Super Bro's" loading="lazy">
+        <img src="https://s3-media0.fl.yelpcdn.com/bphoto/JrgBUzoBXXHfFU9l8Aj6aQ/o.jpg" alt="Super Bro's — das Lokal" loading="lazy">
       </div>
     </div>
   </section>
+
+  <!-- PIZZA BANNER -->
+  <div class="pizza-banner">
+    <img src="https://s3-media0.fl.yelpcdn.com/bphoto/NcBBLTTxnzZKqILFglPxrQ/o.jpg" alt="Bar & Pizzatheke — Super Bro's" loading="lazy">
+    <div class="pizza-banner-overlay">
+      <div class="pizza-banner-text reveal">
+        <h2>Bestell an der Theke. Setz dich. Warte nicht lang.</h2>
+        <p><em>Der Ofen ist offen — du kannst zuschauen wie deine Pizza entsteht.</em></p>
+      </div>
+    </div>
+  </div>
 
   <!-- LOCATIONS -->
   <section class="locations-section">
     <div class="locations-inner">
       <div class="locations-head reveal">
-        <p class="section-label">Unsere Standorte</p>
-        <h2 class="section-title">Nordend & Westend.</h2>
+        <p class="section-label">Wo wir sind</p>
+        <h2 class="section-title" style="color:white;">Nordend & Westend.</h2>
       </div>
       <div class="locations-grid">
         <div class="loc-card reveal">
-          <span class="loc-badge">Das Original</span>
-          <h3 class="loc-name">Nordend</h3>
-          <p class="loc-since"><em>since 2017</em></p>
-          <p class="loc-addr">
-            Oeder Weg 55–57<br>60318 Frankfurt am Main<br>
-            <a href="tel:+496926497580">069 – 264 975 80</a>
-          </p>
-          <div class="loc-ctas">
-            <a href="nordend.html" class="btn-loc">Zum Standort</a>
-            <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-loc outline">Bestellen ↗</a>
+          <div class="loc-card-photo">
+            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/6a/bb/cb/super-bro-s.jpg?w=900&h=500&s=1" alt="Super Bro's Nordend" loading="lazy">
+          </div>
+          <div class="loc-card-body">
+            <span class="loc-badge">Das Original</span>
+            <h3 class="loc-name">Nordend</h3>
+            <p class="loc-since"><em>since 2017</em></p>
+            <p class="loc-addr">Oeder Weg 55–57 · 60318 Frankfurt<br><a href="tel:+496926497580">069 – 264 975 80</a></p>
+            <div class="loc-ctas">
+              <a href="nordend.html" class="btn-loc">Zum Standort</a>
+              <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-loc outline">Wolt ↗</a>
+            </div>
           </div>
         </div>
         <div class="loc-card secondary reveal">
-          <span class="loc-badge">Der Neue Bruder</span>
-          <h3 class="loc-name">Westend</h3>
-          <p class="loc-since"><em>since 2024</em></p>
-          <p class="loc-addr">
-            Grüneburgweg 78 / Parkstrasse 1<br>60322 Frankfurt am Main<br>
-            <a href="tel:+496921029842">069 – 210 298 42</a>
-          </p>
-          <div class="loc-ctas">
-            <a href="westend.html" class="btn-loc">Zum Standort</a>
-            <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-loc outline">Bestellen ↗</a>
+          <div class="loc-card-photo">
+            <img src="https://s3-media0.fl.yelpcdn.com/bphoto/DkH7wvolZgC8dj0Qo_N4Pw/o.jpg" alt="Super Bro's Westend" loading="lazy">
+          </div>
+          <div class="loc-card-body">
+            <span class="loc-badge">Der Neue Bruder</span>
+            <h3 class="loc-name">Westend</h3>
+            <p class="loc-since"><em>since 2024</em></p>
+            <p class="loc-addr">Grüneburgweg 78 · 60322 Frankfurt<br><a href="tel:+496921029842">069 – 210 298 42</a></p>
+            <div class="loc-ctas">
+              <a href="westend.html" class="btn-loc">Zum Standort</a>
+              <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-loc outline">Wolt ↗</a>
+            </div>
           </div>
         </div>
       </div>
@@ -592,7 +423,7 @@
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
         <span class="rating-num">4.5</span>
-        <span class="rating-count">3.473+ Bewertungen auf Google</span>
+        <span class="rating-count">3.473+ Bewertungen · Google</span>
       </div>
       <div class="reviews-grid">
         <div class="review-card reveal">
@@ -604,21 +435,39 @@
           <p class="review-author">Wolfgang W. · Aug 2023 · ★★★★★</p>
         </div>
         <div class="review-card reveal">
-          <p class="review-quote">100% Taste, 100% Italy. Frische Zutaten, dünner Boden, knuspriger Rand — im Holzofen gebacken. Preise absolut fair für die Qualität.</p>
-          <p class="review-author">Bazoo · Apr 2024 · ★★★★★</p>
+          <p class="review-quote">Finally a pizza Frankfurt can feel proud of. The dough is perfect — chewy, springy and crusty. They use quality ingredients and many pizzas feature a large ball of buffalo mozzarella right in the middle.</p>
+          <p class="review-author">Sara C. · Yelp · ★★★★★</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WOLT CTA -->
+  <!-- PIZZA FEATURE -->
+  <div class="pizza-feature">
+    <div class="pizza-feature-photo">
+      <img src="https://s3-media0.fl.yelpcdn.com/bphoto/dpkSKAoaerMHhGms6lFcLQ/o.jpg" alt="Super Bros Deluxe — Mortadella & Pistazien" loading="lazy">
+    </div>
+    <div class="pizza-feature-text reveal">
+      <p class="section-label">Der Teig</p>
+      <h2>48 Stunden. Kein Kompromiss.</h2>
+      <p>Der Teig ist das Herzstück. Er ruht 48 Stunden bei kontrollierter Temperatur, bevor er überhaupt den Ofen sieht. Nichts ist dem Zufall überlassen.</p>
+      <p>Ein Stefano Ferrara Ofen, auf 480 Grad gebracht. Jede Pizza: 60 bis 90 Sekunden. Dann ist sie fertig — und du wirst sie nie vergessen.</p>
+      <div class="stats-row">
+        <div><span class="stat">48h</span><br><span class="stat-label">Teigruhe</span></div>
+        <div><span class="stat">480°</span><br><span class="stat-label">Ofentemperatur</span></div>
+        <div><span class="stat">90s</span><br><span class="stat-label">Backzeit</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WOLT -->
   <section class="wolt-section">
     <div class="reveal">
       <p class="wolt-title">Hunger?<br>Wir liefern die beste Pizza Frankfurts.</p>
       <p class="wolt-sub"><em>Direkt nach Hause — über Wolt.</em></p>
       <div class="wolt-btns">
-        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-wolt-loc">↗ Nordend bestellen</a>
-        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-wolt-loc">↗ Westend bestellen</a>
+        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="btn-wolt-loc">Nordend bestellen ↗</a>
+        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="btn-wolt-loc">Westend bestellen ↗</a>
       </div>
     </div>
   </section>
@@ -630,78 +479,50 @@
         <img src="https://static.wixstatic.com/media/828df7_1501072510ba435897584519cfdfa708~mv2.png" alt="Super Bro's" class="footer-logo" loading="lazy">
         <p class="footer-tagline"><em>La Passione per la Pizza.<br>Seit 2017 im Herzen von Frankfurt.</em></p>
         <div class="footer-social">
-          <a href="https://www.instagram.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://www.facebook.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
+          <a href="https://www.instagram.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/superbrosfrankfurt/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
         </div>
       </div>
       <div class="footer-location">
         <h4>Nordend · Das Original</h4>
         <p>Oeder Weg 55–57<br>60318 Frankfurt am Main<br><a href="tel:+496926497580">069 – 264 975 80</a></p>
-        <br>
-        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" style="color:var(--rosa-light); font-size:.8rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase;">Bestellen ↗</a>
+        <br><a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" style="color:var(--rosa-light);font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Bestellen ↗</a>
       </div>
       <div class="footer-location">
         <h4>Westend · Der Neue Bruder</h4>
         <p>Grüneburgweg 78<br>60322 Frankfurt am Main<br><a href="tel:+496921029842">069 – 210 298 42</a></p>
-        <br>
-        <a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" style="color:var(--rosa-light); font-size:.8rem; font-weight:600; letter-spacing:.05em; text-transform:uppercase;">Bestellen ↗</a>
+        <br><a href="https://wolt.com/en/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" style="color:var(--rosa-light);font-size:.8rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;">Bestellen ↗</a>
       </div>
     </div>
-    <div class="footer-bottom" style="max-width:1140px; margin: 0 auto;">
+    <div class="footer-bottom" style="max-width:1140px;margin:0 auto;">
       <span>© Super Bro's GbR</span>
-      <div style="display:flex; gap:24px;">
-        <a href="https://www.super-bros.de/oederweg-impressum" target="_blank">Impressum</a>
-        <a href="https://www.super-bros.de/datenschutz" target="_blank">Datenschutz</a>
-      </div>
+      <div style="display:flex;gap:24px;"><a href="https://www.super-bros.de/oederweg-impressum" target="_blank">Impressum</a><a href="https://www.super-bros.de/datenschutz" target="_blank">Datenschutz</a></div>
     </div>
   </footer>
 
   <script>
-    // Lenis smooth scroll
     const lenis = new Lenis({ autoRaf: true });
-
-    // Nav scroll behavior
     const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
+    document.getElementById('menuToggle').addEventListener('click', () => document.getElementById('mobileMenu').classList.add('open'));
+    document.getElementById('menuClose').addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'));
 
-    // Mobile menu
-    const mobileMenu = document.getElementById('mobileMenu');
-    document.getElementById('menuToggle').addEventListener('click', () => mobileMenu.classList.add('open'));
-    document.getElementById('menuClose').addEventListener('click', () => mobileMenu.classList.remove('open'));
-
-    // Hero intro animations
     setTimeout(() => {
-      document.getElementById('heroLogo').classList.add('visible');
-      document.getElementById('heroTag').classList.add('visible');
-      document.getElementById('heroClaim').classList.add('visible');
-      document.getElementById('heroSub').classList.add('visible');
-      document.getElementById('heroCtas').classList.add('visible');
-    }, 120);
+      document.getElementById('heroTag').classList.add('in');
+      document.getElementById('heroTitle').classList.add('in');
+      document.getElementById('heroSub').classList.add('in');
+      document.getElementById('heroCtas').classList.add('in');
+    }, 80);
 
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('in'), i * 80);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealEls.forEach(el => observer.observe(el));
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 70); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    // Parallax on hero bg
-    const heroBg = document.querySelector('.hero-bg');
+    const heroRight = document.querySelector('.hero-right img');
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      if (heroBg && y < window.innerHeight * 1.5) {
-        heroBg.style.transform = `scale(1.05) translateY(${y * 0.25}px)`;
+      if (heroRight && window.scrollY < window.innerHeight * 1.5) {
+        heroRight.style.transform = `translateY(${window.scrollY * 0.12}px)`;
       }
     });
   </script>
