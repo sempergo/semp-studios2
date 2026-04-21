@@ -1406,26 +1406,8 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
     }, totalDelay);
   }
 
-  /* ── Marquee scroll speed ────────────────────────────────────── */
-  function initMarquee() {
-    const inners = document.querySelectorAll('.marquee-inner, .footer-marquee-inner');
-    let lastY = 0, velocity = 0, baseDuration = 18;
-
-    window.addEventListener('scroll', () => {
-      const curY = window.scrollY;
-      const delta = Math.abs(curY - lastY);
-      velocity = delta;
-      lastY = curY;
-    }, { passive: true });
-
-    setInterval(() => {
-      velocity *= 0.85;
-      const speed = Math.max(0.4, 1 - velocity * 0.018);
-      inners.forEach(el => {
-        el.style.animationDuration = (baseDuration * speed) + 's';
-      });
-    }, 60);
-  }
+  /* ── Marquee — constant speed, no scroll coupling ───────────── */
+  function initMarquee() {}
 
   /* ── Intersection Observer for reveals ───────────────────────── */
   function initReveal() {
