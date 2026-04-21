@@ -849,7 +849,21 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   .story-act:nth-child(even) { direction: ltr; }
   .story-act-img { height: 280px; position: relative; }
   .story-act-text { padding: 48px 24px; }
-  .pizza-grid { grid-template-columns: repeat(2, 1fr); }
+  .pizza-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding-bottom: 16px;
+    scrollbar-width: none;
+  }
+  .pizza-grid::-webkit-scrollbar { display: none; }
+  .pizza-card {
+    flex: 0 0 75vw;
+    max-width: 300px;
+    scroll-snap-align: start;
+  }
   .pizza-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .pizza-header p { text-align: left; }
   #standorte { grid-template-columns: 1fr; }
@@ -867,7 +881,7 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   #quiet { padding: 120px 24px; }
 }
 @media (max-width: 600px) {
-  .pizza-grid { grid-template-columns: 1fr; }
+  .pizza-card { flex: 0 0 82vw; }
   .menu-grid { grid-template-columns: 1fr; }
   .insta-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-links { gap: 10px; }
