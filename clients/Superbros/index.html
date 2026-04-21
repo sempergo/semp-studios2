@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Bro's Frankfurt — Kalabrische Pizza. Frankfurter Herz.</title>
+
+  <meta name="description" content="Kalabrische Pizza nach Papanonnos Originalrezept. Zwei Standorte in Frankfurt: Nordend seit 2017 & Westend seit 2024. 72-Stunden-Teig. Echte Zutaten. Familie.">
+
+  <meta property="og:title" content="Super Bro's Frankfurt — Kalabrische Pizza. Frankfurter Herz.">
+  <meta property="og:description" content="Drei Brüder. Eine Sauce. Eine Geschichte, die in Kalabrien begann — und in Frankfurt nie aufgehört hat zu schmecken.">
+  <meta property="og:image" content="https://sempergo.github.io/semp-studios2/clients/Superbros/uploads/SuperBros Logo.png">
+  <meta property="og:url" content="https://sempergo.github.io/semp-studios2/clients/Superbros/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+/* ============================================================
+   SUPER BRO'S FRANKFURT — Main Stylesheet
+   ============================================================ */
+
+:root {
+  --pink:   #FFD9DD;
+  --cream:  #FFF8F0;
+  --black:  #1A1008;
+  --red:    #C8321A;
+  --sepia:  #8B6542;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+  --font-hand:    'Caveat', cursive;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: auto; }
+body {
+  font-family: var(--font-body);
+  background: var(--cream);
+  color: var(--black);
+  cursor: none;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ── Preloader ──────────────────────────────────────────────── */
+#preloader {
+  position: fixed; inset: 0; z-index: 9999;
+  background: var(--pink);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 32px;
+}
+#preloader.done { animation: preloaderOut .6s ease forwards; pointer-events: none; }
+@keyframes preloaderOut {
+  to { opacity: 0; transform: translateY(-4px); }
+}
+.box-scene {
+  width: 120px; height: 120px;
+  position: relative; perspective: 600px;
+}
+.box-base {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: var(--cream);
+  border: 3px solid var(--black);
+  border-radius: 4px 4px 8px 8px;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.pizza-inside {
+  font-size: 48px;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity .4s .5s, transform .4s .5s;
+}
+.box-lid {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 44px;
+  background: var(--pink);
+  border: 3px solid var(--black);
+  border-radius: 8px 8px 4px 4px;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  animation: lidOpen 1s ease 0.4s forwards;
+}
+@keyframes lidOpen {
+  0%   { transform: rotateX(0deg); }
+  100% { transform: rotateX(-135deg); }
+}
+.box-scene.open .pizza-inside { opacity: 1; transform: scale(1); }
+.preloader-wordmark {
+  font-family: var(--font-hand);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeUp .5s ease .8s forwards;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
+
+/* ── Custom Cursor ──────────────────────────────────────────── */
+.cursor-dot {
+  width: 14px; height: 14px;
+  background: var(--red);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform .1s;
+}
+.cursor-ring {
+  position: fixed; top: 0; left: 0;
+  width: 36px; height: 36px;
+  border: 2px solid var(--black);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none; z-index: 9997;
+  transition: transform .18s ease, width .2s, height .2s, border-color .2s;
+}
+body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
+  width: 56px; height: 56px;
+  border-color: var(--red);
+}
+
+/* ── Nav ────────────────────────────────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  padding: 24px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all .4s cubic-bezier(.4,0,.2,1);
+}
+#nav.scrolled {
+  top: 12px;
+  padding: 12px 28px;
+  background: var(--pink);
+  border: 2px solid var(--black);
+  border-radius: 999px;
+  margin: 0 auto;
+  left: 50%; transform: translateX(-50%);
+  right: auto; width: max-content;
+  box-shadow: 4px 4px 0 var(--black);
+}
+.nav-logo svg { height: 48px; width: auto; }
+#nav.scrolled .nav-logo svg { height: 36px; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+#nav.scrolled .nav-links { gap: 20px; }
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 2px; background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .25s;
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+
+/* ── Hero ───────────────────────────────────────────────────── */
+#hero {
+  min-height: 100svh;
+  background: var(--cream);
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+  padding: 120px 48px 80px;
+}
+.hero-texture {
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(200,50,26,.04) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238B6542' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: .6;
+}
+.hero-grain {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: .4;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  max-width: 1100px; width: 100%;
+  margin: 0 auto;
+}
+.hero-tag {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp .5s ease .2s forwards;
+}
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  overflow: hidden;
+}
+.hero-headline .word {
+  display: inline-block;
+  overflow: hidden;
+}
+.hero-headline .char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(110%) rotate(3deg);
+}
+.hero-headline .space { display: inline-block; width: .3em; }
+.hero-underline-word { position: relative; display: inline-block; }
+.hero-underline-svg {
+  position: absolute; bottom: -8px; left: -4px; right: -4px;
+  height: 16px; overflow: visible; pointer-events: none;
+}
+.hero-underline-path {
+  stroke: var(--red);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+}
+.hero-sub {
+  font-family: var(--font-body);
+  font-size: clamp(15px, 2vw, 18px);
+  color: var(--sepia);
+  margin-top: 28px;
+  line-height: 1.6;
+  max-width: 560px;
+  opacity: 0;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  margin-top: 48px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  background: var(--black);
+  color: var(--cream);
+  padding: 18px 36px;
+  border-radius: 4px;
+  border: 2px solid var(--black);
+  transition: background .2s, color .2s, transform .2s, box-shadow .2s;
+  opacity: 0;
+}
+.hero-cta:hover {
+  background: var(--red);
+  border-color: var(--red);
+  transform: translate(-3px,-3px);
+  box-shadow: 5px 5px 0 var(--black);
+}
+.hero-scroll-hint {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--sepia); opacity: 0; animation: fadeUp .5s ease 2s forwards;
+}
+.scroll-line {
+  width: 1px; height: 60px;
+  background: linear-gradient(to bottom, var(--sepia), transparent);
+  animation: scrollLine 1.5s ease-in-out 2s infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(.4); opacity: .3; }
+}
+
+/* ── Marquee ────────────────────────────────────────────────── */
+.marquee-section {
+  background: var(--black);
+  padding: 20px 0;
+  overflow: hidden;
+  position: relative; z-index: 2;
+}
+.marquee-track {
+  display: flex; gap: 0;
+  white-space: nowrap;
+  will-change: transform;
+}
+.marquee-inner {
+  display: inline-flex; gap: 64px;
+  padding-right: 64px;
+  animation: marqueeScroll 18s linear infinite;
+}
+@keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-inner span {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--pink);
+}
+.marquee-inner .sep {
+  color: var(--red);
+  font-size: 20px;
+}
+
+/* ── Section shared ─────────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--sepia);
+  margin-bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+}
+.section-label::before {
+  content: ''; display: inline-block;
+  width: 32px; height: 2px;
+  background: var(--red);
+}
+
+/* ── Story ──────────────────────────────────────────────────── */
+#story { background: var(--cream); }
+.story-intro {
+  padding: 120px 48px 80px;
+  max-width: 900px; margin: 0 auto;
+  text-align: center;
+}
+.story-intro h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.03em;
+}
+.story-intro h2 em {
+  font-style: normal;
+  color: var(--red);
+  font-family: var(--font-hand);
+  font-size: 1.1em;
+}
+.story-intro p {
+  margin-top: 24px;
+  font-size: 18px; line-height: 1.7;
+  color: var(--sepia);
+  text-wrap: pretty;
+}
+.story-acts { display: flex; flex-direction: column; gap: 0; }
+.story-act {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.story-act.visible { opacity: 1; transform: none; }
+.story-act:nth-child(even) { direction: rtl; }
+.story-act:nth-child(even) > * { direction: ltr; }
+.story-act-img {
+  position: relative; overflow: hidden;
+}
+.story-act-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+.story-act:hover .story-act-img img { transform: scale(1.04); }
+.story-act-text {
+  background: var(--cream);
+  padding: 80px 64px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.story-act-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .3em;
+  color: var(--red);
+  margin-bottom: 24px;
+}
+.story-act-text h3 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin-bottom: 20px;
+}
+.story-act-text p {
+  font-size: 16px; line-height: 1.75;
+  color: #5a3f2a;
+  text-wrap: pretty;
+}
+.story-quote {
+  margin-top: 28px;
+  padding-left: 20px;
+  border-left: 3px solid var(--red);
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--black);
+  line-height: 1.4;
+}
+.tools-divider {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px;
+  background: var(--cream);
+}
+.tools-divider svg { opacity: .25; }
+
+/* ── Quiet moment ───────────────────────────────────────────── */
+#quiet {
+  background: var(--cream);
+  padding: 180px 48px;
+  text-align: center;
+  position: relative;
+}
+#quiet::before {
+  content: '';
+  position: absolute; left: 10%; right: 10%; top: 0; height: 1px;
+  background: rgba(139,101,66,.2);
+}
+#quiet::after {
+  content: '';
+  position: absolute; left: 10%; right: 10%; bottom: 0; height: 1px;
+  background: rgba(139,101,66,.2);
+}
+.quiet-text {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 88px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s, transform 1s;
+}
+#quiet.visible .quiet-text { opacity: 1; transform: none; }
+.quiet-text .red-hand {
+  font-family: var(--font-hand);
+  color: var(--red);
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+/* ── Pizza section ──────────────────────────────────────────── */
+#pizza {
+  background: var(--pink);
+  padding: 120px 48px;
+}
+.pizza-header {
+  max-width: 1200px; margin: 0 auto 64px;
+  display: flex; align-items: flex-end; justify-content: space-between;
+}
+.pizza-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  max-width: 560px;
+}
+.pizza-header p {
+  font-size: 15px; line-height: 1.65;
+  color: var(--sepia);
+  max-width: 320px;
+  text-align: right;
+}
+.pizza-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.pizza-card {
+  background: var(--cream);
+  border: 2px solid var(--black);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+  position: relative;
+}
+.pizza-card:hover {
+  transform: translate(-4px,-4px);
+  box-shadow: 6px 6px 0 var(--black);
+}
+.pizza-card-img {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+.pizza-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.pizza-card:hover .pizza-card-img img {
+  transform: scale(1.06) rotate(2deg);
+}
+.pizza-glow {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 0; background: linear-gradient(to top, rgba(200,50,26,.18), transparent);
+  transition: height .3s;
+  pointer-events: none;
+}
+.pizza-card:hover .pizza-glow { height: 80px; }
+.pizza-card-info { padding: 20px; }
+.pizza-card-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+}
+.pizza-card-desc { font-size: 13px; color: var(--sepia); line-height: 1.5; }
+
+/* ── Locations split ────────────────────────────────────────── */
+#standorte {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 90vh;
+  position: relative;
+}
+#standorte::after {
+  content: '';
+  position: absolute; top: 0; left: 50%;
+  width: 2px; height: 100%;
+  background: var(--black);
+  z-index: 2;
+}
+.location {
+  position: relative; overflow: hidden;
+  transition: flex .4s ease;
+  display: flex; flex-direction: column;
+}
+.location-bg {
+  position: absolute; inset: 0;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+.location:hover .location-bg { transform: scale(1.04); }
+.location-nordend .location-bg { background: var(--cream); }
+.location-westend .location-bg { background: var(--pink); }
+.location-img {
+  position: relative;
+  height: 360px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.location-img img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.4,0,.2,1);
+}
+.location:hover .location-img img { transform: scale(1.05); }
+.location-content {
+  position: relative; z-index: 1;
+  padding: 80px 64px;
+  display: flex; flex-direction: column;
+  justify-content: flex-start; height: 100%;
+}
+.location-since {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .3em;
+  color: var(--red);
+  margin-bottom: 16px;
+}
+.location h3 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.03em;
+  margin-bottom: 16px;
+}
+.location-address {
+  font-size: 15px; line-height: 1.6;
+  color: var(--sepia);
+  margin-bottom: 32px;
+}
+.location-address a { color: var(--black); font-weight: 600; }
+.location-address a:hover { color: var(--red); }
+.location-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+}
+.location-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 2px solid var(--black);
+  padding: 14px 28px; border-radius: 4px;
+  background: transparent;
+  transition: background .2s, color .2s;
+}
+.location-nordend .location-cta:hover { background: var(--black); color: var(--cream); }
+.location-westend .location-cta:hover { background: var(--black); color: var(--pink); }
+
+/* ── Menu Teaser ────────────────────────────────────────────── */
+#speisekarte {
+  background: var(--black);
+  padding: 120px 48px;
+  color: var(--cream);
+}
+.menu-header {
+  max-width: 1200px; margin: 0 auto 64px;
+}
+.menu-header .section-label { color: var(--pink); }
+.menu-header .section-label::before { background: var(--pink); }
+.menu-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
+.menu-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 2px solid #333;
+}
+.menu-item {
+  padding: 28px 32px;
+  border: 1px solid #333;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px;
+  transition: background .2s;
+  position: relative; overflow: hidden;
+}
+.menu-item::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+  z-index: 0;
+}
+.menu-item:hover::before { transform: scaleX(1); }
+.menu-item-info, .menu-item-price { position: relative; z-index: 1; }
+.menu-item-name {
+  font-family: var(--font-display);
+  font-size: 16px; font-weight: 800;
+  letter-spacing: -.01em;
+  margin-bottom: 6px;
+}
+.menu-item-desc { font-size: 13px; color: #999; line-height: 1.5; }
+.menu-item:hover .menu-item-desc { color: rgba(255,255,255,.75); }
+.menu-item-price {
+  font-family: var(--font-display);
+  font-size: 20px; font-weight: 800;
+  color: var(--red); white-space: nowrap;
+  flex-shrink: 0;
+  transition: color .2s;
+}
+.menu-item:hover .menu-item-price { color: var(--cream); }
+.menu-cta-wrap {
+  max-width: 1200px; margin: 40px auto 0;
+  text-align: center;
+}
+.menu-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-display);
+  font-size: 15px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 2px solid var(--pink);
+  color: var(--pink);
+  padding: 16px 36px; border-radius: 4px;
+  transition: background .2s, color .2s;
+}
+.menu-cta:hover { background: var(--pink); color: var(--black); }
+
+/* ── Instagram ──────────────────────────────────────────────── */
+#instagram {
+  background: var(--cream);
+  padding: 120px 48px;
+}
+.insta-header {
+  max-width: 1200px; margin: 0 auto 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.insta-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -.03em;
+}
+.insta-handle {
+  font-family: var(--font-body);
+  font-size: 14px; font-weight: 600;
+  color: var(--sepia);
+  border: 2px solid currentColor;
+  padding: 10px 20px; border-radius: 999px;
+  transition: background .2s, color .2s;
+}
+.insta-handle:hover { background: var(--black); color: var(--cream); border-color: var(--black); }
+.insta-grid {
+  max-width: 1200px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.insta-cell {
+  aspect-ratio: 1;
+  overflow: hidden; position: relative;
+}
+.insta-cell img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.insta-cell:hover img { transform: scale(1.08); }
+.insta-cell:first-child {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.insta-overlay {
+  position: absolute; inset: 0;
+  background: rgba(26,16,8,.5);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .3s;
+  font-size: 28px; color: #fff;
+  pointer-events: none;
+}
+.insta-cell:hover .insta-overlay { opacity: 1; }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+#footer {
+  background: var(--pink);
+  border-top: 3px solid var(--black);
+}
+.footer-marquee-wrap {
+  border-bottom: 2px solid var(--black);
+  overflow: hidden;
+}
+.footer-marquee {
+  display: flex; white-space: nowrap;
+}
+.footer-marquee-inner {
+  display: inline-flex; gap: 64px;
+  padding-right: 64px;
+  animation: marqueeScroll 14s linear infinite;
+}
+.footer-marquee-inner span {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--black);
+  padding: 16px 0;
+}
+.footer-marquee-inner .sep { color: var(--red); }
+.footer-body {
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 48px 64px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.footer-col-logo {
+  display: flex; flex-direction: column; gap: 20px;
+}
+.footer-logo img {
+  width: 160px; height: auto;
+  display: block;
+}
+.footer-tagline {
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--sepia);
+  line-height: 1.4;
+}
+.footer-tools {
+  display: flex; align-items: center; justify-content: center;
+  opacity: .3;
+}
+.footer-col-addresses {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+.footer-location h4 {
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 800;
+  letter-spacing: .15em; text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+.footer-location p {
+  font-size: 14px; line-height: 1.7; color: var(--sepia);
+}
+.footer-location a { display: block; color: var(--black); font-weight: 600; }
+.footer-location a:hover { color: var(--red); }
+.footer-bottom {
+  max-width: 1200px; margin: 0 auto;
+  padding: 24px 48px;
+  border-top: 1px solid rgba(139,101,66,.3);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-amore {
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--sepia);
+}
+.footer-legal {
+  font-size: 12px; color: var(--sepia);
+  display: flex; gap: 24px; align-items: center;
+}
+.footer-legal a:hover { color: var(--black); }
+
+/* ── Scroll reveal ──────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .15s; }
+.reveal-delay-2 { transition-delay: .3s; }
+.reveal-delay-3 { transition-delay: .45s; }
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+  #nav { padding: 20px 24px; }
+  #nav.scrolled { margin: 0 16px; left: 0; right: 0; transform: none; width: auto; }
+  .nav-links { gap: 16px; }
+  .nav-links a { font-size: 12px; }
+  #hero { padding: 100px 24px 60px; }
+  .story-act { grid-template-columns: 1fr; min-height: auto; }
+  .story-act:nth-child(even) { direction: ltr; }
+  .story-act-img { height: 280px; position: relative; }
+  .story-act-text { padding: 48px 24px; }
+  .pizza-grid { grid-template-columns: repeat(2, 1fr); }
+  .pizza-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pizza-header p { text-align: left; }
+  #standorte { grid-template-columns: 1fr; }
+  #standorte::after { display: none; }
+  .menu-grid { grid-template-columns: 1fr 1fr; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+  .insta-cell:first-child { grid-column: span 1; grid-row: span 1; }
+  .footer-body { grid-template-columns: 1fr; gap: 40px; }
+  .footer-col-logo, .footer-tools { display: none; }
+  .footer-col-addresses { grid-template-columns: 1fr; }
+  .insta-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  #instagram, #speisekarte, #pizza, #quiet { padding: 80px 24px; }
+  #standorte .location-content { padding: 40px 24px; }
+  .story-intro { padding: 80px 24px 40px; }
+  #quiet { padding: 120px 24px; }
+}
+@media (max-width: 600px) {
+  .pizza-grid { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .insta-grid { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { gap: 10px; }
+  .nav-links a:nth-child(n+3) { display: none; }
+}
+  </style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="box-scene">
+    <div class="box-lid"></div>
+    <div class="box-base">
+      <div class="pizza-inside">🍕</div>
+    </div>
+  </div>
+  <div class="preloader-wordmark">Super Bro's</div>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor-dot" class="cursor-dot" style="position:fixed;pointer-events:none;z-index:9998;transition:transform .15s;"></div>
+<div id="cursor-ring" class="cursor-ring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo" aria-label="Super Bro's Frankfurt">
+    <svg viewBox="0 0 220 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="4" y="46" font-family="Caveat, cursive" font-size="48" font-weight="700" fill="#8B6542">Super Bro's</text>
+      <line x1="4" y1="58" x2="70" y2="58" stroke="#009246" stroke-width="2.5"/>
+      <line x1="72" y1="58" x2="142" y2="58" stroke="#e8e0d5" stroke-width="2.5"/>
+      <line x1="144" y1="58" x2="214" y2="58" stroke="#CE2B37" stroke-width="2.5"/>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="#nordend">Nordend</a>
+    <a href="#westend">Westend</a>
+    <a href="#speisekarte">Speisekarte</a>
+    <a href="https://instagram.com/superbrosfrankfurt" target="_blank" rel="noopener">Instagram ↗</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <p class="hero-tag">Nordend seit 2017 · Westend seit 2024 · Kalabrien für immer</p>
+
+    <h1 class="hero-headline" aria-label="Papanonnos Pizza. Frankfurts Liebling.">
+      <span class="word"><span class="char">P</span><span class="char">a</span><span class="char">p</span><span class="char">a</span><span class="char">n</span><span class="char">o</span><span class="char">n</span><span class="char">n</span><span class="char">o</span><span class="char">s</span></span><span class="space"> </span><span class="word"><span class="char">P</span><span class="char">i</span><span class="char">z</span><span class="char">z</span><span class="char">a</span><span class="char">.</span></span>
+      <br>
+      <span class="word hero-underline-word">
+        <span class="char">F</span><span class="char">r</span><span class="char">a</span><span class="char">n</span><span class="char">k</span><span class="char">f</span><span class="char">u</span><span class="char">r</span><span class="char">t</span><span class="char">s</span>
+        <svg class="hero-underline-svg" viewBox="0 0 320 16" preserveAspectRatio="none">
+          <path class="hero-underline-path" d="M2 10 Q40 2 80 11 Q120 18 160 9 Q200 2 240 11 Q280 18 318 8"/>
+        </svg>
+      </span><span class="space"> </span><span class="word"><span class="char">L</span><span class="char">i</span><span class="char">e</span><span class="char">b</span><span class="char">l</span><span class="char">i</span><span class="char">n</span><span class="char">g</span><span class="char">.</span></span>
+    </h1>
+
+    <p class="hero-sub">
+      Drei Brüder. Eine Sauce. Eine Geschichte, die in einem kleinen Dorf in Kalabrien
+      begann — und in Frankfurt nie aufgehört hat zu schmecken.
+    </p>
+
+    <a href="#story" class="hero-cta">
+      Unsere Geschichte
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9h12M10 4l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scrollen</span>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <span>SUPER BRO'S</span><span class="sep">✦</span>
+      <span>PAPANONNOS PIZZA</span><span class="sep">✦</span>
+      <span>KALABRISCH</span><span class="sep">✦</span>
+      <span>SEIT 2017</span><span class="sep">✦</span>
+      <span>NORDEND · WESTEND</span><span class="sep">✦</span>
+      <span>MIT LIEBE</span><span class="sep">✦</span>
+    </div>
+    <div class="marquee-inner" aria-hidden="true">
+      <span>SUPER BRO'S</span><span class="sep">✦</span>
+      <span>PAPANONNOS PIZZA</span><span class="sep">✦</span>
+      <span>KALABRISCH</span><span class="sep">✦</span>
+      <span>SEIT 2017</span><span class="sep">✦</span>
+      <span>NORDEND · WESTEND</span><span class="sep">✦</span>
+      <span>MIT LIEBE</span><span class="sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-intro reveal">
+    <div class="section-label">Die Geschichte</div>
+    <h2>Aus Kalabrien.<br>In <em>Frankfurt</em> verwurzelt.</h2>
+    <p>
+      Unser Urgroßopa, ursprünglich Neapolitaner, heiratete eine Kalabresin.
+      Aus dieser Vereinigung entsprangen nicht nur viele Bambini, sondern auch
+      etliche kulinarische Leckerbissen — und eine Pizza-Legende.
+    </p>
+  </div>
+
+  <div class="story-acts">
+
+    <div class="story-act">
+      <div class="story-act-img">
+        <img src="../super-bros/images/ti-amo.jpg" alt="Familiäre Wärme — der Ursprung in Kalabrien" loading="lazy">
+      </div>
+      <div class="story-act-text">
+        <div class="story-act-num">01 — Der Ursprung</div>
+        <h3>Ein Neapolitaner heiratet eine Kalabresin</h3>
+        <p>Eine Liebesgeschichte, die zwei Küchen zu einer machte. Neapel trifft Kalabrien — und am Ende kommt eine Pizza raus, die nach Sommer riecht, nach Meer, nach Familie.</p>
+        <blockquote class="story-quote">„Das Essen war kein Zweck. Es war ein gesellschaftliches Ereignis."</blockquote>
+      </div>
+    </div>
+
+    <div class="story-act">
+      <div class="story-act-img">
+        <img src="../super-bros/images/table-aerial.jpg" alt="Vier Pizzen am Tisch — Sommer in Kalabrien" loading="lazy">
+      </div>
+      <div class="story-act-text">
+        <div class="story-act-num">02 — Die Kindheit</div>
+        <h3>Sommer in Kalabrien.<br>Winter in Frankfurt.</h3>
+        <p>Geboren und aufgewachsen in Frankfurt, verbrachten wir unsere Ferien immer bei der Familie im sonnigen Kalabrien. Dort wurde am großen Tisch gegessen — mit Nachbarn, mit Fremden, mit Freunden.</p>
+        <blockquote class="story-quote">„Dort diente das Essen nicht nur dem Zweck, satt zu werden."</blockquote>
+      </div>
+    </div>
+
+    <div class="tools-divider">
+      <svg width="80" height="44" viewBox="0 0 80 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="36" y="2" width="8" height="30" rx="2" fill="#8B6542" transform="rotate(-30 40 17)"/>
+        <rect x="36" y="2" width="8" height="30" rx="2" fill="#8B6542" transform="rotate(30 40 17)"/>
+        <rect x="10" y="30" width="60" height="8" rx="4" fill="#8B6542"/>
+        <circle cx="10" cy="34" r="5" fill="#8B6542"/>
+        <circle cx="70" cy="34" r="5" fill="#8B6542"/>
+      </svg>
+    </div>
+
+    <div class="story-act">
+      <div class="story-act-img">
+        <img src="../super-bros/images/raw-dough.jpg" alt="Pizzateig — Papanonnos Familienrezept" loading="lazy">
+      </div>
+      <div class="story-act-text">
+        <div class="story-act-num">03 — Die Pizza</div>
+        <h3>Papanonnos<br>berühmte Pizza</h3>
+        <p>Während die Eltern Pasta mit selbstgemachter Tomatensauce kochten, zauberte der Papanonno seine berühmt berüchtigte Pizza mit ausgewählten und frischen Zutaten. Ein Rezept, das niemand aufgeschrieben hat. Weil es in den Händen lebt.</p>
+        <blockquote class="story-quote">„Dieses Stück Heimat haben wir uns auch in Deutschland bewahrt."</blockquote>
+      </div>
+    </div>
+
+    <div class="story-act">
+      <div class="story-act-img">
+        <img src="../super-bros/images/skyline.jpg" alt="Pizza am Main — Frankfurt Skyline" loading="lazy">
+      </div>
+      <div class="story-act-text">
+        <div class="story-act-num">04 — Frankfurt</div>
+        <h3>Den Süden in den Norden tragen</h3>
+        <p>2017 öffneten wir im Nordend die erste Tür. Keine Kette. Kein Franchise. Nur eine Familie, ein Rezept, und der Entschluss, Frankfurt kalabrisch zu machen. 2024 folgte das Westend.</p>
+        <blockquote class="story-quote">„Unsere Tradition und das damit verbundene Lebensgefühl — in das schöne Frankfurt."</blockquote>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- QUIET MOMENT -->
+<section id="quiet">
+  <p class="quiet-text">
+    Pizza ist kein Essen.<br>
+    Pizza ist <span class="red-hand">Erinnerung.</span>
+  </p>
+</section>
+
+<!-- PIZZA -->
+<section id="pizza">
+  <div class="pizza-header reveal">
+    <div>
+      <div class="section-label">Die Pizza</div>
+      <h2>Frisch. Kalabrisch.<br>Kompromisslos.</h2>
+    </div>
+    <p>72-Stunden-Teig. Ausgewählte Zutaten. Eine Sauce, die nach Süden schmeckt. Kein Kompromiss, kein Gefasel — nur Pizza, wie sie sein soll.</p>
+  </div>
+
+  <div class="pizza-grid">
+    <div class="pizza-card reveal">
+      <div class="pizza-card-img">
+        <img src="../super-bros/images/margherita-boxes.jpg" alt="Pizza Margherita" loading="lazy">
+        <div class="pizza-glow"></div>
+      </div>
+      <div class="pizza-card-info">
+        <div class="pizza-card-name">Margherita</div>
+        <div class="pizza-card-desc">Tomatensauce · Fior di Latte · Basilikum · Olivenöl</div>
+      </div>
+    </div>
+    <div class="pizza-card reveal reveal-delay-1">
+      <div class="pizza-card-img">
+        <img src="../super-bros/images/diavola.jpg" alt="Pizza Calabrese" loading="lazy">
+        <div class="pizza-glow"></div>
+      </div>
+      <div class="pizza-card-info">
+        <div class="pizza-card-name">Calabrese</div>
+        <div class="pizza-card-desc">Nduja · Mozzarella · Chili · Frühlingszwiebeln</div>
+      </div>
+    </div>
+    <div class="pizza-card reveal reveal-delay-2">
+      <div class="pizza-card-img">
+        <img src="../super-bros/images/pizzas-trio.jpg" alt="Pizza Papanonno" loading="lazy">
+        <div class="pizza-glow"></div>
+      </div>
+      <div class="pizza-card-info">
+        <div class="pizza-card-name">Papanonno</div>
+        <div class="pizza-card-desc">Das Original. Rezept unter Verschluss. Frag die Brüder.</div>
+      </div>
+    </div>
+    <div class="pizza-card reveal reveal-delay-3">
+      <div class="pizza-card-img">
+        <img src="../super-bros/images/burrata-rucola.jpg" alt="Pizza Tartufo Nero" loading="lazy">
+        <div class="pizza-glow"></div>
+      </div>
+      <div class="pizza-card-info">
+        <div class="pizza-card-name">Tartufo Nero</div>
+        <div class="pizza-card-desc">Trüffelcreme · Taleggio · Rucola · Parmesanflocken</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section id="standorte">
+  <div class="location location-nordend" id="nordend">
+    <div class="location-bg"></div>
+    <div class="location-img">
+      <img src="../super-bros/images/oven.jpg" alt="Super Bro's Nordend — Oeder Weg 55–57" loading="lazy">
+    </div>
+    <div class="location-content">
+      <div class="location-since">Seit 2017 — Der Ursprung</div>
+      <h3>Nord&shy;end</h3>
+      <div class="location-address">
+        Oeder Weg 55–57<br>60318 Frankfurt am Main<br><br>
+        <a href="tel:06926497580">069 – 264 975 80</a><br><br>
+        Mo–Sa 12–22 Uhr · So 13–21 Uhr
+      </div>
+      <div class="location-btns">
+        <a href="https://maps.google.com/?q=Oeder+Weg+55,+Frankfurt" target="_blank" rel="noopener" class="location-cta">
+          In Maps öffnen ↗
+        </a>
+        <a href="#speisekarte" class="location-cta">
+          Getränke- &amp; Speisekarte
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="location location-westend" id="westend">
+    <div class="location-bg"></div>
+    <div class="location-img">
+      <img src="../super-bros/images/team-margherita.jpg" alt="Super Bro's Westend — Grüneburgweg 78" loading="lazy">
+    </div>
+    <div class="location-content">
+      <div class="location-since">Seit 2024 — Das neue Zuhause</div>
+      <h3>West&shy;end</h3>
+      <div class="location-address">
+        Grüneburgweg 78 (Parkstraße 1)<br>60323 Frankfurt am Main<br><br>
+        <a href="tel:06921029842">069 – 210 298 42</a><br><br>
+        Mo–Sa 12–22 Uhr · So 13–21 Uhr
+      </div>
+      <div class="location-btns">
+        <a href="https://maps.google.com/?q=Grüneburgweg+78,+Frankfurt" target="_blank" rel="noopener" class="location-cta">
+          In Maps öffnen ↗
+        </a>
+        <a href="#speisekarte" class="location-cta">
+          Getränke- &amp; Speisekarte
+        </a>
+        <a href="#speisekarte" class="location-cta">
+          Salate
+        </a>
+        <a href="#speisekarte" class="location-cta">
+          Dessert
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEISEKARTE TEASER -->
+<section id="speisekarte">
+  <div class="menu-header reveal">
+    <div class="section-label">Speisekarte</div>
+    <h2>Ein Blick<br>in die Karte.</h2>
+  </div>
+  <div class="menu-grid reveal">
+    <div class="menu-item">
+      <div class="menu-item-info"><div class="menu-item-name">Margherita</div><div class="menu-item-desc">Tomatensauce · Fior di Latte · Basilikum</div></div>
+      <div class="menu-item-price">12,50 €</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info"><div class="menu-item-name">Calabrese</div><div class="menu-item-desc">Nduja · Mozzarella · Chili · Frühlingszwiebeln</div></div>
+      <div class="menu-item-price">15,90 €</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info"><div class="menu-item-name">Papanonno</div><div class="menu-item-desc">Das Original. Hausrezept. Geheim.</div></div>
+      <div class="menu-item-price">16,50 €</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info"><div class="menu-item-name">Diavola</div><div class="menu-item-desc">Salame Piccante · Mozzarella · Chilisauce</div></div>
+      <div class="menu-item-price">14,90 €</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info"><div class="menu-item-name">Tartufo Nero</div><div class="menu-item-desc">Trüffelcreme · Taleggio · Rucola · Parmesan</div></div>
+      <div class="menu-item-price">18,50 €</div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-item-info"><div class="menu-item-name">Quattro Stagioni</div><div class="menu-item-desc">Schinken · Pilze · Artischocken · Oliven</div></div>
+      <div class="menu-item-price">15,50 €</div>
+    </div>
+  </div>
+  <div class="menu-cta-wrap reveal">
+    <a href="uploads/Speisekarte Superbros.pdf" target="_blank" rel="noopener" class="menu-cta">Vollständige Speisekarte ansehen →</a>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="insta-header reveal">
+    <h2>@superbros<wbr>frankfurt</h2>
+    <a href="https://instagram.com/superbrosfrankfurt" target="_blank" rel="noopener" class="insta-handle">Auf Instagram folgen ↗</a>
+  </div>
+  <div class="insta-grid">
+    <div class="insta-cell">
+      <img src="../super-bros/images/pizzas-trio.jpg" alt="Super Bro's — drei Pizzen" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+    <div class="insta-cell">
+      <img src="../super-bros/images/herz-box.jpg" alt="Super Bro's — Herzbox" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+    <div class="insta-cell">
+      <img src="../super-bros/images/kitchen.jpg" alt="Super Bro's — die Küche" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+    <div class="insta-cell">
+      <img src="../super-bros/images/diavola.jpg" alt="Super Bro's — Diavola" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+    <div class="insta-cell">
+      <img src="../super-bros/images/oven.jpg" alt="Super Bro's — der Ofen" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+    <div class="insta-cell">
+      <img src="../super-bros/images/table-aerial.jpg" alt="Super Bro's — Tisch von oben" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+    <div class="insta-cell">
+      <img src="../super-bros/images/fichi-prosciutto.jpg" alt="Super Bro's — Fichi e Prosciutto" loading="lazy">
+      <div class="insta-overlay">♥</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-marquee-wrap">
+    <div class="footer-marquee">
+      <div class="footer-marquee-inner">
+        <span>SUPER BRO'S</span><span class="sep">✦</span>
+        <span>PASSION ZUM ESSEN</span><span class="sep">✦</span>
+        <span>LIEBE ZUR HEIMAT</span><span class="sep">✦</span>
+        <span>SEIT 2017</span><span class="sep">✦</span>
+      </div>
+      <div class="footer-marquee-inner" aria-hidden="true">
+        <span>SUPER BRO'S</span><span class="sep">✦</span>
+        <span>PASSION ZUM ESSEN</span><span class="sep">✦</span>
+        <span>LIEBE ZUR HEIMAT</span><span class="sep">✦</span>
+        <span>SEIT 2017</span><span class="sep">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-body">
+    <div class="footer-col-logo">
+      <div class="footer-logo">
+        <img src="uploads/SuperBros Logo.png" alt="Super Bro's Logo" style="width:160px;height:auto;object-fit:contain;">
+      </div>
+      <div class="footer-tagline">Drei Brüder.<br>Eine Sauce.<br>Frankfurt.</div>
+    </div>
+
+    <div class="footer-tools">
+      <svg width="60" height="44" viewBox="0 0 80 44" fill="none">
+        <rect x="36" y="2" width="8" height="30" rx="2" fill="#8B6542" transform="rotate(-30 40 17)"/>
+        <rect x="36" y="2" width="8" height="30" rx="2" fill="#8B6542" transform="rotate(30 40 17)"/>
+        <rect x="10" y="30" width="60" height="8" rx="4" fill="#8B6542"/>
+        <circle cx="10" cy="34" r="5" fill="#8B6542"/>
+        <circle cx="70" cy="34" r="5" fill="#8B6542"/>
+      </svg>
+    </div>
+
+    <div class="footer-col-addresses">
+      <div class="footer-location">
+        <h4>Nordend</h4>
+        <p>Oeder Weg 55–57<br>60318 Frankfurt am Main<br><br>
+        <a href="tel:06926497580">069 – 264 975 80</a><br>
+        Mo–Sa 12–22 · So 13–21 Uhr</p>
+      </div>
+      <div class="footer-location">
+        <h4>Westend</h4>
+        <p>Grüneburgweg 78<br>60323 Frankfurt am Main<br><br>
+        <a href="tel:06921029842">069 – 210 298 42</a><br>
+        Mo–Sa 12–22 · So 13–21 Uhr</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-amore">Con amore, i fratelli ♥</div>
+    <div class="footer-legal">
+      <a href="#">Impressum</a>
+      <a href="#">Datenschutz</a>
+      <span>© 2025 Super Bro's Frankfurt</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Lenis Smooth Scroll -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<!-- Motion -->
+<script src="https://cdn.jsdelivr.net/npm/motion@latest/dist/motion.js"></script>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ── Preloader ─────────────────────────────────────────────── */
+  function initPreloader() {
+    const loader = document.getElementById('preloader');
+    const scene  = loader.querySelector('.box-scene');
+
+    setTimeout(() => { scene.classList.add('open'); }, 900);
+
+    setTimeout(() => {
+      loader.classList.add('done');
+      loader.addEventListener('animationend', () => {
+        loader.remove();
+        startHeroAnimation();
+      }, { once: true });
+    }, 1800);
+  }
+
+  /* ── Custom Cursor ─────────────────────────────────────────── */
+  function initCursor() {
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left  = mx + 'px';
+      dot.style.top   = my + 'px';
+    });
+
+    function lerpRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px';
+      ring.style.top  = ry + 'px';
+      requestAnimationFrame(lerpRing);
+    }
+    lerpRing();
+
+    document.addEventListener('click', () => {
+      dot.style.transform = 'translate(-50%,-50%) scale(2.2)';
+      ring.style.transform = 'translate(-50%,-50%) scale(.5)';
+      setTimeout(() => {
+        dot.style.transform  = '';
+        ring.style.transform = '';
+      }, 250);
+    });
+  }
+
+  /* ── Lenis Smooth Scroll ────────────────────────────────────── */
+  function initLenis() {
+    if (!window.Lenis) return;
+    const lenis = new Lenis({ lerp: 0.08, smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    window._lenis = lenis;
+  }
+
+  /* ── Nav scroll pill ────────────────────────────────────────── */
+  function initNav() {
+    const nav = document.getElementById('nav');
+    const onScroll = () => {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  /* ── Hero headline letter animation ────────────────────────── */
+  function startHeroAnimation() {
+    const headline = document.querySelector('.hero-headline');
+    if (!headline) return;
+
+    const chars = headline.querySelectorAll('.char');
+    chars.forEach((ch, i) => {
+      setTimeout(() => {
+        ch.style.transition = `opacity .4s ease, transform .5s cubic-bezier(.34,1.56,.64,1)`;
+        ch.style.opacity    = '1';
+        ch.style.transform  = 'translateY(0) rotate(0deg)';
+      }, 100 + i * 55);
+    });
+
+    const totalDelay = 100 + chars.length * 55 + 200;
+    setTimeout(() => {
+      const path = document.querySelector('.hero-underline-path');
+      if (path) {
+        path.style.transition = 'stroke-dashoffset 0.8s cubic-bezier(.4,0,.2,1)';
+        path.style.strokeDashoffset = '0';
+      }
+      const sub  = document.querySelector('.hero-sub');
+      const cta  = document.querySelector('.hero-cta');
+      if (sub) { sub.style.transition = 'opacity .6s ease'; sub.style.opacity = '1'; }
+      if (cta) {
+        setTimeout(() => {
+          cta.style.transition = 'opacity .5s ease, background .2s, color .2s, transform .2s, box-shadow .2s';
+          cta.style.opacity = '1';
+        }, 300);
+      }
+    }, totalDelay);
+  }
+
+  /* ── Marquee scroll speed ────────────────────────────────────── */
+  function initMarquee() {
+    const inners = document.querySelectorAll('.marquee-inner, .footer-marquee-inner');
+    let lastY = 0, velocity = 0, baseDuration = 18;
+
+    window.addEventListener('scroll', () => {
+      const curY = window.scrollY;
+      const delta = Math.abs(curY - lastY);
+      velocity = delta;
+      lastY = curY;
+    }, { passive: true });
+
+    setInterval(() => {
+      velocity *= 0.85;
+      const speed = Math.max(0.4, 1 - velocity * 0.018);
+      inners.forEach(el => {
+        el.style.animationDuration = (baseDuration * speed) + 's';
+      });
+    }, 60);
+  }
+
+  /* ── Intersection Observer for reveals ───────────────────────── */
+  function initReveal() {
+    const targets = document.querySelectorAll('.reveal, .story-act, #quiet');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    targets.forEach(el => observer.observe(el));
+  }
+
+  /* ── Location split hover ───────────────────────────────────── */
+  function initLocations() {
+    const section = document.getElementById('standorte');
+    if (!section) return;
+    const locs = section.querySelectorAll('.location');
+
+    locs.forEach(loc => {
+      loc.addEventListener('mouseenter', () => {
+        locs.forEach(l => l.style.opacity = '0.75');
+        loc.style.opacity = '1';
+      });
+      section.addEventListener('mouseleave', () => {
+        locs.forEach(l => l.style.opacity = '1');
+      });
+    });
+  }
+
+  /* ── Story parallax (lightweight) ───────────────────────────── */
+  function initStoryParallax() {
+    const acts = document.querySelectorAll('.story-act-img');
+    if (!acts.length) return;
+
+    window.addEventListener('scroll', () => {
+      acts.forEach(act => {
+        const rect = act.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const offset = (window.innerHeight / 2 - center) * 0.06;
+        const img = act.querySelector('img');
+        if (img) img.style.transform = `translateY(${offset}px) scale(1.04)`;
+      });
+    }, { passive: true });
+  }
+
+  /* ── Init all ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', () => {
+    initPreloader();
+    initCursor();
+    initLenis();
+    initNav();
+    initMarquee();
+    initReveal();
+    initLocations();
+    initStoryParallax();
+  });
+})();
+</script>
+
+</body>
+</html>
