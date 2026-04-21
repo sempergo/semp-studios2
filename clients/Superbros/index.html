@@ -856,12 +856,16 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
     -webkit-overflow-scrolling: touch;
     gap: 16px;
     padding-bottom: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-left: -24px;
+    margin-right: -24px;
     scrollbar-width: none;
   }
   .pizza-grid::-webkit-scrollbar { display: none; }
   .pizza-card {
-    flex: 0 0 75vw;
-    max-width: 300px;
+    flex: 0 0 78vw;
+    max-width: 78vw;
     scroll-snap-align: start;
   }
   .pizza-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -881,7 +885,7 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   #quiet { padding: 120px 24px; }
 }
 @media (max-width: 600px) {
-  .pizza-card { flex: 0 0 82vw; }
+  .pizza-card { flex: 0 0 82vw; max-width: 82vw; }
   .menu-grid { grid-template-columns: 1fr; }
   .insta-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-links { gap: 10px; }
