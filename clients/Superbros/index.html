@@ -146,8 +146,8 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   right: auto; width: max-content;
   box-shadow: 4px 4px 0 var(--black);
 }
-.nav-logo img { height: 48px; width: auto; }
-#nav.scrolled .nav-logo img { height: 32px; }
+.nav-logo img { height: 32px; width: auto; }
+#nav.scrolled .nav-logo img { height: 26px; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 #nav.scrolled .nav-links { gap: 20px; }
 .nav-links a {
@@ -913,7 +913,12 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
 <!-- NAV -->
 <nav id="nav">
   <a href="#" class="nav-logo" aria-label="Super Bro's Frankfurt">
-    <img src="uploads/logo-schriftzug.png" alt="Super Bro's" style="height:48px;width:auto;object-fit:contain;mix-blend-mode:multiply;transition:height .4s cubic-bezier(.4,0,.2,1);">
+    <img src="uploads/logo-schriftzug.png" alt="Super Bro's" style="height:32px;width:auto;object-fit:contain;mix-blend-mode:multiply;display:block;transition:height .4s cubic-bezier(.4,0,.2,1);">
+    <div style="display:flex;margin-top:4px;">
+      <div style="flex:1;height:2px;background:#009246;"></div>
+      <div style="flex:1;height:2px;background:#e8e0d5;"></div>
+      <div style="flex:1;height:2px;background:#CE2B37;"></div>
+    </div>
   </a>
   <div class="nav-links">
     <a href="#nordend">Nordend</a>
