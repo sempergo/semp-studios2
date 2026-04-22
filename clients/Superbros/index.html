@@ -885,13 +885,11 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
     touch-action: pan-x;
     gap: 16px;
     padding-bottom: 16px;
-    width: 100%;
-    max-width: 100%;
     margin: 0;
     scrollbar-width: none;
   }
   .pizza-grid::-webkit-scrollbar { display: none; }
-  .pizza-slider-spacer { display: block; flex: 0 0 24px; min-width: 24px; margin-right: -16px; }
+  .pizza-slider-spacer { display: none; }
   .pizza-card {
     flex: 0 0 72vw;
     min-width: 0;
@@ -909,9 +907,8 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   .footer-col-logo, .footer-tools { display: none; }
   .footer-col-addresses { grid-template-columns: 1fr; }
   .insta-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-  #instagram, #speisekarte, #quiet { padding: 80px 24px; }
-  #pizza { padding: 80px 0; }
-  .pizza-header { padding: 0 24px; margin-bottom: 32px; }
+  #instagram, #speisekarte, #quiet, #pizza { padding: 80px 24px; }
+  .pizza-header { margin-bottom: 32px; }
   #standorte .location-content { padding: 40px 24px; }
   .story-intro { padding: 80px 24px 40px; }
   #quiet { padding: 120px 24px; }
