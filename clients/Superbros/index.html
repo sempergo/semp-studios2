@@ -510,6 +510,12 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
+.pizza-card.reveal,
+.pizza-card.reveal.visible {
+  opacity: 1;
+  transform: none;
+  transition: transform .3s, box-shadow .3s;
+}
 .pizza-card {
   background: var(--cream);
   border: 2px solid var(--black);
