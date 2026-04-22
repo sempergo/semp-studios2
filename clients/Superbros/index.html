@@ -931,8 +931,10 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
   .pizza-grid {
     display: flex;
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
     gap: 16px;
     padding-bottom: 16px;
     width: 100%;
