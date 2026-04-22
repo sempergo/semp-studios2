@@ -935,8 +935,6 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
     -webkit-overflow-scrolling: touch;
     gap: 16px;
     padding-bottom: 16px;
-    padding-left: 24px;
-    padding-right: 24px;
     width: 100vw;
     position: relative;
     left: -24px;
@@ -948,6 +946,8 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
     min-width: 0;
     scroll-snap-align: start;
   }
+  .pizza-card:first-child { margin-left: 24px; }
+  .pizza-card:last-child  { margin-right: 24px; }
   .pizza-header { flex-direction: column; align-items: flex-start; gap: 16px; }
   .pizza-header p { text-align: left; }
   #standorte { grid-template-columns: 1fr; }
