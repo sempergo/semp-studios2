@@ -55,54 +55,117 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
   background: var(--pink);
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
-  gap: 32px;
+  gap: 28px;
 }
 #preloader.done { animation: preloaderOut .6s ease forwards; pointer-events: none; }
 @keyframes preloaderOut {
-  to { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 0; transform: translateY(-6px); }
 }
+
+/* ── Pizza box illustration ─────────────────────────────────── */
 .box-scene {
-  width: 120px; height: 120px;
-  position: relative; perspective: 600px;
+  width: 220px; height: 200px;
+  position: relative;
+  perspective: 900px;
 }
+/* Base / bottom of box */
 .box-base {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 80px;
-  background: var(--cream);
-  border: 3px solid var(--black);
-  border-radius: 4px 4px 8px 8px;
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 90px;
+  background: linear-gradient(160deg, #EDD9B8 0%, #D9B98A 100%);
+  border: 3px solid #6B4226;
+  border-radius: 6px 6px 12px 12px;
+  box-shadow: inset 0 -4px 12px rgba(107,66,38,.15), 4px 6px 0 rgba(107,66,38,.25);
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
-.pizza-inside {
-  font-size: 48px;
-  opacity: 0;
-  transform: scale(0.4);
-  transition: opacity .4s .5s, transform .4s .5s;
-}
-.box-lid {
+/* Side depth strip */
+.box-base::before {
+  content: '';
   position: absolute; top: 0; left: 0; right: 0;
-  height: 44px;
-  background: var(--pink);
-  border: 3px solid var(--black);
-  border-radius: 8px 8px 4px 4px;
+  height: 10px;
+  background: rgba(107,66,38,.18);
+  border-bottom: 1px solid rgba(107,66,38,.2);
+}
+.pizza-inside {
+  font-size: 52px;
+  opacity: 0;
+  transform: scale(0.3) translateY(8px);
+  transition: opacity .45s .5s, transform .5s .5s cubic-bezier(.34,1.56,.64,1);
+}
+.box-scene.open .pizza-inside { opacity: 1; transform: scale(1) translateY(0); }
+
+/* Lid */
+.box-lid {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 118px;
   transform-origin: top center;
   transform: rotateX(0deg);
-  animation: lidOpen 1s ease 0.4s forwards;
+  animation: lidOpen 1.1s cubic-bezier(.4,0,.2,1) 0.35s forwards;
+  border-radius: 10px 10px 4px 4px;
+  overflow: hidden;
+}
+.box-lid-face {
+  width: 100%; height: 100%;
+  background: linear-gradient(150deg, #F2E0C0 0%, #E0C090 60%, #D0A870 100%);
+  border: 3px solid #6B4226;
+  border-radius: 10px 10px 4px 4px;
+  box-shadow: inset 0 3px 10px rgba(255,255,255,.35), 4px 0 0 rgba(107,66,38,.2);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  position: relative;
+  overflow: hidden;
+}
+/* Decorative dashed border on lid */
+.box-lid-face::before {
+  content: '';
+  position: absolute; inset: 6px;
+  border: 1.5px dashed rgba(107,66,38,.35);
+  border-radius: 6px;
+}
+/* Fold crease */
+.box-lid-face::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 10px;
+  background: rgba(107,66,38,.12);
+  border-top: 1px solid rgba(107,66,38,.2);
+}
+.box-lid-brand {
+  font-family: var(--font-hand);
+  font-size: 15px;
+  font-weight: 700;
+  color: #6B4226;
+  letter-spacing: .5px;
+  position: relative; z-index: 1;
+}
+.box-lid-tagline {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(107,66,38,.6);
+  position: relative; z-index: 1;
+}
+.box-lid-icon {
+  font-size: 22px;
+  position: relative; z-index: 1;
+  line-height: 1;
 }
 @keyframes lidOpen {
   0%   { transform: rotateX(0deg); }
-  100% { transform: rotateX(-135deg); }
+  100% { transform: rotateX(-148deg); }
 }
-.box-scene.open .pizza-inside { opacity: 1; transform: scale(1); }
-.preloader-wordmark {
-  font-family: var(--font-hand);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--black);
-  letter-spacing: 2px;
+
+/* ── Preloader logo ─────────────────────────────────────────── */
+.preloader-logo {
+  width: 160px; height: auto;
+  mix-blend-mode: multiply;
   opacity: 0;
-  animation: fadeUp .5s ease .8s forwards;
+  animation: fadeUp .5s ease .85s forwards;
 }
 @keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:none; } }
 
@@ -912,12 +975,18 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
 <!-- PRELOADER -->
 <div id="preloader">
   <div class="box-scene">
-    <div class="box-lid"></div>
+    <div class="box-lid">
+      <div class="box-lid-face">
+        <div class="box-lid-icon">🍕</div>
+        <div class="box-lid-brand">Super Bro's</div>
+        <div class="box-lid-tagline">Frankfurt · seit 2017</div>
+      </div>
+    </div>
     <div class="box-base">
       <div class="pizza-inside">🍕</div>
     </div>
   </div>
-  <div class="preloader-wordmark">Super Bro's</div>
+  <img src="uploads/logo-schriftzug.png" alt="Super Bro's" class="preloader-logo">
 </div>
 
 <!-- CURSOR -->
