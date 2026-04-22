@@ -641,6 +641,18 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
 }
 .location-nordend .location-cta:hover { background: var(--black); color: var(--cream); }
 .location-westend .location-cta:hover { background: var(--black); color: var(--pink); }
+.location-cta-wolt {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  border: 2px solid #009DE0;
+  color: #009DE0;
+  padding: 14px 28px; border-radius: 4px;
+  background: transparent;
+  transition: background .2s, color .2s;
+}
+.location-cta-wolt:hover { background: #009DE0; color: #fff; }
 
 /* ── Menu Teaser ────────────────────────────────────────────── */
 #speisekarte {
@@ -1181,6 +1193,9 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
         <a href="#speisekarte" class="location-cta">
           Getränke- &amp; Speisekarte
         </a>
+        <a href="https://wolt.com/de/deu/frankfurt/restaurant/super-bros" target="_blank" rel="noopener" class="location-cta-wolt">
+          Wolt ↗
+        </a>
       </div>
     </div>
   </div>
@@ -1210,6 +1225,9 @@ body:has(a:hover) .cursor-ring, body:has(button:hover) .cursor-ring {
         </a>
         <a href="#speisekarte" class="location-cta">
           Dessert
+        </a>
+        <a href="https://wolt.com/de/deu/frankfurt/restaurant/super-bros-westend" target="_blank" rel="noopener" class="location-cta-wolt">
+          Wolt ↗
         </a>
       </div>
     </div>
